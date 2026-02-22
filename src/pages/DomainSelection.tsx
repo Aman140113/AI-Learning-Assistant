@@ -44,7 +44,10 @@ const DomainSelection = () => {
             return (
               <button
                 key={domain.id}
-                onClick={() => navigate("/dashboard")}
+               onClick={() => {
+                localStorage.setItem("selectedDomain", domain.id); // e.g. "java", "qa", "devops", "genai"
+                navigate("/dashboard");
+              }}
                 className={`text-left p-6 rounded-2xl border-2 transition-all duration-300 hover:-translate-y-2 cursor-pointer animate-slide-up ${
                   colorMap[domain.color]
                 } stagger-${i + 1}`}

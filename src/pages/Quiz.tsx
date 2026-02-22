@@ -4,16 +4,47 @@ import { Clock, ChevronRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import ProgressBar from "@/components/ProgressBar";
 import QuizCard from "@/components/QuizCard";
-import { quizQuestions } from "@/data/dummyData";
+import { allQuizQuestions } from "@/data/dummyData";
+
+// Helper: determine next difficulty based on last 3 answers
+const getNextDifficulty = (answerHistory: { correct: boolean }[]): "Easy" | "Medium" | "Hard" => {
+  const last3 = answerHistory.slice(-3);
+  const correctCount = last3.filter((a) => a.correct).length;
+  if (correctCount === 3) return "Hard";
+  if (correctCount === 2) return "Medium";
+  return "Easy";
+};
+
+const TOTAL_QUESTIONS = 10;
 
 const Quiz = () => {
   const navigate = useNavigate();
-  const [currentQuestion, setCurrentQuestion] = useState(0);
+
+  // ✅ Read selected domain from localStorage
+  const selectedDomain = localStorage.getItem("selectedDomain") || "java";
+
+  // ✅ Filter questions by domain AND difficulty
+  const getQuestionsByDifficulty = useCallback(
+    (difficulty: "Easy" | "Medium" | "Hard") =>
+      allQuizQuestions.filter(
+        (q) => q.difficulty === difficulty && q.domain === selectedDomain
+      ),
+    [selectedDomain]
+  );
+
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
-  const [answers, setAnswers] = useState<number[]>([]);
+  const [answerHistory, setAnswerHistory] = useState<{ correct: boolean }[]>([]);
+  const [usedIds, setUsedIds] = useState<Set<number>>(new Set());
+  const [questionCount, setQuestionCount] = useState(1);
   const [timeLeft, setTimeLeft] = useState(300);
 
-  const question = quizQuestions[currentQuestion];
+  // ✅ Initialize with a random Easy question from the selected domain
+  const [currentQuestion, setCurrentQuestion] = useState(() => {
+    const easyQs = allQuizQuestions.filter(
+      (q) => q.difficulty === "Easy" && q.domain === (localStorage.getItem("selectedDomain") || "java")
+    );
+    return easyQs[Math.floor(Math.random() * easyQs.length)];
+  });
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -43,16 +74,48 @@ const Quiz = () => {
 
   const handleSubmit = useCallback(() => {
     if (selectedAnswer === null) return;
-    const newAnswers = [...answers, selectedAnswer];
-    setAnswers(newAnswers);
 
-    if (currentQuestion < quizQuestions.length - 1) {
-      setCurrentQuestion((prev) => prev + 1);
-      setSelectedAnswer(null);
-    } else {
+    const isCorrect = selectedAnswer === currentQuestion.correctAnswer;
+    const newHistory = [...answerHistory, { correct: isCorrect }];
+    const newUsedIds = new Set(usedIds).add(currentQuestion.id);
+
+    setAnswerHistory(newHistory);
+    setUsedIds(newUsedIds);
+
+    if (questionCount >= TOTAL_QUESTIONS) {
       navigate("/result");
+      return;
     }
-  }, [selectedAnswer, answers, currentQuestion, navigate]);
+
+    // ✅ First 3 questions always Easy, then adaptive
+    let nextDifficulty: "Easy" | "Medium" | "Hard" = "Easy";
+    if (questionCount >= 3 && newHistory.length >= 3) {
+      nextDifficulty = getNextDifficulty(newHistory);
+    }
+
+    // ✅ Pick random unused question from domain + difficulty pool
+    const pool = getQuestionsByDifficulty(nextDifficulty).filter(
+      (q) => !newUsedIds.has(q.id)
+    );
+
+    // ✅ Fallback: if target difficulty pool is empty, try other difficulties
+    const fallbackPool =
+      pool.length > 0
+        ? pool
+        : allQuizQuestions.filter(
+            (q) => q.domain === selectedDomain && !newUsedIds.has(q.id)
+          );
+
+    if (fallbackPool.length === 0) {
+      navigate("/result");
+      return;
+    }
+
+    const next = fallbackPool[Math.floor(Math.random() * fallbackPool.length)];
+    setCurrentQuestion(next);
+    setQuestionCount((prev) => prev + 1);
+    setSelectedAnswer(null);
+  }, [selectedAnswer, answerHistory, currentQuestion, usedIds, questionCount, navigate, getQuestionsByDifficulty, selectedDomain]);
 
   return (
     <div className="h-screen flex flex-col bg-background overflow-hidden">
@@ -61,8 +124,8 @@ const Quiz = () => {
         {/* Progress */}
         <div className="mb-3">
           <ProgressBar
-            value={currentQuestion + 1}
-            max={quizQuestions.length}
+            value={questionCount}
+            max={TOTAL_QUESTIONS}
             showValue={false}
             size="sm"
             variant="quiz"
@@ -73,10 +136,10 @@ const Quiz = () => {
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-3">
             <span className="text-sm font-semibold text-muted-foreground">
-              Question {currentQuestion + 1} of {quizQuestions.length}
+              Question {questionCount} of {TOTAL_QUESTIONS}
             </span>
-            <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${difficultyBadge[question.difficulty]}`}>
-              {question.difficulty}
+            <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${difficultyBadge[currentQuestion.difficulty]}`}>
+              {currentQuestion.difficulty}
             </span>
           </div>
           <div className={`flex items-center gap-2 font-heading font-bold text-sm ${timeLeft < 60 ? "text-destructive" : "text-muted-foreground"}`}>
@@ -88,13 +151,13 @@ const Quiz = () => {
         {/* Question */}
         <div className="glass-card p-5 mb-4">
           <h2 className="font-heading font-bold text-lg text-foreground leading-relaxed">
-            {question.question}
+            {currentQuestion.question}
           </h2>
         </div>
 
-        {/* Options - takes remaining space */}
+        {/* Options */}
         <div className="flex-1 flex flex-col gap-2 min-h-0 overflow-y-auto mb-4">
-          {question.options.map((option, index) => (
+          {currentQuestion.options.map((option, index) => (
             <QuizCard
               key={index}
               option={option}
@@ -105,7 +168,7 @@ const Quiz = () => {
           ))}
         </div>
 
-        {/* Submit - always visible at bottom */}
+        {/* Submit */}
         <div className="flex justify-end py-2">
           <button
             onClick={handleSubmit}
@@ -116,7 +179,7 @@ const Quiz = () => {
                 : "bg-muted text-muted-foreground cursor-not-allowed"
             }`}
           >
-            {currentQuestion < quizQuestions.length - 1 ? "Next" : "Finish"}
+            {questionCount < TOTAL_QUESTIONS ? "Next" : "Finish"}
             <ChevronRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
           </button>
         </div>
