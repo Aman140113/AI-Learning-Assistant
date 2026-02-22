@@ -6,43 +6,33 @@ import ProgressBar from "@/components/ProgressBar";
 import QuizCard from "@/components/QuizCard";
 import { allQuizQuestions } from "@/data/dummyData";
 
-// Helper: determine next difficulty based on last 3 answers
+const TOTAL_QUESTIONS = 10;
+
+// ✅ Moved fully outside component — no stale closure risk
 const getNextDifficulty = (answerHistory: { correct: boolean }[]): "Easy" | "Medium" | "Hard" => {
   const last3 = answerHistory.slice(-3);
   const correctCount = last3.filter((a) => a.correct).length;
+  console.log("Last 3 answers:", last3, "Correct count:", correctCount); // debug
   if (correctCount === 3) return "Hard";
   if (correctCount === 2) return "Medium";
   return "Easy";
 };
 
-const TOTAL_QUESTIONS = 10;
+// ✅ Pure function, no hook needed
+const getQuestionsByDifficulty = (difficulty: "Easy" | "Medium" | "Hard", domain: string) =>
+  allQuizQuestions.filter((q) => q.difficulty === difficulty && q.domain === domain);
 
 const Quiz = () => {
   const navigate = useNavigate();
-
-  // ✅ Read selected domain from localStorage
   const selectedDomain = localStorage.getItem("selectedDomain") || "java";
-
-  // ✅ Filter questions by domain AND difficulty
-  const getQuestionsByDifficulty = useCallback(
-    (difficulty: "Easy" | "Medium" | "Hard") =>
-      allQuizQuestions.filter(
-        (q) => q.difficulty === difficulty && q.domain === selectedDomain
-      ),
-    [selectedDomain]
-  );
 
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [answerHistory, setAnswerHistory] = useState<{ correct: boolean }[]>([]);
   const [usedIds, setUsedIds] = useState<Set<number>>(new Set());
   const [questionCount, setQuestionCount] = useState(1);
   const [timeLeft, setTimeLeft] = useState(300);
-
-  // ✅ Initialize with a random Easy question from the selected domain
   const [currentQuestion, setCurrentQuestion] = useState(() => {
-    const easyQs = allQuizQuestions.filter(
-      (q) => q.difficulty === "Easy" && q.domain === (localStorage.getItem("selectedDomain") || "java")
-    );
+    const easyQs = getQuestionsByDifficulty("Easy", localStorage.getItem("selectedDomain") || "java");
     return easyQs[Math.floor(Math.random() * easyQs.length)];
   });
 
@@ -79,6 +69,8 @@ const Quiz = () => {
     const newHistory = [...answerHistory, { correct: isCorrect }];
     const newUsedIds = new Set(usedIds).add(currentQuestion.id);
 
+    console.log(`Q${questionCount} answered. Correct: ${isCorrect}. History length: ${newHistory.length}`);
+
     setAnswerHistory(newHistory);
     setUsedIds(newUsedIds);
 
@@ -87,24 +79,23 @@ const Quiz = () => {
       return;
     }
 
-    // ✅ First 3 questions always Easy, then adaptive
+    // ✅ First 3 questions always Easy, adaptive from Q4 onward
     let nextDifficulty: "Easy" | "Medium" | "Hard" = "Easy";
-    if (questionCount >= 3 && newHistory.length >= 3) {
+    if (newHistory.length >= 3) {
       nextDifficulty = getNextDifficulty(newHistory);
     }
 
-    // ✅ Pick random unused question from domain + difficulty pool
-    const pool = getQuestionsByDifficulty(nextDifficulty).filter(
+    console.log("Next difficulty:", nextDifficulty);
+
+    // ✅ Now passing domain as argument — no stale closure
+    const pool = getQuestionsByDifficulty(nextDifficulty, selectedDomain).filter(
       (q) => !newUsedIds.has(q.id)
     );
 
-    // ✅ Fallback: if target difficulty pool is empty, try other difficulties
     const fallbackPool =
       pool.length > 0
         ? pool
-        : allQuizQuestions.filter(
-            (q) => q.domain === selectedDomain && !newUsedIds.has(q.id)
-          );
+        : allQuizQuestions.filter((q) => q.domain === selectedDomain && !newUsedIds.has(q.id));
 
     if (fallbackPool.length === 0) {
       navigate("/result");
@@ -115,24 +106,16 @@ const Quiz = () => {
     setCurrentQuestion(next);
     setQuestionCount((prev) => prev + 1);
     setSelectedAnswer(null);
-  }, [selectedAnswer, answerHistory, currentQuestion, usedIds, questionCount, navigate, getQuestionsByDifficulty, selectedDomain]);
+  }, [selectedAnswer, answerHistory, currentQuestion, usedIds, questionCount, navigate, selectedDomain]);
 
   return (
     <div className="h-screen flex flex-col bg-background overflow-hidden">
       <Navbar />
       <div className="flex-1 flex flex-col container mx-auto px-4 py-4 max-w-3xl min-h-0">
-        {/* Progress */}
         <div className="mb-3">
-          <ProgressBar
-            value={questionCount}
-            max={TOTAL_QUESTIONS}
-            showValue={false}
-            size="sm"
-            variant="quiz"
-          />
+          <ProgressBar value={questionCount} max={TOTAL_QUESTIONS} showValue={false} size="sm" variant="quiz" />
         </div>
 
-        {/* Header */}
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-3">
             <span className="text-sm font-semibold text-muted-foreground">
@@ -148,14 +131,12 @@ const Quiz = () => {
           </div>
         </div>
 
-        {/* Question */}
         <div className="glass-card p-5 mb-4">
           <h2 className="font-heading font-bold text-lg text-foreground leading-relaxed">
             {currentQuestion.question}
           </h2>
         </div>
 
-        {/* Options */}
         <div className="flex-1 flex flex-col gap-2 min-h-0 overflow-y-auto mb-4">
           {currentQuestion.options.map((option, index) => (
             <QuizCard
@@ -168,7 +149,6 @@ const Quiz = () => {
           ))}
         </div>
 
-        {/* Submit */}
         <div className="flex justify-end py-2">
           <button
             onClick={handleSubmit}

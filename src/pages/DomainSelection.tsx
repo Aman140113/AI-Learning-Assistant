@@ -44,7 +44,7 @@ const DomainSelection = () => {
             return (
               <button
                 key={domain.id}
-               onClick={() => {
+                onClick={() => {
                 localStorage.setItem("selectedDomain", domain.id); // e.g. "java", "qa", "devops", "genai"
                 navigate("/dashboard");
               }}
