@@ -64,50 +64,69 @@ const Quiz = () => {
 
   const handleSubmit = useCallback(() => {
     if (selectedAnswer === null) return;
-
+  
     const isCorrect = selectedAnswer === currentQuestion.correctAnswer;
     const newHistory = [...answerHistory, { correct: isCorrect }];
     const newUsedIds = new Set(usedIds).add(currentQuestion.id);
-
-    console.log(`Q${questionCount} answered. Correct: ${isCorrect}. History length: ${newHistory.length}`);
-
+  
     setAnswerHistory(newHistory);
     setUsedIds(newUsedIds);
-
+  
     if (questionCount >= TOTAL_QUESTIONS) {
+      // ✅ Calculate and save results before navigating
+      const correctCount = newHistory.filter((a) => a.correct).length;
+      const score = Math.round((correctCount / TOTAL_QUESTIONS) * 100);
+      const xpEarned = correctCount * 15;
+  
+      sessionStorage.setItem("quizResult", JSON.stringify({
+        score,
+        xpEarned,
+        totalQuestions: TOTAL_QUESTIONS,
+        correctAnswers: correctCount,
+      }));
+  
       navigate("/result");
       return;
     }
-
-    // ✅ First 3 questions always Easy, adaptive from Q4 onward
+  
     let nextDifficulty: "Easy" | "Medium" | "Hard" = "Easy";
     if (newHistory.length >= 3) {
       nextDifficulty = getNextDifficulty(newHistory);
     }
-
+  
     console.log("Next difficulty:", nextDifficulty);
-
-    // ✅ Now passing domain as argument — no stale closure
+  
     const pool = getQuestionsByDifficulty(nextDifficulty, selectedDomain).filter(
       (q) => !newUsedIds.has(q.id)
     );
-
+  
     const fallbackPool =
       pool.length > 0
         ? pool
         : allQuizQuestions.filter((q) => q.domain === selectedDomain && !newUsedIds.has(q.id));
-
+  
     if (fallbackPool.length === 0) {
+      const correctCount = newHistory.filter((a) => a.correct).length;
+      const score = Math.round((correctCount / newHistory.length) * 100);
+      const xpEarned = correctCount * 15;
+  
+      sessionStorage.setItem("quizResult", JSON.stringify({
+        score,
+        xpEarned,
+        totalQuestions: newHistory.length,
+        correctAnswers: correctCount,
+      }));
+  
       navigate("/result");
       return;
     }
-
+  
     const next = fallbackPool[Math.floor(Math.random() * fallbackPool.length)];
     setCurrentQuestion(next);
     setQuestionCount((prev) => prev + 1);
     setSelectedAnswer(null);
   }, [selectedAnswer, answerHistory, currentQuestion, usedIds, questionCount, navigate, selectedDomain]);
-
+  
   return (
     <div className="h-screen flex flex-col bg-background overflow-hidden">
       <Navbar />
