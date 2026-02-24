@@ -1,5 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { LayoutDashboard, Map, LogOut, Zap } from "lucide-react";
+import { ThemeToggle } from "./theme-toggle";
 
 const Navbar = () => {
   const location = useLocation();
@@ -29,16 +30,16 @@ const Navbar = () => {
             <Link
               key={link.to}
               to={link.to}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                isActive(link.to)
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${isActive(link.to)
                   ? "bg-primary/10 text-primary"
                   : "text-muted-foreground hover:text-foreground hover:bg-muted"
-              }`}
+                }`}
             >
               <link.icon className="w-4 h-4" />
               {link.label}
             </Link>
           ))}
+          <ThemeToggle />
           <button
             onClick={() => navigate("/")}
             className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-all duration-200 ml-2"

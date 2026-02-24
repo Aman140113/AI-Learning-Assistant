@@ -11,28 +11,31 @@ import Result from "./pages/Result";
 import LearningPath from "./pages/LearningPath";
 import NotFound from "./pages/NotFound";
 import ChatbotButton from "./components/ChatbotButton";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/domain-selection" element={<DomainSelection />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/quiz" element={<Quiz />} />
-          <Route path="/result" element={<Result />} />
-          <Route path="/learning-path" element={<LearningPath />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-      <ChatbotButton />
-    </TooltipProvider>
-  </QueryClientProvider>
+  <ThemeProvider defaultTheme="dark" storageKey="skillspark-theme">
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/domain-selection" element={<DomainSelection />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/quiz" element={<Quiz />} />
+            <Route path="/result" element={<Result />} />
+            <Route path="/learning-path" element={<LearningPath />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+        <ChatbotButton />
+      </TooltipProvider>
+    </QueryClientProvider>
+  </ThemeProvider>
 );
 
 export default App;

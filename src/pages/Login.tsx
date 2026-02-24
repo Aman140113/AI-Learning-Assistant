@@ -1,9 +1,28 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Zap, ArrowRight } from "lucide-react";
+import { Zap, ArrowRight, Lock, User, Mail } from "lucide-react";
 import heroImage from "@/assets/hero-education.png";
 
 const Login = () => {
   const navigate = useNavigate();
+  const [isLogin, setIsLogin] = useState(true);
+  const [loginId, setLoginId] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (isLogin) {
+      if (loginId && password) {
+        navigate("/domain-selection");
+      }
+    } else {
+      if (loginId && password && password === confirmPassword) {
+        // Sign up logic goes here - for now navigate as well
+        navigate("/domain-selection");
+      }
+    }
+  };
 
   return (
     <div className="min-h-screen relative overflow-hidden" style={{ background: "var(--gradient-hero)" }}>
@@ -11,39 +30,100 @@ const Login = () => {
       <div className="absolute inset-0 opacity-30">
         <img src={heroImage} alt="" className="w-full h-full object-cover" />
       </div>
-      <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/50 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0b1120]/90 via-[#0b1120]/50 to-transparent" />
 
       {/* Content */}
       <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4">
-        <div className="animate-slide-up text-center max-w-lg">
+        <div className="animate-slide-up text-center max-w-sm w-full">
           {/* Logo */}
-          <div className="flex items-center justify-center gap-3 mb-8">
-            <div className="w-14 h-14 rounded-2xl bg-primary flex items-center justify-center animate-float">
-              <Zap className="w-8 h-8 text-primary-foreground" />
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <div className="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center animate-float shadow-lg shadow-primary/20">
+              <Zap className="w-6 h-6 text-primary-foreground" />
             </div>
           </div>
 
-          <h1 className="font-heading text-5xl md:text-6xl font-bold text-primary-foreground mb-4 tracking-tight">
-            Adaptive Learning{" "}
-            <span className="gradient-text">AI</span>
+          <h1 className="font-heading text-3xl md:text-4xl font-bold text-primary-foreground mb-2 tracking-tight">
+            {isLogin ? "Welcome Back" : "Create Account"}
           </h1>
 
-          <p className="text-lg md:text-xl text-primary-foreground/70 mb-12 font-light">
-            Your Personalized Learning Journey
+          <p className="text-sm text-primary-foreground/70 mb-6 font-light">
+            {isLogin ? "Sign in to continue your journey" : "Join SkillSpark today"}
           </p>
 
-          <button
-            onClick={() => navigate("/domain-selection")}
-            className="group inline-flex items-center gap-3 px-8 py-4 rounded-2xl font-heading font-semibold text-lg transition-all duration-300 hover:scale-105 active:scale-95"
-            style={{ background: "var(--gradient-primary)" }}
-          >
-            <span className="text-primary-foreground">Get Started</span>
-            <ArrowRight className="w-5 h-5 text-primary-foreground group-hover:translate-x-1 transition-transform" />
-          </button>
+          <form onSubmit={handleSubmit} className="space-y-4 bg-background/10 backdrop-blur-xl border border-white/10 p-6 rounded-3xl shadow-2xl text-left">
+            <div className="relative group">
+              <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-primary-foreground/50 group-focus-within:text-primary-foreground transition-colors">
+                {isLogin ? <User className="h-4 w-4" /> : <Mail className="h-4 w-4" />}
+              </div>
+              <input
+                type={isLogin ? "text" : "email"}
+                value={loginId}
+                onChange={(e) => setLoginId(e.target.value)}
+                placeholder={isLogin ? "Login ID" : "Email Address"}
+                required
+                className="w-full bg-background/20 border border-white/20 text-primary-foreground placeholder:text-primary-foreground/50 rounded-2xl pl-10 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:bg-background/40 transition-all font-medium"
+              />
+            </div>
 
-          <p className="mt-6 text-sm text-primary-foreground/40">
-            No account needed • Start learning instantly
-          </p>
+            <div className="relative group">
+              <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-primary-foreground/50 group-focus-within:text-primary-foreground transition-colors">
+                <Lock className="h-4 w-4" />
+              </div>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+                required
+                className="w-full bg-background/20 border border-white/20 text-primary-foreground placeholder:text-primary-foreground/50 rounded-2xl pl-10 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:bg-background/40 transition-all font-medium"
+              />
+            </div>
+
+            {!isLogin && (
+              <div className="relative group animate-in fade-in slide-in-from-top-2">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-primary-foreground/50 group-focus-within:text-primary-foreground transition-colors">
+                  <Lock className="h-4 w-4" />
+                </div>
+                <input
+                  type="password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  placeholder="Confirm Password"
+                  required={!isLogin}
+                  className="w-full bg-background/20 border border-white/20 text-primary-foreground placeholder:text-primary-foreground/50 rounded-2xl pl-10 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:bg-background/40 transition-all font-medium"
+                />
+              </div>
+            )}
+
+            <button
+              type="submit"
+              className="w-full group relative flex items-center justify-center gap-2 px-6 py-3 rounded-2xl font-heading font-semibold text-base overflow-hidden transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] mt-4"
+              style={{ background: "var(--gradient-primary)" }}
+            >
+              <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
+              <span className="relative text-primary-foreground">
+                {isLogin ? "Sign In" : "Sign Up"}
+              </span>
+              <ArrowRight className="relative w-4 h-4 text-primary-foreground group-hover:translate-x-1 transition-transform" />
+            </button>
+          </form>
+
+          <div className="mt-6 text-sm flex flex-col gap-2">
+            {isLogin && (
+              <p className="text-primary-foreground/40 hover:text-primary-foreground/70 transition-colors cursor-pointer">
+                Forgot your password?
+              </p>
+            )}
+            <p className="text-primary-foreground/60">
+              {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
+              <span
+                onClick={() => setIsLogin(!isLogin)}
+                className="text-primary hover:text-primary/80 font-semibold cursor-pointer transition-colors"
+              >
+                {isLogin ? "Sign Up" : "Sign In"}
+              </span>
+            </p>
+          </div>
         </div>
       </div>
     </div>

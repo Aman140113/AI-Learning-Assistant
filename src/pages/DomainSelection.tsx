@@ -10,10 +10,10 @@ const iconMap: Record<string, React.ElementType> = {
 };
 
 const colorMap: Record<string, string> = {
-  primary: "bg-primary/10 text-primary border-primary/20 hover:border-primary/50 hover:shadow-[0_0_20px_hsl(174_72%_40%/0.2)]",
-  accent: "bg-accent/10 text-accent border-accent/20 hover:border-accent/50 hover:shadow-[0_0_20px_hsl(25_95%_55%/0.2)]",
-  info: "bg-info/10 text-info border-info/20 hover:border-info/50 hover:shadow-[0_0_20px_hsl(217_91%_60%/0.2)]",
-  success: "bg-success/10 text-success border-success/20 hover:border-success/50 hover:shadow-[0_0_20px_hsl(142_71%_45%/0.2)]",
+  primary: "bg-primary/10 text-primary border-primary/20 hover:border-primary/50 hover:shadow-[0_0_20px_hsl(var(--primary)/0.2)]",
+  accent: "bg-accent/10 text-accent border-accent/20 hover:border-accent/50 hover:shadow-[0_0_20px_hsl(var(--accent)/0.2)]",
+  info: "bg-info/10 text-info border-info/20 hover:border-info/50 hover:shadow-[0_0_20px_hsl(var(--info)/0.2)]",
+  success: "bg-success/10 text-success border-success/20 hover:border-success/50 hover:shadow-[0_0_20px_hsl(var(--success)/0.2)]",
 };
 
 const iconBgMap: Record<string, string> = {
@@ -45,12 +45,11 @@ const DomainSelection = () => {
               <button
                 key={domain.id}
                 onClick={() => {
-                localStorage.setItem("selectedDomain", domain.id); // e.g. "java", "qa", "devops", "genai"
-                navigate("/dashboard");
-              }}
-                className={`text-left p-6 rounded-2xl border-2 transition-all duration-300 hover:-translate-y-2 cursor-pointer animate-slide-up ${
-                  colorMap[domain.color]
-                } stagger-${i + 1}`}
+                  localStorage.setItem("selectedDomain", domain.id); // e.g. "java", "qa", "devops", "genai"
+                  navigate("/dashboard");
+                }}
+                className={`text-left p-6 rounded-2xl border-2 transition-all duration-300 hover:-translate-y-2 cursor-pointer animate-slide-up ${colorMap[domain.color]
+                  } stagger-${i + 1}`}
                 style={{ opacity: 0, animationFillMode: "forwards" }}
               >
                 <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-4 ${iconBgMap[domain.color]}`}>
