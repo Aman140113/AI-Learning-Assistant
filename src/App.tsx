@@ -10,6 +10,7 @@ import Quiz from "./pages/Quiz";
 import Result from "./pages/Result";
 import LearningPath from "./pages/LearningPath";
 import NotFound from "./pages/NotFound";
+import ChatbotButton from "./components/ChatbotButton";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
+      <ChatbotButton />
     </TooltipProvider>
   </QueryClientProvider>
 );
