@@ -39,8 +39,6 @@ You MUST create a `.env` file inside the `server` folder for the database connec
 Create a file named `.env` in `skillspark-ai/server/` and paste the following private keys inside it:
 
 ```env
-MONGODB_URI=mongodb+srv://amanmansuri_db_user:%40m%40N14012003@cluster1.xb3xaun.mongodb.net/ai_learning_assistant?retryWrites=true&w=majority
-PORT=5000
 ```
 *(This MongoDB connection string connects directly to your cloud MongoDB cluster).*
 
