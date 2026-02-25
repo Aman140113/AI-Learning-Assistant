@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Zap, ArrowRight, Lock, User, Mail } from "lucide-react";
+import { Zap, ArrowRight, Lock, User, Mail, Eye, EyeOff } from "lucide-react";
 import { login, signup } from "@/services/api";
 import heroImage from "@/assets/hero-education.png";
 
@@ -13,6 +13,8 @@ const Login = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -121,13 +123,20 @@ const Login = () => {
                 <Lock className="h-4 w-4" />
               </div>
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
                 required
-                className="w-full bg-background/20 border border-white/20 text-primary-foreground placeholder:text-primary-foreground/50 rounded-2xl pl-10 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:bg-background/40 transition-all font-medium"
+                className="w-full bg-background/20 border border-white/20 text-primary-foreground placeholder:text-primary-foreground/50 rounded-2xl pl-10 pr-12 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:bg-background/40 transition-all font-medium"
               />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-primary-foreground/50 hover:text-primary-foreground transition-colors outline-none"
+              >
+                {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+              </button>
             </div>
 
             {!isLogin && (
@@ -136,13 +145,20 @@ const Login = () => {
                   <Lock className="h-4 w-4" />
                 </div>
                 <input
-                  type="password"
+                  type={showConfirmPassword ? "text" : "password"}
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   placeholder="Confirm Password"
                   required={!isLogin}
-                  className="w-full bg-background/20 border border-white/20 text-primary-foreground placeholder:text-primary-foreground/50 rounded-2xl pl-10 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:bg-background/40 transition-all font-medium"
+                  className="w-full bg-background/20 border border-white/20 text-primary-foreground placeholder:text-primary-foreground/50 rounded-2xl pl-10 pr-12 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:bg-background/40 transition-all font-medium"
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-primary-foreground/50 hover:text-primary-foreground transition-colors outline-none"
+                >
+                  {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                </button>
               </div>
             )}
 
