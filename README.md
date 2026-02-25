@@ -1,85 +1,104 @@
-# SkillSpark AI – Frontend
+# SkillSpark AI – Adaptive Learning Platform
 
-This is the frontend for the SkillSpark AI Adaptive Learning Platform, built using **React, Vite, TypeScript, and Tailwind CSS**.
+SkillSpark AI is a gamified, adaptive learning platform designed to assess your current knowledge, create personalized learning paths, and keep you engaged with daily tasks, interviews, and leaderboards.
+
+This project features a **React + Vite** frontend and an **Express.js + MongoDB** backend.
 
 ---
 
-## 🚀 Running the Frontend Locally
+## 🚀 Getting Started on a New PC
 
-Follow these steps to run the frontend on your local machine:
+Follow these steps exactly to clone the repository and get both the frontend and backend running on a different computer.
 
 ### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/your-username/skillspark-ai.git
-```
-
----
-
-### 2. Navigate to the Frontend Folder
-
-```bash
 cd skillspark-ai
 ```
 
-If your frontend is inside another folder:
-
-```bash
-cd skillspark-ai/skillspark-ai-main
-```
+*(Note: Replace `your-username/skillspark-ai` with your actual GitHub repository URL once uploaded).*
 
 ---
 
-### 3. Install Dependencies
+### 2. Backend Setup (Express.js + MongoDB)
 
-Make sure you have **Node.js (version 16 or higher)** installed.
+The backend handles all the adaptive learning path generations, quizzes, and user progress. 
 
-Then run:
+Open a terminal and navigate to the `server` folder:
 
 ```bash
+cd server
 npm install
 ```
 
-This will install all required packages.
+#### 🔑 Environment Variables (.env)
+
+You MUST create a `.env` file inside the `server` folder for the database connection to work.
+
+Create a file named `.env` in `skillspark-ai/server/` and paste the following private keys inside it:
+
+```env
+MONGODB_URI=mongodb+srv://amanmansuri_db_user:%40m%40N14012003@cluster1.xb3xaun.mongodb.net/ai_learning_assistant?retryWrites=true&w=majority
+PORT=5000
+```
+*(This MongoDB connection string connects directly to your cloud MongoDB cluster).*
+
+#### Start the Backend Server
+
+Once the `.env` file is saved and dependencies are installed, start the server:
+
+```bash
+node index.js
+```
+
+You should see:
+`✅ MongoDB Connected: cluster1-[...].mongodb.net`
+`Server running on port 5000`
 
 ---
 
-### 4. Start the Development Server
+### 3. Frontend Setup (React + Vite)
 
-Run:
+The frontend contains all the beautiful visual interfaces, dashboards, and quizzes.
+
+Open a **new, separate terminal window** (leave the backend running) and navigate to the main project folder (the root directory, *not* the server directory).
 
 ```bash
+# If you are still in the server folder, go back one directory:
+cd ..
+
+# Install frontend dependencies
+npm install
+
+# Start the frontend dev server
 npm run dev
 ```
 
----
-
-### 5. Open in Browser
-
+#### Open in Browser
 After running the command, you will see a local URL like:
+`http://localhost:5173`
 
-```
-http://localhost:5173
-```
-
-Open this URL in your browser to view the frontend.
+Ctrl+Click (or Cmd+Click) that link to open the application in your browser.
 
 ---
 
 ## 🛠 Tech Stack
 
-* React
+**Frontend:**
+* React 18
 * Vite
 * TypeScript
-* Tailwind CSS
+* Tailwind CSS + Lucide React Icons
 
----
+**Backend:**
+* Node.js
+* Express.js
+* Mongoose (MongoDB ORM)
 
-## 📌 Notes
-
-* Make sure no other application is using port **5173**
-* If the port is different, check the terminal output for the correct URL
-
----
-
-Frontend is now running locally.
+## ✨ Core Features
+- **Adaptive Onboarding:** Take a dynamic quiz right at sign-up to assess your skill levels (Beginner, Intermediate, Proficient).
+- **Personalized Learning Path:** A roadmap view generated dynamically based on your quiz results.
+- **Daily Tasks Timeline:** A gorgeous timeline view of your past, present, and future daily activities.
+- **Mock Interviews:** Voice and Video powered mock interview screens.
+- **Cohort Leaderboard:** Compare your progress (XP & Level) against your classroom peers on a stylized podium!

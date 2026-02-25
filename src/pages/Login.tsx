@@ -1,26 +1,55 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Zap, ArrowRight, Lock, User, Mail } from "lucide-react";
+import { login, signup } from "@/services/api";
 import heroImage from "@/assets/hero-education.png";
 
 const Login = () => {
   const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(true);
-  const [loginId, setLoginId] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (isLogin) {
-      if (loginId && password) {
+    setError("");
+    setLoading(true);
+
+    try {
+      if (isLogin) {
+        if (!email || !password) {
+          setError("All fields are required");
+          setLoading(false);
+          return;
+        }
+        const data = await login(email, password);
+        localStorage.setItem("userId", data.user.id);
+        localStorage.setItem("userName", data.user.name);
+        navigate("/dashboard");
+      } else {
+        if (!name || !email || !password) {
+          setError("All fields are required");
+          setLoading(false);
+          return;
+        }
+        if (password !== confirmPassword) {
+          setError("Passwords do not match");
+          setLoading(false);
+          return;
+        }
+        const data = await signup(name, email, password);
+        localStorage.setItem("userId", data.user.id);
+        localStorage.setItem("userName", data.user.name);
         navigate("/domain-selection");
       }
-    } else {
-      if (loginId && password && password === confirmPassword) {
-        // Sign up logic goes here - for now navigate as well
-        navigate("/domain-selection");
-      }
+    } catch (err: any) {
+      setError(err.message || "Something went wrong");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -50,16 +79,38 @@ const Login = () => {
             {isLogin ? "Sign in to continue your journey" : "Join SkillSpark today"}
           </p>
 
+          {error && (
+            <div className="mb-4 px-4 py-2 rounded-xl bg-red-500/20 border border-red-500/40 text-red-300 text-sm">
+              {error}
+            </div>
+          )}
+
           <form onSubmit={handleSubmit} className="space-y-4 bg-background/10 backdrop-blur-xl border border-white/10 p-6 rounded-3xl shadow-2xl text-left">
+            {!isLogin && (
+              <div className="relative group animate-in fade-in slide-in-from-top-2">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-primary-foreground/50 group-focus-within:text-primary-foreground transition-colors">
+                  <User className="h-4 w-4" />
+                </div>
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Full Name"
+                  required={!isLogin}
+                  className="w-full bg-background/20 border border-white/20 text-primary-foreground placeholder:text-primary-foreground/50 rounded-2xl pl-10 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:bg-background/40 transition-all font-medium"
+                />
+              </div>
+            )}
+
             <div className="relative group">
               <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-primary-foreground/50 group-focus-within:text-primary-foreground transition-colors">
-                {isLogin ? <User className="h-4 w-4" /> : <Mail className="h-4 w-4" />}
+                <Mail className="h-4 w-4" />
               </div>
               <input
-                type={isLogin ? "text" : "email"}
-                value={loginId}
-                onChange={(e) => setLoginId(e.target.value)}
-                placeholder={isLogin ? "Login ID" : "Email Address"}
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email Address"
                 required
                 className="w-full bg-background/20 border border-white/20 text-primary-foreground placeholder:text-primary-foreground/50 rounded-2xl pl-10 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:bg-background/40 transition-all font-medium"
               />
@@ -97,14 +148,15 @@ const Login = () => {
 
             <button
               type="submit"
-              className="w-full group relative flex items-center justify-center gap-2 px-6 py-3 rounded-2xl font-heading font-semibold text-base overflow-hidden transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] mt-4"
+              disabled={loading}
+              className="w-full group relative flex items-center justify-center gap-2 px-6 py-3 rounded-2xl font-heading font-semibold text-base overflow-hidden transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] mt-4 disabled:opacity-50"
               style={{ background: "var(--gradient-primary)" }}
             >
               <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
               <span className="relative text-primary-foreground">
-                {isLogin ? "Sign In" : "Sign Up"}
+                {loading ? "Please wait..." : isLogin ? "Sign In" : "Sign Up"}
               </span>
-              <ArrowRight className="relative w-4 h-4 text-primary-foreground group-hover:translate-x-1 transition-transform" />
+              {!loading && <ArrowRight className="relative w-4 h-4 text-primary-foreground group-hover:translate-x-1 transition-transform" />}
             </button>
           </form>
 
@@ -117,7 +169,7 @@ const Login = () => {
             <p className="text-primary-foreground/60">
               {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
               <span
-                onClick={() => setIsLogin(!isLogin)}
+                onClick={() => { setIsLogin(!isLogin); setError(""); }}
                 className="text-primary hover:text-primary/80 font-semibold cursor-pointer transition-colors"
               >
                 {isLogin ? "Sign Up" : "Sign In"}

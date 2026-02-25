@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { Trophy, Zap, Brain, AlertTriangle, MessageSquare, ArrowRight, Map } from "lucide-react";
-import Navbar from "@/components/Navbar";
+import { Trophy, Zap, Brain, AlertTriangle, MessageSquare, ArrowRight } from "lucide-react";
+import Layout from "@/components/Layout";
 import { resultData } from "@/data/dummyData";
+
+// Read weak skills from quiz API result
 
 // ✅ Derive mastery level from score
 const getMasteryLevel = (score: number): "Beginner" | "Intermediate" | "Proficient" => {
@@ -30,8 +32,9 @@ const Result = () => {
   const xpEarned = quizResult?.xpEarned ?? resultData.xpEarned;
   const correctAnswers = quizResult?.correctAnswers ?? 0;
   const totalQuestions = quizResult?.totalQuestions ?? 10;
+  const weakSkillsFound: string[] = quizResult?.weakSkills ?? resultData.weakSkillsFound;
   const masteryLevel = getMasteryLevel(score);
-  const domain = localStorage.getItem("selectedDomain") ?? "this domain";
+  const domain = localStorage.getItem("selectedDomainName") ?? "this domain";
   const aiFeedback = getMasteryFeedback(score, domain);
 
   const masteryBadge = {
@@ -41,9 +44,8 @@ const Result = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-      <div className="container mx-auto px-4 py-8 max-w-3xl">
+    <Layout>
+      <div className="container mx-auto px-4 py-8 max-w-3xl pb-16">
 
         {/* Score Hero */}
         <div
@@ -80,7 +82,7 @@ const Result = () => {
 
           <div className="glass-card p-5 text-center animate-slide-up stagger-3" style={{ opacity: 0, animationFillMode: "forwards" }}>
             <AlertTriangle className="w-6 h-6 text-warning mx-auto mb-2" />
-            <p className="font-heading font-bold text-2xl text-foreground">{resultData.weakSkillsFound.length}</p>
+            <p className="font-heading font-bold text-2xl text-foreground">{weakSkillsFound.length}</p>
             <p className="text-xs text-muted-foreground">Weak Areas</p>
           </div>
         </div>
@@ -92,7 +94,7 @@ const Result = () => {
             Weak Skills Found
           </h3>
           <div className="flex flex-wrap gap-2">
-            {resultData.weakSkillsFound.map((skill) => (
+            {weakSkillsFound.map((skill) => (
               <span key={skill} className="px-3 py-1.5 rounded-lg bg-warning/10 text-warning text-sm font-medium border border-warning/20">
                 {skill}
               </span>
@@ -110,25 +112,18 @@ const Result = () => {
         </div>
 
         {/* Actions */}
-        <div className="flex flex-col sm:flex-row gap-4 animate-slide-up stagger-4" style={{ opacity: 0, animationFillMode: "forwards" }}>
+        <div className="flex justify-center animate-slide-up stagger-4" style={{ opacity: 0, animationFillMode: "forwards" }}>
           <button
             onClick={() => navigate("/dashboard")}
-            className="flex-1 group flex items-center justify-center gap-2 px-6 py-4 rounded-xl font-heading font-semibold transition-all hover:scale-105 active:scale-95 bg-primary text-primary-foreground"
+            className="w-full sm:w-2/3 group flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-heading font-semibold transition-all hover:scale-[1.02] active:scale-[0.98] bg-primary text-primary-foreground shadow-lg shadow-primary/20"
           >
             Continue Learning
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </button>
-          <button
-            onClick={() => navigate("/learning-path")}
-            className="flex-1 group flex items-center justify-center gap-2 px-6 py-4 rounded-xl font-heading font-semibold transition-all hover:scale-105 active:scale-95 border-2 border-primary text-primary bg-primary/5"
-          >
-            <Map className="w-5 h-5" />
-            View Learning Path
-          </button>
         </div>
 
       </div>
-    </div>
+    </Layout>
   );
 };
 

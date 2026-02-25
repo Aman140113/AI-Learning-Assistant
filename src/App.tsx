@@ -9,6 +9,9 @@ import Dashboard from "./pages/Dashboard";
 import Quiz from "./pages/Quiz";
 import Result from "./pages/Result";
 import LearningPath from "./pages/LearningPath";
+import Interview from "./pages/Interview";
+import DailyTasks from "./pages/DailyTasks";
+import Leaderboard from "./pages/Leaderboard";
 import NotFound from "./pages/NotFound";
 import ChatbotButton from "./components/ChatbotButton";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -29,6 +32,9 @@ const App = () => (
             <Route path="/quiz" element={<Quiz />} />
             <Route path="/result" element={<Result />} />
             <Route path="/learning-path" element={<LearningPath />} />
+            <Route path="/daily-tasks" element={<DailyTasks />} />
+            <Route path="/interview" element={<Interview />} />
+            <Route path="/leaderboard" element={<Leaderboard />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
