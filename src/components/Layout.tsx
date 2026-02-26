@@ -24,6 +24,7 @@ const Layout = ({ children }: LayoutProps) => {
     const [collapsed, setCollapsed] = useState(true);
     const location = useLocation();
     const navigate = useNavigate();
+    const userAvatar = localStorage.getItem("userAvatar") || null;
 
     const links = [
         { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -113,13 +114,23 @@ const Layout = ({ children }: LayoutProps) => {
                             <button
                                 onClick={() => navigate("/profile")}
                                 title="Profile"
-                                className="w-10 h-10 rounded-full bg-muted flex items-center justify-center hover:bg-muted/80 transition-colors border border-border"
+                                className="w-10 h-10 rounded-full bg-muted flex items-center justify-center hover:bg-muted/80 transition-colors border border-border overflow-hidden"
                             >
-                                <User className="w-5 h-5 text-foreground" />
+                                {userAvatar ? (
+                                    <img src={`/src/assets/avatars/${userAvatar}`} alt="Avatar" className="w-8 h-8 object-contain" />
+                                ) : (
+                                    <User className="w-5 h-5 text-foreground" />
+                                )}
                             </button>
 
                             <button
-                                onClick={() => navigate("/")}
+                                onClick={() => {
+                                    localStorage.removeItem("userId");
+                                    localStorage.removeItem("userName");
+                                    localStorage.removeItem("userAvatar");
+                                    localStorage.removeItem("userEmail");
+                                    navigate("/");
+                                }}
                                 title="Logout"
                                 className="w-10 h-10 rounded-full flex items-center justify-center text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors"
                             >

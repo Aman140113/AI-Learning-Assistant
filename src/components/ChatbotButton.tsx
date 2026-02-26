@@ -1,8 +1,10 @@
 import { MessageSquare, X } from "lucide-react";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 const ChatbotButton = () => {
+  const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<{ role: 'assistant' | 'user', text: string }[]>([
     { role: 'assistant', text: "Hello! Our AI features are coming soon. Feel free to type something!" }
@@ -17,6 +19,11 @@ const ChatbotButton = () => {
       setMessages(prev => [...prev, { role: 'assistant', text: "I'm a dummy bot right now, but soon I'll be able to help you learn!" }]);
     }, 1000);
   };
+
+  const hiddenRoutes = ["/", "/result"];
+  if (hiddenRoutes.includes(location.pathname)) {
+    return null;
+  }
 
   return (
     <div className="fixed bottom-6 right-6 z-[100]">

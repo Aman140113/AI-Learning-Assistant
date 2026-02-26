@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import DomainSelection from "./pages/DomainSelection";
 import Dashboard from "./pages/Dashboard";
@@ -12,6 +13,7 @@ import LearningPath from "./pages/LearningPath";
 import Interview from "./pages/Interview";
 import DailyTasks from "./pages/DailyTasks";
 import Leaderboard from "./pages/Leaderboard";
+import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 import ChatbotButton from "./components/ChatbotButton";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -26,7 +28,8 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Login />} />
+            <Route path="/" element={<Landing />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/domain-selection" element={<DomainSelection />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/quiz" element={<Quiz />} />
@@ -35,10 +38,11 @@ const App = () => (
             <Route path="/daily-tasks" element={<DailyTasks />} />
             <Route path="/interview" element={<Interview />} />
             <Route path="/leaderboard" element={<Leaderboard />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <ChatbotButton />
         </BrowserRouter>
-        <ChatbotButton />
       </TooltipProvider>
     </QueryClientProvider>
   </ThemeProvider>

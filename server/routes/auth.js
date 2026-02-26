@@ -1,11 +1,17 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
+const QuizAttempt = require("../models/QuizAttempt");
+const QuizAnswer = require("../models/QuizAnswer");
+const UserSkillProgress = require("../models/UserSkillProgress");
+const UserDomain = require("../models/UserDomain");
+const LearningPathItem = require("../models/LearningPathItem");
+const DailyTask = require("../models/DailyTask");
 
 // POST /api/auth/signup
 router.post("/signup", async (req, res) => {
     try {
-        const { name, email, password } = req.body;
+        const { name, email, password, avatar } = req.body;
 
         if (!name || !email || !password) {
             return res.status(400).json({ error: "All fields are required" });
@@ -22,6 +28,7 @@ router.post("/signup", async (req, res) => {
             name,
             email,
             password_hash: password,
+            avatar: avatar || null,
         });
 
         res.status(201).json({
@@ -30,6 +37,7 @@ router.post("/signup", async (req, res) => {
                 id: user._id,
                 name: user.name,
                 email: user.email,
+                avatar: user.avatar,
             },
         });
     } catch (error) {
@@ -63,10 +71,57 @@ router.post("/login", async (req, res) => {
                 id: user._id,
                 name: user.name,
                 email: user.email,
+                avatar: user.avatar,
             },
         });
     } catch (error) {
         console.error("Login error:", error);
+        res.status(500).json({ error: "Server error" });
+    }
+});
+
+// PUT /api/auth/user/:userId — Update user avatar
+router.put("/user/:userId", async (req, res) => {
+    try {
+        const { avatar } = req.body;
+        const user = await User.findByIdAndUpdate(
+            req.params.userId,
+            { avatar },
+            { new: true }
+        );
+        if (!user) return res.status(404).json({ error: "User not found" });
+
+        res.json({
+            message: "Avatar updated",
+            user: { id: user._id, name: user.name, email: user.email, avatar: user.avatar },
+        });
+    } catch (error) {
+        console.error("Update avatar error:", error);
+        res.status(500).json({ error: "Server error" });
+    }
+});
+
+// DELETE /api/auth/user/:userId — Delete user and ALL related data
+router.delete("/user/:userId", async (req, res) => {
+    try {
+        const userId = req.params.userId;
+
+        // Cascading delete from all collections
+        await Promise.all([
+            QuizAttempt.deleteMany({ user_id: userId }),
+            QuizAnswer.deleteMany({ user_id: userId }),
+            UserSkillProgress.deleteMany({ user_id: userId }),
+            UserDomain.deleteMany({ user_id: userId }),
+            LearningPathItem.deleteMany({ user_id: userId }),
+            DailyTask.deleteMany({ user_id: userId }),
+        ]);
+
+        const user = await User.findByIdAndDelete(userId);
+        if (!user) return res.status(404).json({ error: "User not found" });
+
+        res.json({ message: "Account deleted successfully" });
+    } catch (error) {
+        console.error("Delete account error:", error);
         res.status(500).json({ error: "Server error" });
     }
 });

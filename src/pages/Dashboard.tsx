@@ -28,6 +28,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const userId = localStorage.getItem("userId");
   const userName = localStorage.getItem("userName") || fallbackUserData.name;
+  const userAvatar = localStorage.getItem("userAvatar") || null;
 
   const [data, setData] = useState<ProgressData | null>(null);
   const [completedDates, setCompletedDates] = useState<CompletedDate[]>([]);
@@ -84,11 +85,19 @@ const Dashboard = () => {
             <div className="glass-card p-6 border-b-4 border-b-primary/20 animate-slide-up">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0">
-                    <span className="font-heading font-bold text-xl text-primary">
-                      {userName.charAt(0)}
-                    </span>
-                  </div>
+                  {userAvatar ? (
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-[#00F5D4] to-blue-500 p-[2px] shrink-0 shadow-[0_0_15px_rgba(0,245,212,0.2)]">
+                      <div className="w-full h-full bg-[#121212] rounded-2xl overflow-hidden flex items-center justify-center">
+                        <img src={`/src/assets/avatars/${userAvatar}`} alt="Avatar" className="w-10 h-10 object-contain" />
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0">
+                      <span className="font-heading font-bold text-xl text-primary">
+                        {userName.charAt(0)}
+                      </span>
+                    </div>
+                  )}
                   <div>
                     <h1 className="font-heading font-bold text-xl text-foreground">
                       Welcome back, {userName}!
