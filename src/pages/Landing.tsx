@@ -10,6 +10,7 @@ import {
     Zap,
     Video
 } from "lucide-react";
+import TeamSection from "../components/TeamSection";
 
 export default function Landing() {
     const navigate = useNavigate();
@@ -237,42 +238,7 @@ export default function Landing() {
                 </section>
 
                 {/* SECTION 5: TEAM SECTION */}
-                <section className="py-24 px-6 border-t border-white/5 bg-[#121212]/30 relative overflow-hidden">
-                    {/* subtle background glow */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-[#00F5D4]/5 rounded-full blur-[100px] pointer-events-none"></div>
-
-                    <div className="max-w-7xl mx-auto relative z-10">
-                        <div className="text-center mb-16 max-w-2xl mx-auto space-y-4">
-                            <h2 className="text-3xl md:text-5xl font-bold text-white">Meet Team <span className="text-[#00F5D4]">Koshish</span></h2>
-                            <p className="text-slate-400 text-lg">
-                                Team Koshish (Try) is a group of passionate developers committed to transforming education through technology. Our mission is to make learning personalized, intelligent, and effective for everyone.
-                            </p>
-                        </div>
-
-                        <div className="flex flex-wrap justify-center gap-8">
-                            {[
-                                { name: "John Doe", role: "Fullstack Developer & AI" },
-                                { name: "Jane Smith", role: "Frontend Engineer" },
-                                { name: "Alex Johnson", role: "Backend Architecture" }
-                            ].map((member, idx) => (
-                                <div key={idx} className="group w-full md:w-72 bg-[#121212] border border-white/5 rounded-2xl overflow-hidden hover:border-[#00F5D4]/30 transition-all duration-300 hover:shadow-[0_10px_30px_-15px_rgba(0,245,212,0.3)] hover:-translate-y-1">
-                                    <div className="aspect-square bg-gradient-to-br from-slate-800 to-[#121212] relative overflow-hidden">
-                                        {/* Placeholder for photo */}
-                                        <div className="absolute inset-0 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                                            <div className="w-24 h-24 rounded-full bg-slate-700/50 flex items-center justify-center border-2 border-slate-600/50 shadow-inner">
-                                                <span className="text-slate-500 text-4xl font-light">+</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="p-6 text-center border-t border-white/5 bg-[#0a0a0a]/80 backdrop-blur-sm">
-                                        <h4 className="text-xl font-bold text-white mb-1 group-hover:text-[#00F5D4] transition-colors">{member.name}</h4>
-                                        <p className="text-sm text-slate-400 font-medium">{member.role}</p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
+                <TeamSection />
 
                 {/* SECTION 6: CALL TO ACTION */}
                 <section className="py-32 px-6 relative border-t border-white/5 overflow-hidden">
