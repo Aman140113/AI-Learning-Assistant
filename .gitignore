@@ -25,3 +25,8 @@ dist-ssr
 
 # Server env
 server/.env
+
+# Chatbot
+chatbot/venv/
+chatbot/.env
+__pycache__/
