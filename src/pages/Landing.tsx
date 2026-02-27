@@ -39,7 +39,7 @@ export default function Landing() {
                         </div>
                     </div>
                     <div className="flex items-center gap-4">
-                        <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">
+                        <a href="https://github.com/Aman140113/AI-Learning-Assistant" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">
                             <Github className="w-5 h-5" />
                         </a>
                         <button

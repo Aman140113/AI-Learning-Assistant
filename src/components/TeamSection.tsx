@@ -1,54 +1,54 @@
-import { Facebook, Instagram, Twitter } from 'lucide-react';
+import { Linkedin, } from 'lucide-react';
 
 const teamData = [
     {
         id: 1,
-        name: "Henry Walker",
-        role: "EXECUTIVE OFFICER",
-        image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-        socials: { fb: "#", ig: "#", x: "#" }
+        name: "OM Shankar Thakur",
+        role: "AI Lead",
+        image: "src/assets/Team/Om.jpg",
+        socials: { ig: "https://www.linkedin.com/in/om-shankar-86981b224/" }
     },
     {
         id: 2,
-        name: "Anna Lee",
-        role: "PROJECT LEAD",
-        image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-        socials: { fb: "#", ig: "#", x: "#" }
+        name: "Aman Mansuri",
+        role: "Fontend and AI Developer",
+        image: "src/assets/Team/Aman.jpg",
+        socials: { ig: "https://www.linkedin.com/in/aman-mansuri140103/"}
     },
     {
         id: 3,
-        name: "Leo Martinez",
-        role: "TECHNICAL ADVISER",
-        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-        socials: { fb: "#", ig: "#", x: "#" }
+        name: "Shree Shetty",
+        role: "UI/UX and Frontend Developer",
+        image: "src/assets/Team/ShreeShetty.jpg",
+        socials: { ig: "https://www.linkedin.com/in/shree-shetty-359a5734/"}
     },
     {
         id: 4,
-        name: "Tim Morrison",
-        role: "HEAD OF COMMUNICATIONS",
-        image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-        socials: { fb: "#", ig: "#", x: "#" }
+        name: "Bhagyashree Patil ",
+        role: "Data Analyst",
+        image: "src/assets/Team/Bhagyashree.png",
+        socials: { ig: "https://www.linkedin.com/in/bhagyashree-patil-393029287/" }
     },
     {
         id: 5,
-        name: "Sarah Chen",
-        role: "AI RESEARCHER",
-        image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-        socials: { fb: "#", ig: "#", x: "#" }
+        name: "Vivek Kumar",
+        role: "Data Analyst",
+        image: "src/assets/Team/VivekNew.jpg",
+        socials: { ig: "#" }
     },
     {
         id: 6,
-        name: "David Kim",
-        role: "ML ENGINEER",
-        image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-        socials: { fb: "#", ig: "#", x: "#" }
+        name: "Rohit Kumbhakar",
+        role: "Backend Developer",
+        image: "src/assets/Team/Rohit.jpg",
+        socials: {fig: "https://www.linkedin.com/in/rohitkumbhakar181305" }
     },
     {
         id: 7,
-        name: "Elena Rossi",
-        role: "UX DESIGNER",
-        image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-        socials: { fb: "#", ig: "#", x: "#" }
+        name: "Akash Singh",
+        role: "Backend Developer",
+        image: "src/assets/Team/Akash.png",
+        socials: { ig: "https://www.linkedin.com/in/akashraj77312"}
     }
 ];
 
@@ -68,9 +68,7 @@ const TeamCard = ({ member }: { member: typeof teamData[0] }) => {
                 {member.role}
             </p>
             <div className="flex items-center gap-6 mt-auto text-white/50 mb-1">
-                <a href={member.socials.fb} className="hover:text-white transition-colors" aria-label="Facebook"><Facebook size={14} /></a>
-                <a href={member.socials.ig} className="hover:text-white transition-colors" aria-label="Instagram"><Instagram size={14} /></a>
-                <a href={member.socials.x} className="hover:text-white transition-colors" aria-label="Twitter"><Twitter size={14} /></a>
+                <a href={member.socials.ig} className="hover:text-white transition-colors" aria-label="Instagram"><Linkedin size={14} /></a>
             </div>
         </div>
     );
