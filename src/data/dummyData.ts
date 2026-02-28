@@ -196,118 +196,151 @@ export const allQuizQuestions = [
   { id: 120, domain: "genai", question: "Which is RAG?", options: ["Random AI", "Retrieval Augmented Generation", "Rapid AI", "None"], correctAnswer: 1, difficulty: "Hard" as const },
 ];
 
+export const learningPathResponse = {
+  learner_id: "user1",
+  topic: "Spring Boot",
+  mastery: "Proficient" as const,
+  recommended_action: "advance",
+  next_difficulty: "Intermediate",
+  recommendations: [
+    {
+      course_id: "C02850",
+      course_title: "Intermediate Spring Boot Course",
+      course_url: "https://www.coursera.org/learn/java-programming-arrays-lists-data?specialization=java-programming",
+      difficulty: "Intermediate" as const,
+      xp_reward: 400,
+      estimated_duration_hours: 8.7,
+      skills_covered: "java, springboot",
+    },
+    {
+      course_id: "C02415",
+      course_title: "Intermediate Java Course",
+      course_url: "https://www.udacity.com/course/interactive-3d-graphics--cs291",
+      difficulty: "Intermediate" as const,
+      xp_reward: 400,
+      estimated_duration_hours: 32.6,
+      skills_covered: "springboot, java",
+    },
+    {
+      course_id: "C02826",
+      course_title: "Intermediate Spring Boot Course",
+      course_url: "https://www.coursera.org/learn/writing-editing-revising?specialization=good-with-words",
+      difficulty: "Intermediate" as const,
+      xp_reward: 400,
+      estimated_duration_hours: 20.3,
+      skills_covered: "jdbc, springboot",
+    },
+    {
+      course_id: "C02631",
+      course_title: "Intermediate Spring Boot Course",
+      course_url: "https://www.udacity.com/course/intro-to-cybersecurity-nanodegree--nd545",
+      difficulty: "Intermediate" as const,
+      xp_reward: 400,
+      estimated_duration_hours: 38.1,
+      skills_covered: "jdbc, springboot",
+    },
+    {
+      course_id: "C02629",
+      course_title: "Intermediate Spring Boot Course",
+      course_url: "https://www.futurelearn.com/courses/construct-a-virtual-reality-experience",
+      difficulty: "Intermediate" as const,
+      xp_reward: 500,
+      estimated_duration_hours: 47.6,
+      skills_covered: "java, jdbc",
+    },
+  ],
+  learning_path: {
+    weeks: [
+      {
+        week: 1,
+        course_id: "C02850",
+        course_title: "Intermediate Spring Boot Course",
+        course_url: "https://www.coursera.org/learn/java-programming-arrays-lists-data?specialization=java-programming",
+        objective: "Build a Spring Boot application with basic configurations",
+        focus_topics: ["java", "springboot"],
+        practical_tasks: [
+          "Implement a simple Spring Boot application",
+          "Configure application.properties",
+        ],
+        estimated_hours: 4,
+        xp_target: 400,
+        status: "Completed" as const,
+      },
+      {
+        week: 2,
+        course_id: "C02415",
+        course_title: "Intermediate Java Course",
+        course_url: "https://www.udacity.com/course/interactive-3d-graphics--cs291",
+        objective: "Enhance Java skills and integrate with Spring Boot",
+        focus_topics: ["springboot", "java"],
+        practical_tasks: [
+          "Develop a Java-based service",
+          "Integrate Java service with Spring Boot",
+        ],
+        estimated_hours: 4,
+        xp_target: 800,
+        status: "Current" as const,
+      },
+      {
+        week: 3,
+        course_id: "C02826",
+        course_title: "Intermediate Spring Boot Course",
+        course_url: "https://www.coursera.org/learn/writing-editing-revising?specialization=good-with-words",
+        objective: "Implement JDBC with Spring Boot",
+        focus_topics: ["jdbc", "springboot"],
+        practical_tasks: [
+          "Configure JDBC with Spring Boot",
+          "Perform CRUD operations using JDBC",
+        ],
+        estimated_hours: 5,
+        xp_target: 1200,
+        status: "Locked" as const,
+      },
+      {
+        week: 4,
+        course_id: "C02631",
+        course_title: "Intermediate Spring Boot Course",
+        course_url: "https://www.udacity.com/course/intro-to-cybersecurity-nanodegree--nd545",
+        objective: "Advance Spring Boot skills with JDBC",
+        focus_topics: ["jdbc", "springboot"],
+        practical_tasks: [
+          "Develop a Spring Boot application with advanced JDBC configurations",
+          "Optimize database interactions",
+        ],
+        estimated_hours: 5,
+        xp_target: 1600,
+        status: "Locked" as const,
+      },
+      {
+        week: 5,
+        course_id: "C02629",
+        course_title: "Intermediate Spring Boot Course",
+        course_url: "https://www.futurelearn.com/courses/construct-a-virtual-reality-experience",
+        objective: "Integrate Java and JDBC with Spring Boot",
+        focus_topics: ["java", "jdbc"],
+        practical_tasks: [
+          "Develop a comprehensive Spring Boot application integrating Java and JDBC",
+          "Deploy the application",
+        ],
+        estimated_hours: 6,
+        xp_target: 2100,
+        status: "Locked" as const,
+      },
+    ],
+    skill_progression_summary:
+      "Progress from basic Spring Boot configurations to advanced integrations with Java and JDBC",
+    key_competencies_gained: [
+      "Spring Boot application development",
+      "Java and JDBC integration",
+      "Database interaction optimization",
+    ],
+    final_motivation:
+      "You will have developed a comprehensive Spring Boot application with advanced configurations and integrations, ready for real-world deployment.",
+  },
+};
 
-// export const quizQuestions = [
-//   {
-//     id: 1,
-//     question: "What is the primary principle behind inheritance in Java?",
-//     options: [
-//       "Code reusability through parent-child relationships",
-//       "Restricting access to class members",
-//       "Creating multiple instances of a class",
-//       "Handling runtime exceptions",
-//     ],
-//     correctAnswer: 0,
-//     difficulty: "Easy" as const,
-//   },
-//   {
-//     id: 2,
-//     question: "Which keyword is used to inherit a class in Java?",
-//     options: ["implements", "extends", "inherits", "super"],
-//     correctAnswer: 1,
-//     difficulty: "Easy" as const,
-//   },
-//   {
-//     id: 3,
-//     question: "What is method overriding in Java?",
-//     options: [
-//       "Defining a method with the same name but different parameters",
-//       "Creating a new method in a subclass",
-//       "Redefining a parent class method in a child class with the same signature",
-//       "Calling a method from another class",
-//     ],
-//     correctAnswer: 2,
-//     difficulty: "Medium" as const,
-//   },
-//   {
-//     id: 4,
-//     question: "Which collection interface does NOT allow duplicate elements?",
-//     options: ["List", "Set", "Queue", "Deque"],
-//     correctAnswer: 1,
-//     difficulty: "Medium" as const,
-//   },
-//   {
-//     id: 5,
-//     question: "What is the time complexity of HashMap.get() in the average case?",
-//     options: ["O(n)", "O(log n)", "O(1)", "O(n²)"],
-//     correctAnswer: 2,
-//     difficulty: "Hard" as const,
-//   },
-//   {
-//     id: 6,
-//     question: "Which of the following is true about abstract classes?",
-//     options: [
-//       "They can be instantiated directly",
-//       "They cannot have constructors",
-//       "They can have both abstract and concrete methods",
-//       "They must have all abstract methods",
-//     ],
-//     correctAnswer: 2,
-//     difficulty: "Medium" as const,
-//   },
-//   {
-//     id: 7,
-//     question: "What does the 'volatile' keyword guarantee in Java?",
-//     options: [
-//       "Thread safety for all operations",
-//       "Visibility of changes across threads",
-//       "Atomic read-write operations",
-//       "Synchronization of code blocks",
-//     ],
-//     correctAnswer: 1,
-//     difficulty: "Hard" as const,
-//   },
-//   {
-//     id: 8,
-//     question: "Which design pattern ensures a class has only one instance?",
-//     options: ["Factory", "Observer", "Singleton", "Strategy"],
-//     correctAnswer: 2,
-//     difficulty: "Easy" as const,
-//   },
-//   {
-//     id: 9,
-//     question: "What is the purpose of the 'finally' block?",
-//     options: [
-//       "To catch exceptions",
-//       "To throw exceptions",
-//       "To execute code regardless of exception occurrence",
-//       "To define custom exceptions",
-//     ],
-//     correctAnswer: 2,
-//     difficulty: "Easy" as const,
-//   },
-//   {
-//     id: 10,
-//     question: "What happens when a thread calls wait() without owning the monitor?",
-//     options: [
-//       "The thread sleeps",
-//       "IllegalMonitorStateException is thrown",
-//       "The thread continues execution",
-//       "A deadlock occurs",
-//     ],
-//     correctAnswer: 1,
-//     difficulty: "Hard" as const,
-//   },
-// ];
-
-export const learningPath = [
-  { week: 1, title: "Java Basics", description: "Variables, data types, operators, and control flow", status: "Completed" as const },
-  { week: 2, title: "OOP Concepts", description: "Classes, objects, inheritance, and polymorphism", status: "Current" as const },
-  { week: 3, title: "Collections Framework", description: "Lists, Sets, Maps, and iterators", status: "Locked" as const },
-  { week: 4, title: "Exception Handling", description: "Try-catch, custom exceptions, and best practices", status: "Locked" as const },
-  { week: 5, title: "Multithreading", description: "Threads, synchronization, and concurrent utilities", status: "Locked" as const },
-  { week: 6, title: "Advanced Topics", description: "Streams, lambdas, and design patterns", status: "Locked" as const },
-];
+// Keep the old export name for backward compatibility (maps to the weeks array)
+export const learningPath = learningPathResponse.learning_path.weeks;
 
 export const resultData = {
   score: 70,
@@ -316,3 +349,35 @@ export const resultData = {
   weakSkillsFound: ["Inheritance", "Encapsulation"],
   aiFeedback: "You have a good understanding of core Java concepts! Focus more on inheritance and encapsulation patterns. Practice implementing abstract classes and interfaces to strengthen your OOP fundamentals.",
 };
+
+export const performanceData = {
+  weeklyProgress: [
+    { week: 1, xpEarned: 400, xpTarget: 400, hoursSpent: 4.5, hoursEstimated: 4, completedOnTime: true, status: "Completed" as const },
+    { week: 2, xpEarned: 280, xpTarget: 400, hoursSpent: 3, hoursEstimated: 4, completedOnTime: false, status: "In Progress" as const },
+    { week: 3, xpEarned: 0, xpTarget: 400, hoursSpent: 0, hoursEstimated: 5, completedOnTime: false, status: "Locked" as const },
+    { week: 4, xpEarned: 0, xpTarget: 400, hoursSpent: 0, hoursEstimated: 5, completedOnTime: false, status: "Locked" as const },
+    { week: 5, xpEarned: 0, xpTarget: 500, hoursSpent: 0, hoursEstimated: 6, completedOnTime: false, status: "Locked" as const },
+  ],
+  quizHistory: [
+    { id: 1, date: "2026-02-10", domain: "Java", score: 55, totalQuestions: 10, difficulty: "Easy" as const },
+    { id: 2, date: "2026-02-14", domain: "Java", score: 60, totalQuestions: 10, difficulty: "Easy" as const },
+    { id: 3, date: "2026-02-18", domain: "Java", score: 70, totalQuestions: 10, difficulty: "Medium" as const },
+    { id: 4, date: "2026-02-22", domain: "Spring Boot", score: 65, totalQuestions: 10, difficulty: "Medium" as const },
+    { id: 5, date: "2026-02-26", domain: "Spring Boot", score: 80, totalQuestions: 10, difficulty: "Medium" as const },
+  ],
+  studyCalendar: [
+    // Last 28 days of activity (0 = no activity, 1-3 = intensity)
+    0, 1, 2, 0, 1, 3, 2,
+    1, 0, 2, 3, 1, 2, 0,
+    3, 2, 1, 0, 0, 2, 3,
+    1, 2, 3, 2, 1, 3, 2,
+  ],
+  totalXp: 680,
+  targetXp: 2100,
+  overallAccuracy: 70,
+  currentStreak: 7,
+  longestStreak: 12,
+  totalHoursStudied: 7.5,
+  aiInsight: "You're progressing well through Week 2! Your quiz scores are trending upward (+25% since your first attempt). Focus on Collections and Multithreading to strengthen your weak areas before moving to Week 3.",
+};
+

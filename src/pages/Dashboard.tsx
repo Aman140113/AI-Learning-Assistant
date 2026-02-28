@@ -86,10 +86,8 @@ const Dashboard = () => {
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div className="flex items-center gap-4">
                   {userAvatar ? (
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-[#00F5D4] to-blue-500 p-[2px] shrink-0 shadow-[0_0_15px_rgba(0,245,212,0.2)]">
-                      <div className="w-full h-full bg-[#121212] rounded-2xl overflow-hidden flex items-center justify-center">
-                        <img src={`/src/assets/avatars/${userAvatar}`} alt="Avatar" className="w-10 h-10 object-contain" />
-                      </div>
+                    <div className="w-14 h-14 rounded-full overflow-hidden flex items-center justify-center shrink-0">
+                      <img src={`/src/assets/avatars/${userAvatar}`} alt="Avatar" className="w-14 h-14 object-contain" />
                     </div>
                   ) : (
                     <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0">

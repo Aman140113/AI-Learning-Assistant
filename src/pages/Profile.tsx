@@ -64,15 +64,15 @@ const Profile = () => {
             {/* Avatar Selection Modal */}
             {showAvatarModal && (
                 <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/70 backdrop-blur-sm" onClick={() => setShowAvatarModal(false)}>
-                    <div className="bg-[#121212] border border-white/10 rounded-3xl p-6 w-[90%] max-w-sm shadow-2xl animate-in fade-in zoom-in-95" onClick={(e) => e.stopPropagation()}>
+                    <div className="bg-card border border-border rounded-3xl p-6 w-[90%] max-w-sm shadow-2xl animate-in fade-in zoom-in-95" onClick={(e) => e.stopPropagation()}>
                         <div className="flex items-center justify-between mb-5">
-                            <h3 className="text-lg font-bold text-white">Choose Avatar</h3>
-                            <button onClick={() => setShowAvatarModal(false)} className="text-slate-500 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
+                            <h3 className="text-lg font-bold text-foreground">Choose Avatar</h3>
+                            <button onClick={() => setShowAvatarModal(false)} className="text-muted-foreground hover:text-foreground transition-colors"><X className="w-5 h-5" /></button>
                         </div>
                         <div className="grid grid-cols-4 gap-3">
                             {avatars.map((av) => (
                                 <div key={av} onClick={() => handleAvatarChange(av)}
-                                    className={`aspect-square rounded-2xl flex items-center justify-center cursor-pointer transition-all duration-300 border-2 p-2 ${userAvatar === av ? 'border-[#00F5D4] bg-[#00F5D4]/10 scale-105 shadow-[0_0_15px_rgba(0,245,212,0.3)]' : 'border-white/5 bg-[#0A0A0A] hover:border-white/20 hover:bg-white/5'}`}>
+                                    className={`aspect-square rounded-2xl flex items-center justify-center cursor-pointer transition-all duration-300 border-2 p-2 ${userAvatar === av ? 'border-[#00F5D4] bg-[#00F5D4]/10 scale-105 shadow-[0_0_15px_rgba(0,245,212,0.3)]' : 'border-border bg-muted hover:border-primary/30 hover:bg-muted/80'}`}>
                                     <img src={`/src/assets/avatars/${av}`} alt="avatar" className="w-full h-full object-contain" />
                                 </div>
                             ))}
@@ -84,12 +84,12 @@ const Profile = () => {
             {/* Delete Confirmation Modal */}
             {showDeleteModal && (
                 <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/70 backdrop-blur-sm" onClick={() => setShowDeleteModal(false)}>
-                    <div className="bg-[#121212] border border-red-500/30 rounded-3xl p-6 w-[90%] max-w-sm shadow-2xl animate-in fade-in zoom-in-95" onClick={(e) => e.stopPropagation()}>
+                    <div className="bg-card border border-red-500/30 rounded-3xl p-6 w-[90%] max-w-sm shadow-2xl animate-in fade-in zoom-in-95" onClick={(e) => e.stopPropagation()}>
                         <div className="flex items-center gap-3 mb-4">
                             <div className="w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center shrink-0">
                                 <AlertTriangle className="w-5 h-5 text-red-400" />
                             </div>
-                            <h3 className="text-lg font-bold text-white">Delete Account?</h3>
+                            <h3 className="text-lg font-bold text-foreground">Delete Account?</h3>
                         </div>
                         <p className="text-sm text-slate-400 mb-6">
                             This action is <span className="text-red-400 font-semibold">permanent</span>. All your data — quizzes, progress, learning paths, and daily tasks — will be deleted forever.
@@ -120,14 +120,14 @@ const Profile = () => {
                 <div className="glass-card p-8 text-center animate-slide-up mb-6">
                     {/* Avatar */}
                     <div className="relative mx-auto w-24 h-24 mb-4 cursor-pointer group" onClick={() => setShowAvatarModal(true)}>
-                        <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-[#00F5D4] to-blue-500 p-[3px] shadow-[0_0_25px_rgba(0,245,212,0.3)]">
-                            <div className="w-full h-full rounded-full bg-[#121212] overflow-hidden flex items-center justify-center">
-                                {userAvatar ? (
-                                    <img src={`/src/assets/avatars/${userAvatar}`} alt="Avatar" className="w-16 h-16 object-contain" />
-                                ) : (
+                        <div className="w-24 h-24 rounded-full overflow-hidden flex items-center justify-center">
+                            {userAvatar ? (
+                                <img src={`/src/assets/avatars/${userAvatar}`} alt="Avatar" className="w-20 h-20 object-contain" />
+                            ) : (
+                                <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center">
                                     <span className="text-3xl font-bold text-primary">{userName.charAt(0)}</span>
-                                )}
-                            </div>
+                                </div>
+                            )}
                         </div>
                         {/* Hover overlay */}
                         <div className="absolute inset-0 rounded-full bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -188,7 +188,7 @@ const Profile = () => {
                 <div className="rounded-2xl border-2 border-red-500/20 bg-red-500/5 p-6 animate-slide-up stagger-3" style={{ opacity: 0, animationFillMode: "forwards" }}>
                     <h2 className="text-lg font-bold text-red-400 mb-2 flex items-center gap-2">
                         <AlertTriangle className="w-5 h-5" />
-                        Danger Zone
+                        Permanently Delete Account
                     </h2>
                     <p className="text-sm text-muted-foreground mb-4">
                         Permanently delete your account and all associated data. This action cannot be undone.

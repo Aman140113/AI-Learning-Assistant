@@ -61,8 +61,10 @@ const ChatbotButton = () => {
     }
   };
 
-  const hiddenRoutes = ["/", "/result"];
-  if (hiddenRoutes.includes(location.pathname)) {
+  // Only show chatbot on authenticated pages (not on landing, login, quiz, etc.)
+  const hiddenRoutes = ["/", "/login", "/domain-selection", "/quiz", "/result"];
+  const isLoggedIn = !!localStorage.getItem("userId");
+  if (!isLoggedIn || hiddenRoutes.includes(location.pathname)) {
     return null;
   }
 
@@ -93,8 +95,8 @@ const ChatbotButton = () => {
               <div key={idx} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
                 <div
                   className={`max-w-[80%] p-3 rounded-2xl text-sm ${msg.role === "user"
-                      ? "bg-primary text-primary-foreground rounded-br-sm"
-                      : "bg-card text-foreground border border-border rounded-bl-sm shadow-sm"
+                    ? "bg-primary text-primary-foreground rounded-br-sm"
+                    : "bg-card text-foreground border border-border rounded-bl-sm shadow-sm"
                     }`}
                 >
                   {msg.text}
