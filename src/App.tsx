@@ -1,7 +1,5 @@
-import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
@@ -19,34 +17,29 @@ import NotFound from "./pages/NotFound";
 import ChatbotButton from "./components/ChatbotButton";
 import { ThemeProvider } from "@/components/theme-provider";
 
-const queryClient = new QueryClient();
-
 const App = () => (
   <ThemeProvider defaultTheme="dark" storageKey="skillspark-theme">
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Landing />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/domain-selection" element={<DomainSelection />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/quiz" element={<Quiz />} />
-            <Route path="/result" element={<Result />} />
-            <Route path="/learning-path" element={<LearningPath />} />
-            <Route path="/daily-tasks" element={<DailyTasks />} />
-            <Route path="/interview" element={<Interview />} />
-            <Route path="/leaderboard" element={<Leaderboard />} />
-            <Route path="/performance" element={<Performance />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-          <ChatbotButton />
-        </BrowserRouter>
-      </TooltipProvider>
-    </QueryClientProvider>
+    <TooltipProvider>
+      <Sonner />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/domain-selection" element={<DomainSelection />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/quiz" element={<Quiz />} />
+          <Route path="/result" element={<Result />} />
+          <Route path="/learning-path" element={<LearningPath />} />
+          <Route path="/daily-tasks" element={<DailyTasks />} />
+          <Route path="/interview" element={<Interview />} />
+          <Route path="/leaderboard" element={<Leaderboard />} />
+          <Route path="/performance" element={<Performance />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <ChatbotButton />
+      </BrowserRouter>
+    </TooltipProvider>
   </ThemeProvider>
 );
 
