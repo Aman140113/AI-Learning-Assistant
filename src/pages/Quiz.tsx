@@ -5,7 +5,6 @@ import Layout from "@/components/Layout";
 import ProgressBar from "@/components/ProgressBar";
 import QuizCard from "@/components/QuizCard";
 import { getQuizQuestions, getDailyQuizQuestions, submitQuiz, completeDailyTask, getDailyTasks } from "@/services/api";
-import { allQuizQuestions } from "@/data/dummyData";
 
 const TOTAL_QUESTIONS = 10;
 
@@ -32,7 +31,6 @@ const Quiz = () => {
   const [timeLeft, setTimeLeft] = useState(300);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
-  const [usingApi, setUsingApi] = useState(true);
 
   // Fetch questions from API
   useEffect(() => {
@@ -42,14 +40,13 @@ const Quiz = () => {
         .then((data) => {
           if (data && data.length > 0) {
             setQuestions(data);
-            setUsingApi(true);
           } else {
-            useFallbackQuestions();
+            setQuestions([]);
           }
           setLoading(false);
         })
         .catch(() => {
-          useFallbackQuestions();
+          setQuestions([]);
           setLoading(false);
         });
     } else if (selectedDomain) {
@@ -57,38 +54,20 @@ const Quiz = () => {
         .then((data) => {
           if (data && data.length > 0) {
             setQuestions(data);
-            setUsingApi(true);
           } else {
-            // Fallback to dummy data
-            useFallbackQuestions();
+            setQuestions([]);
           }
           setLoading(false);
         })
         .catch(() => {
-          useFallbackQuestions();
+          setQuestions([]);
           setLoading(false);
         });
     } else {
-      useFallbackQuestions();
+      setQuestions([]);
       setLoading(false);
     }
   }, [selectedDomain]);
-
-  const useFallbackQuestions = () => {
-    // Map old domain ids like "java" to work with dummy data
-    const domainKey = selectedDomain;
-    const filtered = allQuizQuestions.filter((q) => q.domain === domainKey);
-    const shuffled = filtered.sort(() => 0.5 - Math.random()).slice(0, TOTAL_QUESTIONS);
-    const mapped: QuestionData[] = shuffled.map((q) => ({
-      _id: String(q.id),
-      question_text: q.question,
-      options: q.options,
-      correct_answer: q.correctAnswer,
-      skill_id: { name: "", difficulty_level: q.difficulty },
-    }));
-    setQuestions(mapped);
-    setUsingApi(false);
-  };
 
   // Timer
   useEffect(() => {
@@ -125,7 +104,7 @@ const Quiz = () => {
     if (submitting) return;
     setSubmitting(true);
 
-    if (usingApi && userId) {
+    if (userId) {
       try {
         const result = await submitQuiz(userId, selectedDomain, answers);
         sessionStorage.setItem("quizResult", JSON.stringify({
@@ -190,7 +169,7 @@ const Quiz = () => {
       if (submitting) return;
       setSubmitting(true);
 
-      if (usingApi && userId) {
+      if (userId) {
         submitQuiz(userId, selectedDomain, newAnswers)
           .then((result) => {
             sessionStorage.setItem("quizResult", JSON.stringify({
@@ -203,6 +182,7 @@ const Quiz = () => {
             navigate(isAdaptive ? "/learning-path?mode=adaptive" : "/result");
           })
           .catch(() => {
+            // Fallback calculations locally when API errors out
             const correctCount = newAnswers.filter((a) => {
               const q = questions.find((q) => q._id === a.questionId);
               return q && q.correct_answer === a.selectedAnswer;
@@ -235,7 +215,7 @@ const Quiz = () => {
 
     setCurrentIndex((prev) => prev + 1);
     setSelectedAnswer(null);
-  }, [selectedAnswer, currentQuestion, answers, currentIndex, totalQ, submitting, usingApi, userId, selectedDomain, questions, navigate, isAdaptive]);
+  }, [selectedAnswer, currentQuestion, answers, currentIndex, totalQ, submitting, userId, selectedDomain, questions, navigate, isAdaptive]);
 
   if (loading) {
     return (
@@ -248,11 +228,20 @@ const Quiz = () => {
     );
   }
 
-  if (!currentQuestion) {
+  if (!currentQuestion || questions.length === 0) {
     return (
       <Layout>
-        <div className="flex-1 flex items-center justify-center min-h-full">
-          <p className="text-muted-foreground text-lg">No questions available for this domain.</p>
+        <div className="flex-1 flex flex-col items-center justify-center min-h-full">
+          <p className="text-muted-foreground text-xl font-heading mb-4 text-center">No questions found in the database.</p>
+          <p className="text-sm text-muted-foreground/80 max-w-sm text-center mb-8">
+            Make sure to run the upload script to populate your MongoDB cluster with the data from your company laptop.
+          </p>
+          <button
+            onClick={() => navigate('/learning-path')}
+            className="px-6 py-2.5 bg-primary/10 hover:bg-primary/20 text-primary font-medium rounded-xl transition-colors"
+          >
+            Return Home
+          </button>
         </div>
       </Layout>
     );
