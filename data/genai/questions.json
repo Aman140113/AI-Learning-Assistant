@@ -1,0 +1,1052 @@
+[
+  {
+    "domain": "Generative AI",
+    "topic": "Large Language Models (LLM)",
+    "level": "Easy",
+    "question": "LLMs are primarily based on:",
+    "options": {
+      "a": "CNNs",
+      "b": "Transformers",
+      "c": "SVMs",
+      "d": "KNN"
+    },
+    "answer": "b",
+    "explanation": "Modern LLMs use Transformer architectures with attention mechanisms."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Large Language Models (LLM)",
+    "level": "Easy",
+    "question": "LLMs predict the:",
+    "options": {
+      "a": "Previous token",
+      "b": "Next token",
+      "c": "Whole paragraph",
+      "d": "N-grams only"
+    },
+    "answer": "b",
+    "explanation": "They are autoregressive: each step predicts the next token given prior context."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Large Language Models (LLM)",
+    "level": "Easy",
+    "question": "Tokenization breaks text into:",
+    "options": {
+      "a": "Images",
+      "b": "Numeric vectors",
+      "c": "Tokens/subwords",
+      "d": "Phonemes"
+    },
+    "answer": "c",
+    "explanation": "Text is split into tokens (often subwords) before being embedded and processed."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Large Language Models (LLM)",
+    "level": "Easy",
+    "question": "Pretraining objective commonly used:",
+    "options": {
+      "a": "K-means",
+      "b": "Next-token prediction",
+      "c": "PCA",
+      "d": "Dropout"
+    },
+    "answer": "b",
+    "explanation": "Next‑token prediction on large corpora teaches language patterns and knowledge."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Large Language Models (LLM)",
+    "level": "Easy",
+    "question": "Embeddings turn text into:",
+    "options": {
+      "a": "Tables",
+      "b": "High-dimensional vectors",
+      "c": "CSV rows",
+      "d": "HTML tags"
+    },
+    "answer": "b",
+    "explanation": "Embeddings are numerical vectors capturing semantic meaning of text units."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Large Language Models (LLM)",
+    "level": "Medium",
+    "question": "Positional encoding allows transformers to:",
+    "options": {
+      "a": "Parallelize training",
+      "b": "Model token order",
+      "c": "Reduce parameters",
+      "d": "Compress input"
+    },
+    "answer": "b",
+    "explanation": "Since attention is permutation‑invariant, position info is injected explicitly."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Large Language Models (LLM)",
+    "level": "Medium",
+    "question": "Attention mechanism computes:",
+    "options": {
+      "a": "Token sums",
+      "b": "Weighted relevance between tokens",
+      "c": "Gradient clipping",
+      "d": "Regularization"
+    },
+    "answer": "b",
+    "explanation": "Attention scores how much each token should attend to others for representation."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Large Language Models (LLM)",
+    "level": "Medium",
+    "question": "Context window refers to:",
+    "options": {
+      "a": "Max tokens model considers at once",
+      "b": "GPU memory",
+      "c": "Batch size",
+      "d": "Layers"
+    },
+    "answer": "a",
+    "explanation": "It’s the maximum number of tokens (prompt + output) processed in a pass."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Large Language Models (LLM)",
+    "level": "Medium",
+    "question": "Instruction-tuning helps models:",
+    "options": {
+      "a": "Train images",
+      "b": "Follow user instructions better",
+      "c": "Reduce tokens",
+      "d": "Handle audio"
+    },
+    "answer": "b",
+    "explanation": "Supervised fine‑tuning on instruction‑response pairs improves helpfulness."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Large Language Models (LLM)",
+    "level": "Medium",
+    "question": "Temperature controls:",
+    "options": {
+      "a": "Prompt length",
+      "b": "Output randomness",
+      "c": "Latency",
+      "d": "Batch size"
+    },
+    "answer": "b",
+    "explanation": "Higher temperature samples more diverse tokens; lower values are more deterministic."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Large Language Models (LLM)",
+    "level": "Hard",
+    "question": "KV cache improves:",
+    "options": {
+      "a": "Training speed",
+      "b": "Inference speed for long prompts",
+      "c": "Parameter count",
+      "d": "Tokenization"
+    },
+    "answer": "b",
+    "explanation": "Caching past key/values avoids recomputing attention over previous tokens."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Large Language Models (LLM)",
+    "level": "Hard",
+    "question": "Sparse Mixture‑of‑Experts aims to:",
+    "options": {
+      "a": "Reduce context length",
+      "b": "Activate subset of experts per token",
+      "c": "Disable attention",
+      "d": "Replace embeddings"
+    },
+    "answer": "b",
+    "explanation": "MoE routes tokens to a few expert FFNs, boosting capacity without full cost."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Large Language Models (LLM)",
+    "level": "Hard",
+    "question": "RLHF mainly optimizes:",
+    "options": {
+      "a": "Pretraining loss",
+      "b": "Human‑aligned preferences",
+      "c": "Tokenizer size",
+      "d": "Data deduplication"
+    },
+    "answer": "b",
+    "explanation": "Reinforcement Learning from Human Feedback tunes outputs to match preferences."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Large Language Models (LLM)",
+    "level": "Hard",
+    "question": "BPE tokenization advantage:",
+    "options": {
+      "a": "No OOV via subwords",
+      "b": "Larger vocabulary only",
+      "c": "Fewer tokens always",
+      "d": "Needs stemming"
+    },
+    "answer": "a",
+    "explanation": "Subword units handle rare words and morphology without true OOV tokens."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Large Language Models (LLM)",
+    "level": "Hard",
+    "question": "Long‑context LLMs often use:",
+    "options": {
+      "a": "FlashAttention/linear attention variants",
+      "b": "RNNs",
+      "c": "Drop BPE",
+      "d": "Only depth increase"
+    },
+    "answer": "a",
+    "explanation": "Efficient attention variants reduce memory/time cost for long sequences."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Prompt Engineering",
+    "level": "Easy",
+    "question": "Zero‑shot prompting means:",
+    "options": {
+      "a": "Many examples",
+      "b": "No examples",
+      "c": "One example",
+      "d": "Two examples"
+    },
+    "answer": "b",
+    "explanation": "Zero‑shot provides only the instruction; the model relies on prior knowledge."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Prompt Engineering",
+    "level": "Easy",
+    "question": "Few‑shot prompting provides:",
+    "options": {
+      "a": "Random noise",
+      "b": "Demonstration examples",
+      "c": "Hidden layers",
+      "d": "Weights"
+    },
+    "answer": "b",
+    "explanation": "Few‑shot includes example Q→A pairs to condition the model’s behavior."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Prompt Engineering",
+    "level": "Easy",
+    "question": "System prompt sets:",
+    "options": {
+      "a": "User identity",
+      "b": "Model behavior/instructions",
+      "c": "GPU config",
+      "d": "Token limits"
+    },
+    "answer": "b",
+    "explanation": "The system message defines role, constraints, and style the model should follow."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Prompt Engineering",
+    "level": "Easy",
+    "question": "Role prompting involves:",
+    "options": {
+      "a": "Disabling tools",
+      "b": "Assigning a persona or role",
+      "c": "Changing tokenizer",
+      "d": "Modifying weights"
+    },
+    "answer": "b",
+    "explanation": "Specifying a role (e.g., ‘You are a tutor’) guides tone and content."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Prompt Engineering",
+    "level": "Easy",
+    "question": "Delimiters help to:",
+    "options": {
+      "a": "Reduce tokens",
+      "b": "Separate instructions from content",
+      "c": "Compile code",
+      "d": "Store state"
+    },
+    "answer": "b",
+    "explanation": "Clear delimiters (```/quotes) reduce instruction–content confusion and injection."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Prompt Engineering",
+    "level": "Medium",
+    "question": "Chain‑of‑thought prompting encourages:",
+    "options": {
+      "a": "Short answers",
+      "b": "Step‑by‑step reasoning",
+      "c": "Greedy decoding",
+      "d": "Beam search"
+    },
+    "answer": "b",
+    "explanation": "It elicits intermediate reasoning steps that improve problem solving."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Prompt Engineering",
+    "level": "Medium",
+    "question": "ReAct combines:",
+    "options": {
+      "a": "Retrieval + Augmentation",
+      "b": "Reasoning traces + tool Actions",
+      "c": "Reinforcement + Attention",
+      "d": "Recurrent + Attention"
+    },
+    "answer": "b",
+    "explanation": "ReAct alternates reasoning with tool use, improving factuality and planning."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Prompt Engineering",
+    "level": "Medium",
+    "question": "Self‑consistency improves:",
+    "options": {
+      "a": "Determinism",
+      "b": "Reasoning by sampling multiple rationales and voting",
+      "c": "Speed",
+      "d": "Context length"
+    },
+    "answer": "b",
+    "explanation": "Multiple sampled chains reduce random errors by majority voting on answers."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Prompt Engineering",
+    "level": "Medium",
+    "question": "Guardrails in prompts are used to:",
+    "options": {
+      "a": "Increase tokens",
+      "b": "Enforce safety/constraints",
+      "c": "Reduce pretraining",
+      "d": "Add layers"
+    },
+    "answer": "b",
+    "explanation": "Explicit do/don’t rules guide safe, constrained outputs."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Prompt Engineering",
+    "level": "Medium",
+    "question": "Prompt compression aims to:",
+    "options": {
+      "a": "Increase tokens",
+      "b": "Reduce length while preserving information",
+      "c": "Lower quality",
+      "d": "Remove examples"
+    },
+    "answer": "b",
+    "explanation": "Compression keeps key info while lowering token cost for long prompts."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Prompt Engineering",
+    "level": "Hard",
+    "question": "Logit bias (token biasing) is used to:",
+    "options": {
+      "a": "Shorten context",
+      "b": "Penalize/boost probability of specific tokens",
+      "c": "Freeze layers",
+      "d": "Quantize weights"
+    },
+    "answer": "b",
+    "explanation": "Adjusting logits nudges the model toward or away from specific tokens."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Prompt Engineering",
+    "level": "Hard",
+    "question": "Task decomposition helps by:",
+    "options": {
+      "a": "Combining steps",
+      "b": "Breaking complex problems into sub‑prompts",
+      "c": "Reducing sampling",
+      "d": "Removing loops"
+    },
+    "answer": "b",
+    "explanation": "Decomposition simplifies hard tasks and improves reliability of outputs."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Prompt Engineering",
+    "level": "Hard",
+    "question": "Toolformer‑like approaches allow models to:",
+    "options": {
+      "a": "Generate images",
+      "b": "Learn to call tools/APIs when useful",
+      "c": "Train faster",
+      "d": "Remove attention"
+    },
+    "answer": "b",
+    "explanation": "Models learn when and how to call external tools based on context."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Prompt Engineering",
+    "level": "Hard",
+    "question": "Prompt injection is a risk where:",
+    "options": {
+      "a": "The model refuses tools",
+      "b": "Untrusted content overrides instructions",
+      "c": "GPU fails",
+      "d": "Tokenizer breaks"
+    },
+    "answer": "b",
+    "explanation": "Injected instructions in retrieved/user content can subvert original rules."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Prompt Engineering",
+    "level": "Hard",
+    "question": "To mitigate prompt injection in RAG:",
+    "options": {
+      "a": "Trust all sources",
+      "b": "Strip instructions, sandbox tools, apply allowlists",
+      "c": "Disable retrieval",
+      "d": "Ignore metadata"
+    },
+    "answer": "b",
+    "explanation": "Treat retrieved text as untrusted and constrain tool invocations accordingly."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Retrieval Augmented Generation (RAG)",
+    "level": "Easy",
+    "question": "RAG combines a retriever with a:",
+    "options": {
+      "a": "Classifier",
+      "b": "Generator (LLM)",
+      "c": "Clusterer",
+      "d": "Hasher"
+    },
+    "answer": "b",
+    "explanation": "Retriever supplies context, generator produces the grounded answer."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Retrieval Augmented Generation (RAG)",
+    "level": "Easy",
+    "question": "Retrieval uses:",
+    "options": {
+      "a": "Keyword only",
+      "b": "Semantic similarity over embeddings",
+      "c": "Random sampling",
+      "d": "POS tagging"
+    },
+    "answer": "b",
+    "explanation": "Embedding vectors enable semantic search beyond exact keywords."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Retrieval Augmented Generation (RAG)",
+    "level": "Easy",
+    "question": "Context stuffing means:",
+    "options": {
+      "a": "Ignoring retrieval",
+      "b": "Adding retrieved docs into prompt",
+      "c": "Fine‑tuning",
+      "d": "Quantization"
+    },
+    "answer": "b",
+    "explanation": "Retrieved chunks are appended to the prompt to guide generation."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Retrieval Augmented Generation (RAG)",
+    "level": "Easy",
+    "question": "Chunking is used to:",
+    "options": {
+      "a": "Reduce vocab",
+      "b": "Split documents into segments",
+      "c": "Remove tokens",
+      "d": "Train faster"
+    },
+    "answer": "b",
+    "explanation": "Splitting long docs improves recall and ensures chunks fit context windows."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Retrieval Augmented Generation (RAG)",
+    "level": "Easy",
+    "question": "Embedding model outputs:",
+    "options": {
+      "a": "IDs",
+      "b": "Vectors",
+      "c": "Tokens",
+      "d": "Layers"
+    },
+    "answer": "b",
+    "explanation": "Embeddings are numeric vectors that capture semantic meaning for similarity search."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Retrieval Augmented Generation (RAG)",
+    "level": "Medium",
+    "question": "Hybrid search combines:",
+    "options": {
+      "a": "BM25 + semantic vector search",
+      "b": "Random + cosine",
+      "c": "SQL + JSON",
+      "d": "Index + cache only"
+    },
+    "answer": "a",
+    "explanation": "Lexical (BM25) and semantic search together improve relevance and recall."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Retrieval Augmented Generation (RAG)",
+    "level": "Medium",
+    "question": "Metadata filters help:",
+    "options": {
+      "a": "Ignore docs",
+      "b": "Scope retrieval by attributes",
+      "c": "Increase hallucination",
+      "d": "Change tokenizer"
+    },
+    "answer": "b",
+    "explanation": "Filters constrain results to the right subset (e.g., date/author)."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Retrieval Augmented Generation (RAG)",
+    "level": "Medium",
+    "question": "MMR balances:",
+    "options": {
+      "a": "Speed vs accuracy",
+      "b": "Relevance vs diversity",
+      "c": "Recall vs precision",
+      "d": "Tokens vs latency"
+    },
+    "answer": "b",
+    "explanation": "Max Marginal Relevance discourages redundant chunks while keeping relevant ones."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Retrieval Augmented Generation (RAG)",
+    "level": "Medium",
+    "question": "Chunk overlap helps:",
+    "options": {
+      "a": "Remove context",
+      "b": "Preserve continuity across chunks",
+      "c": "Reduce recall",
+      "d": "Increase GPU usage"
+    },
+    "answer": "b",
+    "explanation": "Overlapping windows carry context that would otherwise be split apart."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Retrieval Augmented Generation (RAG)",
+    "level": "Medium",
+    "question": "Late fusion reranking means:",
+    "options": {
+      "a": "Before retrieval",
+      "b": "Reorder retrieved docs post‑retrieval",
+      "c": "During embedding",
+      "d": "At training"
+    },
+    "answer": "b",
+    "explanation": "A stronger second‑stage model reranks initial candidates for precision."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Retrieval Augmented Generation (RAG)",
+    "level": "Hard",
+    "question": "Hallucinations in RAG are reduced by:",
+    "options": {
+      "a": "Ignoring citations",
+      "b": "Source‑grounded answers with citations",
+      "c": "Higher temperature",
+      "d": "Shorter prompts"
+    },
+    "answer": "b",
+    "explanation": "Citing retrieved sources encourages factual grounding and verifiability."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Retrieval Augmented Generation (RAG)",
+    "level": "Hard",
+    "question": "Multi‑hop RAG requires:",
+    "options": {
+      "a": "Only one chunk",
+      "b": "Iterative retrieval across linked facts",
+      "c": "No retriever",
+      "d": "Only keyword search"
+    },
+    "answer": "b",
+    "explanation": "Some queries need chaining multiple documents to assemble the answer."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Retrieval Augmented Generation (RAG)",
+    "level": "Hard",
+    "question": "Cross‑encoder rerankers:",
+    "options": {
+      "a": "Score query‑doc jointly for relevance",
+      "b": "Encode separately",
+      "c": "Skip attention",
+      "d": "Use BM25"
+    },
+    "answer": "a",
+    "explanation": "Joint encoding captures fine‑grained interactions for better ranking."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Retrieval Augmented Generation (RAG)",
+    "level": "Hard",
+    "question": "Vector store indexes often use:",
+    "options": {
+      "a": "IVF/Flat/HNSW for ANN",
+      "b": "B‑tree",
+      "c": "Heap",
+      "d": "Hash table only"
+    },
+    "answer": "a",
+    "explanation": "These ANN structures trade some recall for large latency improvements."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Retrieval Augmented Generation (RAG)",
+    "level": "Hard",
+    "question": "Reduce retrieval latency by:",
+    "options": {
+      "a": "Larger chunks only",
+      "b": "Smaller embeddings, ANN indexes, caching, batching",
+      "c": "Removing filters",
+      "d": "Disabling indexes"
+    },
+    "answer": "b",
+    "explanation": "A combination of efficient indexes and caching yields faster queries."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Vector Databases",
+    "level": "Easy",
+    "question": "Vector similarity commonly measured by:",
+    "options": {
+      "a": "Cosine/Euclidean/Inner product",
+      "b": "Hamming",
+      "c": "Jaccard only",
+      "d": "Dice only"
+    },
+    "answer": "a",
+    "explanation": "These distance metrics quantify closeness of embedding vectors."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Vector Databases",
+    "level": "Easy",
+    "question": "A vector database stores:",
+    "options": {
+      "a": "Raw PDFs",
+      "b": "Embeddings + metadata",
+      "c": "Only keywords",
+      "d": "Only images"
+    },
+    "answer": "b",
+    "explanation": "Vector DBs persist vectors with IDs/metadata for ANN search."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Vector Databases",
+    "level": "Easy",
+    "question": "ANN stands for:",
+    "options": {
+      "a": "Approximate Nearest Neighbor",
+      "b": "Artificial Neural Node",
+      "c": "Adjusted Nearest Neighbor",
+      "d": "Approximate Node Network"
+    },
+    "answer": "a",
+    "explanation": "ANN search returns near neighbors quickly with high, not perfect, recall."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Vector Databases",
+    "level": "Easy",
+    "question": "HNSW is:",
+    "options": {
+      "a": "Hash table",
+      "b": "Graph‑based ANN index",
+      "c": "Tree index",
+      "d": "Bitmap index"
+    },
+    "answer": "b",
+    "explanation": "HNSW builds a navigable small‑world graph to find nearest neighbors efficiently."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Vector Databases",
+    "level": "Easy",
+    "question": "Milvus/FAISS/Pinecone are:",
+    "options": {
+      "a": "Web servers",
+      "b": "Vector search tools/databases",
+      "c": "IDEs",
+      "d": "Compilers"
+    },
+    "answer": "b",
+    "explanation": "They provide libraries/services for efficient vector indexing and search."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Vector Databases",
+    "level": "Medium",
+    "question": "Upsert in vector DB means:",
+    "options": {
+      "a": "Insert only",
+      "b": "Update or insert",
+      "c": "Delete",
+      "d": "Search"
+    },
+    "answer": "b",
+    "explanation": "Upsert creates a new vector or updates an existing one in one call."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Vector Databases",
+    "level": "Medium",
+    "question": "Index choice affects:",
+    "options": {
+      "a": "Disk only",
+      "b": "Latency vs recall tradeoff",
+      "c": "Tokenizer",
+      "d": "GPU clocks"
+    },
+    "answer": "b",
+    "explanation": "Different indexes balance speed, memory, and recall differently."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Vector Databases",
+    "level": "Medium",
+    "question": "Dimensionality must match:",
+    "options": {
+      "a": "Any number",
+      "b": "Embedding model output size",
+      "c": "Batch size",
+      "d": "Token limit"
+    },
+    "answer": "b",
+    "explanation": "Index and vectors must share the same dimension as the encoder outputs."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Vector Databases",
+    "level": "Medium",
+    "question": "Metadata filtering enables:",
+    "options": {
+      "a": "Faster training",
+      "b": "Scoped results by fields",
+      "c": "Random retrieval",
+      "d": "Token merging"
+    },
+    "answer": "b",
+    "explanation": "Filtering by metadata narrows results to relevant subsets (e.g., tenant/date)."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Vector Databases",
+    "level": "Medium",
+    "question": "Persisting vectors ensures:",
+    "options": {
+      "a": "In‑memory only",
+      "b": "Durability across restarts",
+      "c": "Lower recall",
+      "d": "Higher tokens"
+    },
+    "answer": "b",
+    "explanation": "Durable storage preserves the index/data after service restarts."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Vector Databases",
+    "level": "Hard",
+    "question": "PQ/OPQ is used to:",
+    "options": {
+      "a": "Expand vectors",
+      "b": "Compress vectors for faster search",
+      "c": "Remove indexes",
+      "d": "Add tokens"
+    },
+    "answer": "b",
+    "explanation": "Product Quantization compresses vectors to minimize memory and speed up search."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Vector Databases",
+    "level": "Hard",
+    "question": "IVF index partitions the space into:",
+    "options": {
+      "a": "Inodes",
+      "b": "Voronoi cells/centroids",
+      "c": "Files",
+      "d": "Pages"
+    },
+    "answer": "b",
+    "explanation": "IVF clusters vectors by centroids to probe only relevant partitions."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Vector Databases",
+    "level": "Hard",
+    "question": "Reranking after ANN can:",
+    "options": {
+      "a": "Lower accuracy",
+      "b": "Improve precision with exact scoring",
+      "c": "Delete items",
+      "d": "Increase dimension"
+    },
+    "answer": "b",
+    "explanation": "Re‑scoring top candidates exactly improves final ranking quality."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Vector Databases",
+    "level": "Hard",
+    "question": "Multi‑tenant RAG consistency is improved by:",
+    "options": {
+      "a": "Disabling filters",
+      "b": "Namespace/collection per tenant",
+      "c": "Merging all data",
+      "d": "Dropping metadata"
+    },
+    "answer": "b",
+    "explanation": "Isolation per tenant avoids cross‑pollination of data in queries."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Vector Databases",
+    "level": "Hard",
+    "question": "Efficient bulk upsert involves:",
+    "options": {
+      "a": "Single inserts",
+      "b": "Batching/async writes",
+      "c": "Polling per row",
+      "d": "No indexing"
+    },
+    "answer": "b",
+    "explanation": "Batching reduces overhead and improves throughput for large ingestions."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Fine Tuning",
+    "level": "Easy",
+    "question": "Fine‑tuning adapts:",
+    "options": {
+      "a": "Hardware",
+      "b": "Model to specific tasks/data",
+      "c": "Tokenizer only",
+      "d": "Storage"
+    },
+    "answer": "b",
+    "explanation": "Fine‑tuning updates weights so the model specializes on your domain/task."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Fine Tuning",
+    "level": "Easy",
+    "question": "LoRA is:",
+    "options": {
+      "a": "Loss function",
+      "b": "Low‑Rank Adaptation technique",
+      "c": "Optimizer",
+      "d": "Tokenizer"
+    },
+    "answer": "b",
+    "explanation": "LoRA injects small trainable matrices, enabling lightweight adaptation."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Fine Tuning",
+    "level": "Easy",
+    "question": "A fine‑tuning dataset should be:",
+    "options": {
+      "a": "Noisy",
+      "b": "Labeled/structured for the task",
+      "c": "Random",
+      "d": "Unrelated"
+    },
+    "answer": "b",
+    "explanation": "Quality, labeled data aligned to the task yields useful adaptations."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Fine Tuning",
+    "level": "Easy",
+    "question": "PEFT stands for:",
+    "options": {
+      "a": "Partial Efficient Fine‑Tuning",
+      "b": "Parameter‑Efficient Fine‑Tuning",
+      "c": "Pre‑Encoded Fine Training",
+      "d": "Prompt Efficient FT"
+    },
+    "answer": "b",
+    "explanation": "PEFT methods reduce trainable parameters to cut cost while retaining quality."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Fine Tuning",
+    "level": "Easy",
+    "question": "An overfitting sign is:",
+    "options": {
+      "a": "Train up, val down",
+      "b": "Train down, val up",
+      "c": "Train up, val up equally",
+      "d": "No change"
+    },
+    "answer": "a",
+    "explanation": "Rising train accuracy with falling validation accuracy indicates memorization."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Fine Tuning",
+    "level": "Medium",
+    "question": "Too‑high learning rate leads to:",
+    "options": {
+      "a": "Slow convergence",
+      "b": "Divergence/instability",
+      "c": "Perfect generalization",
+      "d": "Lower loss always"
+    },
+    "answer": "b",
+    "explanation": "Large steps overshoot minima, causing training to blow up or oscillate."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Fine Tuning",
+    "level": "Medium",
+    "question": "Validation split is used to:",
+    "options": {
+      "a": "Train",
+      "b": "Evaluate during training",
+      "c": "Deploy",
+      "d": "Log only"
+    },
+    "answer": "b",
+    "explanation": "A holdout set tracks generalization and guides hyperparameter tuning."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Fine Tuning",
+    "level": "Medium",
+    "question": "Early stopping helps:",
+    "options": {
+      "a": "Train longer",
+      "b": "Avoid overfitting by stopping when val worsens",
+      "c": "Increase params",
+      "d": "Reduce tokens"
+    },
+    "answer": "b",
+    "explanation": "Stop when validation metrics plateau/worsen to prevent memorization."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Fine Tuning",
+    "level": "Medium",
+    "question": "Instruction FT datasets contain:",
+    "options": {
+      "a": "Only labels",
+      "b": "Instruction–input–output triples",
+      "c": "Only prompts",
+      "d": "Only embeddings"
+    },
+    "answer": "b",
+    "explanation": "Instruction datasets teach the model how to follow tasks and formats."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Fine Tuning",
+    "level": "Medium",
+    "question": "QLoRA combines:",
+    "options": {
+      "a": "4‑bit quantization with LoRA adapters",
+      "b": "16‑bit training",
+      "c": "No adapters",
+      "d": "Token pruning"
+    },
+    "answer": "a",
+    "explanation": "QLoRA uses 4‑bit quantized base weights and trains small LoRA adapters."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Fine Tuning",
+    "level": "Hard",
+    "question": "Catastrophic forgetting is:",
+    "options": {
+      "a": "GPU failure",
+      "b": "Loss of prior knowledge after fine‑tuning",
+      "c": "Token loss",
+      "d": "Over‑tokenization"
+    },
+    "answer": "b",
+    "explanation": "New training can overwrite older skills; mixing base data mitigates it."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Fine Tuning",
+    "level": "Hard",
+    "question": "To preserve base capabilities, one may use:",
+    "options": {
+      "a": "High LR",
+      "b": "Smaller adapters and mix‑in base data",
+      "c": "No validation",
+      "d": "No regularization"
+    },
+    "answer": "b",
+    "explanation": "PEFT with mixed data keeps prior competencies while specializing."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Fine Tuning",
+    "level": "Hard",
+    "question": "Mixing RAG with fine‑tuning:",
+    "options": {
+      "a": "Always necessary",
+      "b": "Use RAG for facts; fine‑tune for style/format",
+      "c": "Replace RAG",
+      "d": "Avoid embeddings"
+    },
+    "answer": "b",
+    "explanation": "RAG handles factual updates; fine‑tuning customizes behavior/format."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Fine Tuning",
+    "level": "Hard",
+    "question": "Safety alignment can use:",
+    "options": {
+      "a": "Random prompts",
+      "b": "RLHF/DPO with preference data",
+      "c": "No guardrails",
+      "d": "Disable tokens"
+    },
+    "answer": "b",
+    "explanation": "Preference‑based tuning aligns outputs to human safety and quality standards."
+  },
+  {
+    "domain": "Generative AI",
+    "topic": "Fine Tuning",
+    "level": "Hard",
+    "question": "Select checkpoints via:",
+    "options": {
+      "a": "Lowest train loss only",
+      "b": "Best validation metrics/holdout tasks",
+      "c": "Random epoch",
+      "d": "Longest training"
+    },
+    "answer": "b",
+    "explanation": "Choose the model that generalizes best, not merely the lowest train loss."
+  }
+]

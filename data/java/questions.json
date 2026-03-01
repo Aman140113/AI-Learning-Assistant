@@ -1,0 +1,1052 @@
+[
+  {
+    "domain": "Java",
+    "topic": "OOP Concepts",
+    "level": "Easy",
+    "question": "Which OOP principle hides data?",
+    "options": {
+      "a": "Inheritance",
+      "b": "Encapsulation",
+      "c": "Polymorphism",
+      "d": "Abstraction"
+    },
+    "answer": "b",
+    "explanation": "Encapsulation keeps fields private and exposes behavior via methods, limiting direct access."
+  },
+  {
+    "domain": "Java",
+    "topic": "OOP Concepts",
+    "level": "Easy",
+    "question": "Which concept allows different implementations of the same method?",
+    "options": {
+      "a": "Polymorphism",
+      "b": "Looping",
+      "c": "Compilation",
+      "d": "Debugging"
+    },
+    "answer": "a",
+    "explanation": "Polymorphism lets the same method name behave differently depending on the object’s runtime type."
+  },
+  {
+    "domain": "Java",
+    "topic": "OOP Concepts",
+    "level": "Easy",
+    "question": "Object is an instance of a:",
+    "options": {
+      "a": "Method",
+      "b": "Class",
+      "c": "Package",
+      "d": "Variable"
+    },
+    "answer": "b",
+    "explanation": "A class is a blueprint; objects are concrete instances created from that blueprint."
+  },
+  {
+    "domain": "Java",
+    "topic": "OOP Concepts",
+    "level": "Easy",
+    "question": "Which keyword creates an object?",
+    "options": {
+      "a": "class",
+      "b": "new",
+      "c": "object",
+      "d": "create"
+    },
+    "answer": "b",
+    "explanation": "The `new` keyword allocates memory and calls the constructor to initialize an object."
+  },
+  {
+    "domain": "Java",
+    "topic": "OOP Concepts",
+    "level": "Easy",
+    "question": "Inheritance supports:",
+    "options": {
+      "a": "Reusability",
+      "b": "Encapsulation",
+      "c": "Debugging",
+      "d": "Compilation"
+    },
+    "answer": "a",
+    "explanation": "Inheritance lets subclasses reuse and extend behavior from a base class."
+  },
+  {
+    "domain": "Java",
+    "topic": "OOP Concepts",
+    "level": "Medium",
+    "question": "Method overriding enables:",
+    "options": {
+      "a": "Compile-time polymorphism",
+      "b": "Runtime polymorphism",
+      "c": "Abstraction",
+      "d": "Multiple inheritance"
+    },
+    "answer": "b",
+    "explanation": "Overridden methods are chosen at runtime based on the actual object (dynamic dispatch)."
+  },
+  {
+    "domain": "Java",
+    "topic": "OOP Concepts",
+    "level": "Medium",
+    "question": "Which relationship represents ‘is‑a’?",
+    "options": {
+      "a": "Aggregation",
+      "b": "Composition",
+      "c": "Inheritance",
+      "d": "Encapsulation"
+    },
+    "answer": "c",
+    "explanation": "Inheritance models an is‑a relationship (e.g., Dog is‑a Animal)."
+  },
+  {
+    "domain": "Java",
+    "topic": "OOP Concepts",
+    "level": "Medium",
+    "question": "Which allows hiding complexity from users?",
+    "options": {
+      "a": "Abstraction",
+      "b": "Polymorphism",
+      "c": "Inheritance",
+      "d": "Interface"
+    },
+    "answer": "a",
+    "explanation": "Abstraction exposes essential features while hiding implementation details."
+  },
+  {
+    "domain": "Java",
+    "topic": "OOP Concepts",
+    "level": "Medium",
+    "question": "Which is not true about interfaces?",
+    "options": {
+      "a": "Can have default methods",
+      "b": "Can have constructors",
+      "c": "Support multiple inheritance",
+      "d": "Are abstract by default"
+    },
+    "answer": "b",
+    "explanation": "Interfaces can’t be instantiated and thus don’t have constructors."
+  },
+  {
+    "domain": "Java",
+    "topic": "OOP Concepts",
+    "level": "Medium",
+    "question": "Overloading is based on:",
+    "options": {
+      "a": "Return type",
+      "b": "Access modifier",
+      "c": "Parameter list",
+      "d": "Class type"
+    },
+    "answer": "c",
+    "explanation": "Overloading changes the number/type/order of parameters, not just return type."
+  },
+  {
+    "domain": "Java",
+    "topic": "OOP Concepts",
+    "level": "Hard",
+    "question": "Liskov Substitution Principle ensures:",
+    "options": {
+      "a": "Subclass can be used as parent class",
+      "b": "Parent must override subclass",
+      "c": "Only abstract classes work",
+      "d": "Private members are inherited"
+    },
+    "answer": "a",
+    "explanation": "LSP: instances of a subtype should be usable wherever a supertype is expected without breaking behavior."
+  },
+  {
+    "domain": "Java",
+    "topic": "OOP Concepts",
+    "level": "Hard",
+    "question": "Which modifier prevents inheritance?",
+    "options": {
+      "a": "private",
+      "b": "public",
+      "c": "protected",
+      "d": "final"
+    },
+    "answer": "d",
+    "explanation": "Marking a class `final` prevents other classes from extending it."
+  },
+  {
+    "domain": "Java",
+    "topic": "OOP Concepts",
+    "level": "Hard",
+    "question": "Which feature allows multiple behaviors without inheritance?",
+    "options": {
+      "a": "Polymorphism",
+      "b": "Encapsulation",
+      "c": "Delegation",
+      "d": "Composition"
+    },
+    "answer": "d",
+    "explanation": "Composition builds complex objects from simpler ones (has‑a), favoring flexibility over inheritance."
+  },
+  {
+    "domain": "Java",
+    "topic": "OOP Concepts",
+    "level": "Hard",
+    "question": "Covariant return types allow:",
+    "options": {
+      "a": "Changing return to unrelated type",
+      "b": "Returning subclass type",
+      "c": "Changing method name",
+      "d": "Changing access to private"
+    },
+    "answer": "b",
+    "explanation": "An overriding method may return a subtype of the original return type."
+  },
+  {
+    "domain": "Java",
+    "topic": "OOP Concepts",
+    "level": "Hard",
+    "question": "Diamond problem is solved in Java using:",
+    "options": {
+      "a": "Abstract classes",
+      "b": "Interfaces",
+      "c": "Packages",
+      "d": "Static methods"
+    },
+    "answer": "b",
+    "explanation": "Java forbids multiple class inheritance; multiple interfaces are allowed with explicit conflict resolution."
+  },
+  {
+    "domain": "Java",
+    "topic": "Collections Framework",
+    "level": "Easy",
+    "question": "Which collection stores unique values?",
+    "options": {
+      "a": "List",
+      "b": "Set",
+      "c": "Queue",
+      "d": "Map"
+    },
+    "answer": "b",
+    "explanation": "Set implementations disallow duplicate elements by definition."
+  },
+  {
+    "domain": "Java",
+    "topic": "Collections Framework",
+    "level": "Easy",
+    "question": "ArrayList is:",
+    "options": {
+      "a": "Synchronized",
+      "b": "Dynamic array",
+      "c": "Sorted set",
+      "d": "Key‑value store"
+    },
+    "answer": "b",
+    "explanation": "ArrayList uses a resizable array; it is not synchronized by default."
+  },
+  {
+    "domain": "Java",
+    "topic": "Collections Framework",
+    "level": "Easy",
+    "question": "HashMap stores:",
+    "options": {
+      "a": "Duplicate keys",
+      "b": "Duplicate values",
+      "c": "Key‑value pairs",
+      "d": "Only integers"
+    },
+    "answer": "c",
+    "explanation": "HashMap maps unique keys to values; keys must be unique."
+  },
+  {
+    "domain": "Java",
+    "topic": "Collections Framework",
+    "level": "Easy",
+    "question": "LinkedList implements:",
+    "options": {
+      "a": "Queue",
+      "b": "List & Deque",
+      "c": "Set",
+      "d": "Map"
+    },
+    "answer": "b",
+    "explanation": "LinkedList implements both List and Deque, supporting queue/stack operations."
+  },
+  {
+    "domain": "Java",
+    "topic": "Collections Framework",
+    "level": "Easy",
+    "question": "Which class is thread‑safe?",
+    "options": {
+      "a": "ArrayList",
+      "b": "LinkedList",
+      "c": "Vector",
+      "d": "HashSet"
+    },
+    "answer": "c",
+    "explanation": "Vector’s methods are synchronized, making it thread‑safe (though slower)."
+  },
+  {
+    "domain": "Java",
+    "topic": "Collections Framework",
+    "level": "Medium",
+    "question": "HashSet internally uses:",
+    "options": {
+      "a": "ArrayList",
+      "b": "LinkedList",
+      "c": "HashMap",
+      "d": "Hashtable"
+    },
+    "answer": "c",
+    "explanation": "HashSet is backed by a HashMap where elements are stored as keys."
+  },
+  {
+    "domain": "Java",
+    "topic": "Collections Framework",
+    "level": "Medium",
+    "question": "TreeSet stores elements in:",
+    "options": {
+      "a": "Insertion order",
+      "b": "Random order",
+      "c": "Sorted order",
+      "d": "Reverse order"
+    },
+    "answer": "c",
+    "explanation": "TreeSet keeps elements sorted according to natural order or a comparator."
+  },
+  {
+    "domain": "Java",
+    "topic": "Collections Framework",
+    "level": "Medium",
+    "question": "Time complexity of HashMap get():",
+    "options": {
+      "a": "O(1) avg",
+      "b": "O(n) avg",
+      "c": "O(log n)",
+      "d": "O(n²)"
+    },
+    "answer": "a",
+    "explanation": "Average case is O(1) due to hashing; worst‑case degrades with collisions."
+  },
+  {
+    "domain": "Java",
+    "topic": "Collections Framework",
+    "level": "Medium",
+    "question": "PriorityQueue is based on:",
+    "options": {
+      "a": "Stack",
+      "b": "Min‑heap",
+      "c": "Max‑heap only",
+      "d": "Hash structure"
+    },
+    "answer": "b",
+    "explanation": "Java’s PriorityQueue is typically a min‑heap; lowest element has priority."
+  },
+  {
+    "domain": "Java",
+    "topic": "Collections Framework",
+    "level": "Medium",
+    "question": "Which is ordered?",
+    "options": {
+      "a": "HashSet",
+      "b": "HashMap",
+      "c": "LinkedHashMap",
+      "d": "TreeSet"
+    },
+    "answer": "c",
+    "explanation": "LinkedHashMap maintains insertion order for entries."
+  },
+  {
+    "domain": "Java",
+    "topic": "Collections Framework",
+    "level": "Hard",
+    "question": "Fail‑fast iterator throws:",
+    "options": {
+      "a": "IOException",
+      "b": "ConcurrentModificationException",
+      "c": "NullPointerException",
+      "d": "ClassCastException"
+    },
+    "answer": "b",
+    "explanation": "Fail‑fast iterators detect concurrent modification and throw CME."
+  },
+  {
+    "domain": "Java",
+    "topic": "Collections Framework",
+    "level": "Hard",
+    "question": "WeakHashMap entries are removed when:",
+    "options": {
+      "a": "JVM stops",
+      "b": "No strong reference exists",
+      "c": "Map is cleared",
+      "d": "Key is null"
+    },
+    "answer": "b",
+    "explanation": "Weak keys allow GC to reclaim entries when keys are only weakly referenced."
+  },
+  {
+    "domain": "Java",
+    "topic": "Collections Framework",
+    "level": "Hard",
+    "question": "IdentityHashMap compares keys using:",
+    "options": {
+      "a": "equals()",
+      "b": "hashCode()",
+      "c": "== operator",
+      "d": "compareTo()"
+    },
+    "answer": "c",
+    "explanation": "IdentityHashMap uses reference equality (==) instead of equals()."
+  },
+  {
+    "domain": "Java",
+    "topic": "Collections Framework",
+    "level": "Hard",
+    "question": "CopyOnWriteArrayList is best for:",
+    "options": {
+      "a": "Heavy write operations",
+      "b": "Many reads, few writes",
+      "c": "Sorting data",
+      "d": "Recursion"
+    },
+    "answer": "b",
+    "explanation": "Writes copy the array, so it excels when reads dominate and writes are rare."
+  },
+  {
+    "domain": "Java",
+    "topic": "Collections Framework",
+    "level": "Hard",
+    "question": "NavigableMap is implemented by:",
+    "options": {
+      "a": "HashMap",
+      "b": "TreeMap",
+      "c": "Hashtable",
+      "d": "EnumMap"
+    },
+    "answer": "b",
+    "explanation": "TreeMap implements NavigableMap, providing navigation methods (lower, floor, etc.)."
+  },
+  {
+    "domain": "Java",
+    "topic": "Exception Handling",
+    "level": "Easy",
+    "question": "try block must be followed by:",
+    "options": {
+      "a": "catch",
+      "b": "finally",
+      "c": "catch or finally",
+      "d": "throw"
+    },
+    "answer": "c",
+    "explanation": "A try must be followed by at least one catch or a finally block."
+  },
+  {
+    "domain": "Java",
+    "topic": "Exception Handling",
+    "level": "Easy",
+    "question": "Which is a checked exception?",
+    "options": {
+      "a": "ArithmeticException",
+      "b": "IOException",
+      "c": "NullPointerException",
+      "d": "RuntimeException"
+    },
+    "answer": "b",
+    "explanation": "Checked exceptions (like IOException) must be declared or handled."
+  },
+  {
+    "domain": "Java",
+    "topic": "Exception Handling",
+    "level": "Easy",
+    "question": "throw keyword is used to:",
+    "options": {
+      "a": "Declare exception",
+      "b": "Create/raise exception",
+      "c": "Catch exception",
+      "d": "Suppress exception"
+    },
+    "answer": "b",
+    "explanation": "`throw` explicitly throws an exception instance at runtime."
+  },
+  {
+    "domain": "Java",
+    "topic": "Exception Handling",
+    "level": "Easy",
+    "question": "finally executes:",
+    "options": {
+      "a": "Only when no error",
+      "b": "Always",
+      "c": "Only when error",
+      "d": "Before try"
+    },
+    "answer": "b",
+    "explanation": "Finally runs regardless of exception, except in rare cases like System.exit()."
+  },
+  {
+    "domain": "Java",
+    "topic": "Exception Handling",
+    "level": "Easy",
+    "question": "Multiple catch blocks allow:",
+    "options": {
+      "a": "Same exception",
+      "b": "Different exceptions",
+      "c": "No exceptions",
+      "d": "Two finally blocks"
+    },
+    "answer": "b",
+    "explanation": "Each catch can handle a different exception type from the try block."
+  },
+  {
+    "domain": "Java",
+    "topic": "Exception Handling",
+    "level": "Medium",
+    "question": "throws keyword is used to:",
+    "options": {
+      "a": "Handle exception",
+      "b": "Propagate exception",
+      "c": "Ignore exception",
+      "d": "Convert error"
+    },
+    "answer": "b",
+    "explanation": "`throws` declares that a method may pass certain exceptions to its caller."
+  },
+  {
+    "domain": "Java",
+    "topic": "Exception Handling",
+    "level": "Medium",
+    "question": "Which exception occurs when dividing by zero?",
+    "options": {
+      "a": "NullPointerException",
+      "b": "ArithmeticException",
+      "c": "IllegalArgumentException",
+      "d": "IOException"
+    },
+    "answer": "b",
+    "explanation": "Integer division by zero triggers ArithmeticException at runtime."
+  },
+  {
+    "domain": "Java",
+    "topic": "Exception Handling",
+    "level": "Medium",
+    "question": "Which is parent of all exceptions?",
+    "options": {
+      "a": "Error",
+      "b": "Exception",
+      "c": "Throwable",
+      "d": "RuntimeException"
+    },
+    "answer": "c",
+    "explanation": "Throwable is the root type for both Exception and Error hierarchies."
+  },
+  {
+    "domain": "Java",
+    "topic": "Exception Handling",
+    "level": "Medium",
+    "question": "try‑with‑resources requires:",
+    "options": {
+      "a": "Abstract classes",
+      "b": "AutoCloseable interface",
+      "c": "Thread class",
+      "d": "Collection interface"
+    },
+    "answer": "b",
+    "explanation": "Resources must implement AutoCloseable so close() is called automatically."
+  },
+  {
+    "domain": "Java",
+    "topic": "Exception Handling",
+    "level": "Medium",
+    "question": "Finally executes even if:",
+    "options": {
+      "a": "System.exit() is called",
+      "b": "return statement used",
+      "c": "catch missing",
+      "d": "try empty"
+    },
+    "answer": "b",
+    "explanation": "A return in try/catch still executes finally before exiting the method."
+  },
+  {
+    "domain": "Java",
+    "topic": "Exception Handling",
+    "level": "Hard",
+    "question": "Error class represents:",
+    "options": {
+      "a": "Recoverable conditions",
+      "b": "Unrecoverable conditions",
+      "c": "File issues",
+      "d": "Invalid arguments"
+    },
+    "answer": "b",
+    "explanation": "Errors signal serious problems (e.g., OutOfMemoryError) not meant to be caught routinely."
+  },
+  {
+    "domain": "Java",
+    "topic": "Exception Handling",
+    "level": "Hard",
+    "question": "Re‑throwing exception is done using:",
+    "options": {
+      "a": "throw new e",
+      "b": "throw e",
+      "c": "throws e",
+      "d": "catch e"
+    },
+    "answer": "b",
+    "explanation": "Within catch, `throw e;` rethrows the caught exception up the call stack."
+  },
+  {
+    "domain": "Java",
+    "topic": "Exception Handling",
+    "level": "Hard",
+    "question": "StackOverflowError occurs due to:",
+    "options": {
+      "a": "Memory leak",
+      "b": "Infinite recursion",
+      "c": "CPU overload",
+      "d": "Null reference"
+    },
+    "answer": "b",
+    "explanation": "Unbounded recursive calls exhaust the call stack, causing StackOverflowError."
+  },
+  {
+    "domain": "Java",
+    "topic": "Exception Handling",
+    "level": "Hard",
+    "question": "Which is true?",
+    "options": {
+      "a": "Checked exceptions extend RuntimeException",
+      "b": "Runtime exceptions extend Error",
+      "c": "Checked exceptions extend Exception",
+      "d": "Errors extend Exception"
+    },
+    "answer": "c",
+    "explanation": "Checked exceptions are subclasses of Exception but not RuntimeException."
+  },
+  {
+    "domain": "Java",
+    "topic": "Exception Handling",
+    "level": "Hard",
+    "question": "Suppressed exceptions occur in:",
+    "options": {
+      "a": "Multi‑threading",
+      "b": "try‑with‑resources",
+      "c": "Overloading",
+      "d": "JIT"
+    },
+    "answer": "b",
+    "explanation": "When closing resources throws errors, they’re recorded as suppressed on the primary exception."
+  },
+  {
+    "domain": "Java",
+    "topic": "Multithreading",
+    "level": "Easy",
+    "question": "start() method:",
+    "options": {
+      "a": "Runs thread directly",
+      "b": "Creates new thread and calls run()",
+      "c": "Stops thread",
+      "d": "Clones thread"
+    },
+    "answer": "b",
+    "explanation": "start() spawns a new thread which then invokes run() asynchronously."
+  },
+  {
+    "domain": "Java",
+    "topic": "Multithreading",
+    "level": "Easy",
+    "question": "run() contains:",
+    "options": {
+      "a": "Entry point code",
+      "b": "Stop logic",
+      "c": "Variable init",
+      "d": "JVM instructions"
+    },
+    "answer": "a",
+    "explanation": "The run() method defines the task a thread executes."
+  },
+  {
+    "domain": "Java",
+    "topic": "Multithreading",
+    "level": "Easy",
+    "question": "Thread.sleep() pauses:",
+    "options": {
+      "a": "JVM",
+      "b": "Current thread",
+      "c": "All threads",
+      "d": "OS"
+    },
+    "answer": "b",
+    "explanation": "sleep() suspends the **current** thread without releasing locks."
+  },
+  {
+    "domain": "Java",
+    "topic": "Multithreading",
+    "level": "Easy",
+    "question": "isAlive() returns:",
+    "options": {
+      "a": "Thread speed",
+      "b": "Thread count",
+      "c": "Status",
+      "d": "Priority"
+    },
+    "answer": "c",
+    "explanation": "isAlive() indicates whether the thread has been started and not yet terminated."
+  },
+  {
+    "domain": "Java",
+    "topic": "Multithreading",
+    "level": "Easy",
+    "question": "Thread priority range:",
+    "options": {
+      "a": "0–5",
+      "b": "1–5",
+      "c": "1–10",
+      "d": "10–20"
+    },
+    "answer": "c",
+    "explanation": "Java priorities go from 1 (MIN) to 10 (MAX), default 5."
+  },
+  {
+    "domain": "Java",
+    "topic": "Multithreading",
+    "level": "Medium",
+    "question": "Synchronization prevents:",
+    "options": {
+      "a": "Exceptions",
+      "b": "Data inconsistency",
+      "c": "Deadlocks",
+      "d": "Thread exit"
+    },
+    "answer": "b",
+    "explanation": "Synchronization serializes access to shared state to avoid race conditions."
+  },
+  {
+    "domain": "Java",
+    "topic": "Multithreading",
+    "level": "Medium",
+    "question": "join() is used to:",
+    "options": {
+      "a": "Merge threads",
+      "b": "Wait for a thread to finish",
+      "c": "Create thread",
+      "d": "Stop thread"
+    },
+    "answer": "b",
+    "explanation": "join() blocks the caller until the target thread completes."
+  },
+  {
+    "domain": "Java",
+    "topic": "Multithreading",
+    "level": "Medium",
+    "question": "notify() wakes:",
+    "options": {
+      "a": "All threads",
+      "b": "One waiting thread",
+      "c": "New thread",
+      "d": "Main thread"
+    },
+    "answer": "b",
+    "explanation": "notify() signals a single waiting thread on the monitor; notifyAll() wakes all."
+  },
+  {
+    "domain": "Java",
+    "topic": "Multithreading",
+    "level": "Medium",
+    "question": "volatile keyword ensures:",
+    "options": {
+      "a": "Atomicity",
+      "b": "Visibility",
+      "c": "Mutability",
+      "d": "Compilation"
+    },
+    "answer": "b",
+    "explanation": "volatile guarantees visibility of writes across threads but not compound atomicity."
+  },
+  {
+    "domain": "Java",
+    "topic": "Multithreading",
+    "level": "Medium",
+    "question": "ExecutorService manages:",
+    "options": {
+      "a": "Collections",
+      "b": "Thread pool",
+      "c": "File IO",
+      "d": "Networking"
+    },
+    "answer": "b",
+    "explanation": "ExecutorService abstracts thread management, queuing, and scheduling of tasks."
+  },
+  {
+    "domain": "Java",
+    "topic": "Multithreading",
+    "level": "Hard",
+    "question": "Deadlock occurs due to:",
+    "options": {
+      "a": "Same object calling",
+      "b": "Cyclic lock dependency",
+      "c": "Sleep method",
+      "d": "Finally block"
+    },
+    "answer": "b",
+    "explanation": "Deadlock happens when threads hold locks and wait on each other in a cycle."
+  },
+  {
+    "domain": "Java",
+    "topic": "Multithreading",
+    "level": "Hard",
+    "question": "ReentrantLock allows:",
+    "options": {
+      "a": "Only one acquisition",
+      "b": "Same thread to reacquire the lock",
+      "c": "Read only",
+      "d": "Fairness only"
+    },
+    "answer": "b",
+    "explanation": "Reentrant locks can be acquired multiple times by the owning thread without blocking."
+  },
+  {
+    "domain": "Java",
+    "topic": "Multithreading",
+    "level": "Hard",
+    "question": "AtomicInteger solves:",
+    "options": {
+      "a": "IO issues",
+      "b": "Atomic operations",
+      "c": "Heap memory",
+      "d": "Duplicate data"
+    },
+    "answer": "b",
+    "explanation": "AtomicInteger provides lock‑free, atomic updates like increment/decrement."
+  },
+  {
+    "domain": "Java",
+    "topic": "Multithreading",
+    "level": "Hard",
+    "question": "Future.get() is:",
+    "options": {
+      "a": "Blocking",
+      "b": "Non‑blocking",
+      "c": "Removes thread",
+      "d": "Returns null always"
+    },
+    "answer": "a",
+    "explanation": "get() waits until the computation is done, then returns the result or throws."
+  },
+  {
+    "domain": "Java",
+    "topic": "Multithreading",
+    "level": "Hard",
+    "question": "Thread starvation occurs due to:",
+    "options": {
+      "a": "High heap",
+      "b": "Low CPU",
+      "c": "High‑priority threads hogging CPU",
+      "d": "JVM overuse"
+    },
+    "answer": "c",
+    "explanation": "Lower‑priority threads may be deprived of CPU when higher‑priority ones dominate."
+  },
+  {
+    "domain": "Java",
+    "topic": "JVM Architecture",
+    "level": "Easy",
+    "question": "JVM executes:",
+    "options": {
+      "a": "Source code",
+      "b": "Bytecode",
+      "c": "Machine code",
+      "d": "Scripts"
+    },
+    "answer": "b",
+    "explanation": "The Java compiler produces bytecode which the JVM interprets/JIT‑compiles."
+  },
+  {
+    "domain": "Java",
+    "topic": "JVM Architecture",
+    "level": "Easy",
+    "question": "ClassLoader loads:",
+    "options": {
+      "a": "Libraries",
+      "b": "Bytecode class files",
+      "c": "Images",
+      "d": "Threads"
+    },
+    "answer": "b",
+    "explanation": "Class loaders locate and load .class files into the JVM."
+  },
+  {
+    "domain": "Java",
+    "topic": "JVM Architecture",
+    "level": "Easy",
+    "question": "Heap stores:",
+    "options": {
+      "a": "Local variables",
+      "b": "Objects",
+      "c": "Methods",
+      "d": "Threads"
+    },
+    "answer": "b",
+    "explanation": "The heap holds all objects and arrays allocated at runtime."
+  },
+  {
+    "domain": "Java",
+    "topic": "JVM Architecture",
+    "level": "Easy",
+    "question": "Stack stores:",
+    "options": {
+      "a": "Objects",
+      "b": "Method frames",
+      "c": "Bytecode",
+      "d": "Threads"
+    },
+    "answer": "b",
+    "explanation": "Each thread has its own stack storing frames for active method calls."
+  },
+  {
+    "domain": "Java",
+    "topic": "JVM Architecture",
+    "level": "Easy",
+    "question": "JIT improves:",
+    "options": {
+      "a": "Memory",
+      "b": "Speed",
+      "c": "Network",
+      "d": "Battery"
+    },
+    "answer": "b",
+    "explanation": "The Just‑In‑Time compiler turns hot bytecode paths into native code for speed."
+  },
+  {
+    "domain": "Java",
+    "topic": "JVM Architecture",
+    "level": "Medium",
+    "question": "Garbage Collector removes:",
+    "options": {
+      "a": "Active objects",
+      "b": "Unreachable objects",
+      "c": "Files",
+      "d": "Arrays only"
+    },
+    "answer": "b",
+    "explanation": "GC reclaims memory from objects no longer reachable by any references."
+  },
+  {
+    "domain": "Java",
+    "topic": "JVM Architecture",
+    "level": "Medium",
+    "question": "PC register stores:",
+    "options": {
+      "a": "Method names",
+      "b": "Address of executing instruction",
+      "c": "Class names",
+      "d": "Heap references"
+    },
+    "answer": "b",
+    "explanation": "Each thread’s PC register points to the next bytecode instruction to execute."
+  },
+  {
+    "domain": "Java",
+    "topic": "JVM Architecture",
+    "level": "Medium",
+    "question": "Native Method Stack stores:",
+    "options": {
+      "a": "Java code",
+      "b": "JNI/native calls",
+      "c": "Bytecode",
+      "d": "Exceptions"
+    },
+    "answer": "b",
+    "explanation": "Native method stacks support execution of platform‑specific (JNI) code."
+  },
+  {
+    "domain": "Java",
+    "topic": "JVM Architecture",
+    "level": "Medium",
+    "question": "Bytecode verifier checks for:",
+    "options": {
+      "a": "Exceptions",
+      "b": "Type safety",
+      "c": "File corruption",
+      "d": "Network errors"
+    },
+    "answer": "b",
+    "explanation": "The verifier ensures bytecode follows rules preventing illegal memory access."
+  },
+  {
+    "domain": "Java",
+    "topic": "JVM Architecture",
+    "level": "Medium",
+    "question": "Runtime Data Area includes:",
+    "options": {
+      "a": "Heap, Stack, Method Area",
+      "b": "Compiler, GC, JIT",
+      "c": "OS, CPU, RAM",
+      "d": "Files only"
+    },
+    "answer": "a",
+    "explanation": "These areas store objects, frames, class metadata, and execution state."
+  },
+  {
+    "domain": "Java",
+    "topic": "JVM Architecture",
+    "level": "Hard",
+    "question": "G1 GC divides heap into:",
+    "options": {
+      "a": "Regions",
+      "b": "Blocks",
+      "c": "Pools",
+      "d": "Threads"
+    },
+    "answer": "a",
+    "explanation": "G1 manages the heap as equal‑sized regions to enable incremental, parallel collection."
+  },
+  {
+    "domain": "Java",
+    "topic": "JVM Architecture",
+    "level": "Hard",
+    "question": "PermGen was replaced by:",
+    "options": {
+      "a": "Eden",
+      "b": "Metaspace",
+      "c": "Survivor",
+      "d": "OldGen"
+    },
+    "answer": "b",
+    "explanation": "From Java 8, class metadata moved from PermGen to native memory Metaspace."
+  },
+  {
+    "domain": "Java",
+    "topic": "JVM Architecture",
+    "level": "Hard",
+    "question": "Which GC is low‑latency?",
+    "options": {
+      "a": "Serial",
+      "b": "CMS",
+      "c": "ZGC",
+      "d": "Parallel"
+    },
+    "answer": "c",
+    "explanation": "ZGC targets very low pause times with concurrent compaction."
+  },
+  {
+    "domain": "Java",
+    "topic": "JVM Architecture",
+    "level": "Hard",
+    "question": "StackOverflowError occurs in:",
+    "options": {
+      "a": "Heap",
+      "b": "Stack",
+      "c": "Code Cache",
+      "d": "Data Area"
+    },
+    "answer": "b",
+    "explanation": "Deep/recursive calls overflow the per‑thread stack memory."
+  },
+  {
+    "domain": "Java",
+    "topic": "JVM Architecture",
+    "level": "Hard",
+    "question": "Safepoint pauses are related to:",
+    "options": {
+      "a": "Thread priority",
+      "b": "GC operations",
+      "c": "Class loading",
+      "d": "Network calls"
+    },
+    "answer": "b",
+    "explanation": "The JVM pauses threads at safepoints for operations like GC and deoptimization."
+  }
+]

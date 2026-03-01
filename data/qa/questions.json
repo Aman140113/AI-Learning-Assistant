@@ -1,0 +1,1052 @@
+[
+  {
+    "domain": "QA",
+    "topic": "Software Testing Types",
+    "level": "Easy",
+    "question": "Unit testing validates:",
+    "options": {
+      "a": "Entire system",
+      "b": "Individual functions/classes",
+      "c": "UI consistency",
+      "d": "Network"
+    },
+    "answer": "b",
+    "explanation": "Unit tests isolate small pieces of code to verify correctness quickly."
+  },
+  {
+    "domain": "QA",
+    "topic": "Software Testing Types",
+    "level": "Easy",
+    "question": "Integration testing validates:",
+    "options": {
+      "a": "Standalone functions",
+      "b": "Interactions between modules",
+      "c": "UI only",
+      "d": "Performance only"
+    },
+    "answer": "b",
+    "explanation": "Integration tests ensure components work together as intended."
+  },
+  {
+    "domain": "QA",
+    "topic": "Software Testing Types",
+    "level": "Easy",
+    "question": "Regression testing ensures:",
+    "options": {
+      "a": "New features only",
+      "b": "Existing features still work after changes",
+      "c": "Database backup",
+      "d": "Security policies"
+    },
+    "answer": "b",
+    "explanation": "Regression checks that updates haven’t broken previously working behavior."
+  },
+  {
+    "domain": "QA",
+    "topic": "Software Testing Types",
+    "level": "Easy",
+    "question": "Smoke testing checks:",
+    "options": {
+      "a": "Core build sanity",
+      "b": "Security",
+      "c": "Localization",
+      "d": "Stress"
+    },
+    "answer": "a",
+    "explanation": "Smoke tests give quick confidence that the build is stable enough for deeper tests."
+  },
+  {
+    "domain": "QA",
+    "topic": "Software Testing Types",
+    "level": "Easy",
+    "question": "UAT is performed by:",
+    "options": {
+      "a": "Developers",
+      "b": "End users/business",
+      "c": "Ops",
+      "d": "Security"
+    },
+    "answer": "b",
+    "explanation": "User Acceptance Testing validates the solution against business needs."
+  },
+  {
+    "domain": "QA",
+    "topic": "Software Testing Types",
+    "level": "Medium",
+    "question": "Non‑functional testing includes:",
+    "options": {
+      "a": "Usability, performance, security",
+      "b": "Controllers",
+      "c": "Only unit tests",
+      "d": "Only stubs"
+    },
+    "answer": "a",
+    "explanation": "NFR tests assess qualities like speed, resilience, and UX, not functionality."
+  },
+  {
+    "domain": "QA",
+    "topic": "Software Testing Types",
+    "level": "Medium",
+    "question": "White‑box testing focuses on:",
+    "options": {
+      "a": "Internal code paths",
+      "b": "UI",
+      "c": "Only requirements",
+      "d": "Only APIs"
+    },
+    "answer": "a",
+    "explanation": "Testers design cases using knowledge of code structure and paths."
+  },
+  {
+    "domain": "QA",
+    "topic": "Software Testing Types",
+    "level": "Medium",
+    "question": "Black‑box testing focuses on:",
+    "options": {
+      "a": "Code structure",
+      "b": "External behavior against requirements",
+      "c": "DB schema",
+      "d": "Logs"
+    },
+    "answer": "b",
+    "explanation": "Tests validate outputs for inputs without looking at code internals."
+  },
+  {
+    "domain": "QA",
+    "topic": "Software Testing Types",
+    "level": "Medium",
+    "question": "End‑to‑end testing verifies:",
+    "options": {
+      "a": "One module",
+      "b": "Full user workflows across components",
+      "c": "Only DB",
+      "d": "Only API"
+    },
+    "answer": "b",
+    "explanation": "E2E tests simulate real user journeys across multiple systems."
+  },
+  {
+    "domain": "QA",
+    "topic": "Software Testing Types",
+    "level": "Medium",
+    "question": "Sanity testing is:",
+    "options": {
+      "a": "Same as smoke",
+      "b": "Narrow regression on specific changes",
+      "c": "Security test",
+      "d": "Load test"
+    },
+    "answer": "b",
+    "explanation": "Sanity quickly checks targeted areas after small fixes or changes."
+  },
+  {
+    "domain": "QA",
+    "topic": "Software Testing Types",
+    "level": "Hard",
+    "question": "Equivalence partitioning divides:",
+    "options": {
+      "a": "Teams",
+      "b": "Input domains into classes",
+      "c": "Files",
+      "d": "Sprints"
+    },
+    "answer": "b",
+    "explanation": "Grouping inputs into equivalent classes reduces redundant test cases."
+  },
+  {
+    "domain": "QA",
+    "topic": "Software Testing Types",
+    "level": "Hard",
+    "question": "Mutation testing evaluates:",
+    "options": {
+      "a": "UI colors",
+      "b": "Test suite quality by introducing code changes (mutants)",
+      "c": "Deployment speed",
+      "d": "API count"
+    },
+    "answer": "b",
+    "explanation": "If tests miss intentional bugs, mutants survive—revealing weak coverage."
+  },
+  {
+    "domain": "QA",
+    "topic": "Software Testing Types",
+    "level": "Hard",
+    "question": "Soak testing checks:",
+    "options": {
+      "a": "Long‑duration stability under load",
+      "b": "Max throughput for a short time",
+      "c": "Security",
+      "d": "Accessibility"
+    },
+    "answer": "a",
+    "explanation": "Soak (endurance) tests find leaks or degradation over extended runs."
+  },
+  {
+    "domain": "QA",
+    "topic": "Software Testing Types",
+    "level": "Hard",
+    "question": "Risk‑based testing prioritizes:",
+    "options": {
+      "a": "Low‑risk areas",
+      "b": "High‑risk features first",
+      "c": "Random features",
+      "d": "UI last"
+    },
+    "answer": "b",
+    "explanation": "Limited time is focused on areas with highest impact/likelihood of failure."
+  },
+  {
+    "domain": "QA",
+    "topic": "Software Testing Types",
+    "level": "Hard",
+    "question": "Contract testing validates:",
+    "options": {
+      "a": "Visual design",
+      "b": "API provider‑consumer expectations",
+      "c": "OS compatibility",
+      "d": "Network latency"
+    },
+    "answer": "b",
+    "explanation": "Contracts ensure services meet agreed inputs/outputs and behaviors."
+  },
+  {
+    "domain": "QA",
+    "topic": "Selenium",
+    "level": "Easy",
+    "question": "Selenium WebDriver automates:",
+    "options": {
+      "a": "Desktop apps",
+      "b": "Web browsers",
+      "c": "Databases",
+      "d": "Networks"
+    },
+    "answer": "b",
+    "explanation": "WebDriver drives real browsers via native automation protocols."
+  },
+  {
+    "domain": "QA",
+    "topic": "Selenium",
+    "level": "Easy",
+    "question": "Find element by ID in CSS:",
+    "options": {
+      "a": ".id",
+      "b": "#id",
+      "c": "@id",
+      "d": "id()"
+    },
+    "answer": "b",
+    "explanation": "CSS selectors use `#` for ID and `.` for class names."
+  },
+  {
+    "domain": "QA",
+    "topic": "Selenium",
+    "level": "Easy",
+    "question": "XPath starts from anywhere with:",
+    "options": {
+      "a": "/",
+      "b": "//",
+      "c": "./",
+      "d": "../"
+    },
+    "answer": "b",
+    "explanation": "Double slash selects nodes from anywhere relative to the current context."
+  },
+  {
+    "domain": "QA",
+    "topic": "Selenium",
+    "level": "Easy",
+    "question": "Implicit wait applies to:",
+    "options": {
+      "a": "Entire WebDriver instance",
+      "b": "Next command only",
+      "c": "A single findElement",
+      "d": "Only click"
+    },
+    "answer": "a",
+    "explanation": "Implicit wait sets a default polling timeout for all element lookups."
+  },
+  {
+    "domain": "QA",
+    "topic": "Selenium",
+    "level": "Easy",
+    "question": "Page Object Model improves:",
+    "options": {
+      "a": "Browser speed",
+      "b": "Maintainability",
+      "c": "Network",
+      "d": "DB"
+    },
+    "answer": "b",
+    "explanation": "POM centralizes locators/actions, reducing duplication and brittleness."
+  },
+  {
+    "domain": "QA",
+    "topic": "Selenium",
+    "level": "Medium",
+    "question": "Explicit wait waits for:",
+    "options": {
+      "a": "Fixed time",
+      "b": "Condition (e.g., clickable)",
+      "c": "Page title only",
+      "d": "Cookies"
+    },
+    "answer": "b",
+    "explanation": "Explicit waits poll until a condition is satisfied or timeout occurs."
+  },
+  {
+    "domain": "QA",
+    "topic": "Selenium",
+    "level": "Medium",
+    "question": "Run tests headless:",
+    "options": {
+      "a": "Disable JS",
+      "b": "Use browser options (e.g., --headless)",
+      "c": "Remove driver",
+      "d": "Use sleep"
+    },
+    "answer": "b",
+    "explanation": "Headless mode runs without UI, useful in CI environments."
+  },
+  {
+    "domain": "QA",
+    "topic": "Selenium",
+    "level": "Medium",
+    "question": "WebDriverWait requires:",
+    "options": {
+      "a": "DesiredCapabilities",
+      "b": "ExpectedConditions",
+      "c": "Logs",
+      "d": "Cookies"
+    },
+    "answer": "b",
+    "explanation": "ExpectedConditions (e.g., visibility) define when the wait completes."
+  },
+  {
+    "domain": "QA",
+    "topic": "Selenium",
+    "level": "Medium",
+    "question": "StaleElementReferenceException occurs when:",
+    "options": {
+      "a": "No internet",
+      "b": "DOM changed and reference became invalid",
+      "c": "Wrong locator",
+      "d": "Headless mode"
+    },
+    "answer": "b",
+    "explanation": "If the DOM refreshes, previously found elements must be re‑located."
+  },
+  {
+    "domain": "QA",
+    "topic": "Selenium",
+    "level": "Medium",
+    "question": "Actions class is used for:",
+    "options": {
+      "a": "HTTP calls",
+      "b": "Complex interactions (hover, drag‑drop)",
+      "c": "Cookies",
+      "d": "Screenshots only"
+    },
+    "answer": "b",
+    "explanation": "Actions simulates advanced gestures beyond simple click/sendKeys."
+  },
+  {
+    "domain": "QA",
+    "topic": "Selenium",
+    "level": "Hard",
+    "question": "FluentWait allows:",
+    "options": {
+      "a": "Fixed polling",
+      "b": "Custom polling and exception ignoring",
+      "c": "No timeout",
+      "d": "Only JS waits"
+    },
+    "answer": "b",
+    "explanation": "FluentWait lets you tune polling intervals and ignored exceptions."
+  },
+  {
+    "domain": "QA",
+    "topic": "Selenium",
+    "level": "Hard",
+    "question": "To avoid brittle locators you should:",
+    "options": {
+      "a": "Absolute XPath only",
+      "b": "Prefer stable attributes (data‑test‑id) and CSS",
+      "c": "Random IDs",
+      "d": "Indexes"
+    },
+    "answer": "b",
+    "explanation": "Stable, semantic attributes survive UI changes better than absolute XPaths."
+  },
+  {
+    "domain": "QA",
+    "topic": "Selenium",
+    "level": "Hard",
+    "question": "Parallel test execution is done with:",
+    "options": {
+      "a": "Single thread",
+      "b": "TestNG/JUnit parallel configs",
+      "c": "Only Maven",
+      "d": "Only Gradle"
+    },
+    "answer": "b",
+    "explanation": "Frameworks support running suites concurrently to reduce time."
+  },
+  {
+    "domain": "QA",
+    "topic": "Selenium",
+    "level": "Hard",
+    "question": "RemoteWebDriver connects to:",
+    "options": {
+      "a": "Local browser only",
+      "b": "Selenium Grid/remote node",
+      "c": "DB",
+      "d": "Docker registry"
+    },
+    "answer": "b",
+    "explanation": "RemoteWebDriver runs tests on remote/grid nodes for scalability."
+  },
+  {
+    "domain": "QA",
+    "topic": "Selenium",
+    "level": "Hard",
+    "question": "pageLoadTimeout controls:",
+    "options": {
+      "a": "DOM load complete",
+      "b": "Script timeout",
+      "c": "Implicit wait",
+      "d": "Fluent wait"
+    },
+    "answer": "a",
+    "explanation": "It sets maximum time to wait for a page to fully load."
+  },
+  {
+    "domain": "QA",
+    "topic": "SDLC & STLC",
+    "level": "Easy",
+    "question": "SDLC phases start with:",
+    "options": {
+      "a": "Coding",
+      "b": "Requirement analysis",
+      "c": "Testing",
+      "d": "Deployment"
+    },
+    "answer": "b",
+    "explanation": "Understanding requirements is the first step in the development lifecycle."
+  },
+  {
+    "domain": "QA",
+    "topic": "SDLC & STLC",
+    "level": "Easy",
+    "question": "STLC starts with:",
+    "options": {
+      "a": "Test execution",
+      "b": "Requirement analysis",
+      "c": "Test closure",
+      "d": "Bug triage"
+    },
+    "answer": "b",
+    "explanation": "Testing begins by analyzing requirements to define scope and approach."
+  },
+  {
+    "domain": "QA",
+    "topic": "SDLC & STLC",
+    "level": "Easy",
+    "question": "V‑Model aligns verification with:",
+    "options": {
+      "a": "No validation",
+      "b": "Corresponding validation phases",
+      "c": "Only coding",
+      "d": "Only QA"
+    },
+    "answer": "b",
+    "explanation": "Each dev phase has a matching test phase (e.g., design ↔ integration tests)."
+  },
+  {
+    "domain": "QA",
+    "topic": "SDLC & STLC",
+    "level": "Easy",
+    "question": "Design phase outputs:",
+    "options": {
+      "a": "Code",
+      "b": "Architecture and design specs",
+      "c": "Test reports",
+      "d": "Deploy scripts"
+    },
+    "answer": "b",
+    "explanation": "Design artifacts guide implementation and integration decisions."
+  },
+  {
+    "domain": "QA",
+    "topic": "SDLC & STLC",
+    "level": "Easy",
+    "question": "Test planning defines:",
+    "options": {
+      "a": "UI colors",
+      "b": "Scope, strategy, resources, schedule",
+      "c": "IDE",
+      "d": "Dev branches"
+    },
+    "answer": "b",
+    "explanation": "The test plan sets objectives, scope, staffing, environments, and timelines."
+  },
+  {
+    "domain": "QA",
+    "topic": "SDLC & STLC",
+    "level": "Medium",
+    "question": "Traceability matrix maps:",
+    "options": {
+      "a": "Tests to defects only",
+      "b": "Requirements ↔ Test cases",
+      "c": "Developers ↔ modules",
+      "d": "Builds ↔ logs"
+    },
+    "answer": "b",
+    "explanation": "Traceability ensures every requirement is validated by test cases."
+  },
+  {
+    "domain": "QA",
+    "topic": "SDLC & STLC",
+    "level": "Medium",
+    "question": "Entry/Exit criteria specify:",
+    "options": {
+      "a": "Team size",
+      "b": "When a phase can start/finish",
+      "c": "Cloud cost",
+      "d": "UI theme"
+    },
+    "answer": "b",
+    "explanation": "They define prerequisites to begin and conditions to conclude a phase."
+  },
+  {
+    "domain": "QA",
+    "topic": "SDLC & STLC",
+    "level": "Medium",
+    "question": "Agile SDLC emphasizes:",
+    "options": {
+      "a": "Big‑bang delivery",
+      "b": "Iterative increments and feedback",
+      "c": "No testing",
+      "d": "Heavy documents only"
+    },
+    "answer": "b",
+    "explanation": "Agile delivers small increments, welcoming change with continuous feedback."
+  },
+  {
+    "domain": "QA",
+    "topic": "SDLC & STLC",
+    "level": "Medium",
+    "question": "STLC execution phase includes:",
+    "options": {
+      "a": "Writing code",
+      "b": "Running tests and logging defects",
+      "c": "Architecture",
+      "d": "Estimation"
+    },
+    "answer": "b",
+    "explanation": "Execution runs cases, captures results, and logs defects for triage."
+  },
+  {
+    "domain": "QA",
+    "topic": "SDLC & STLC",
+    "level": "Medium",
+    "question": "Defect severity vs priority:",
+    "options": {
+      "a": "Same thing",
+      "b": "Impact vs order to fix",
+      "c": "Priority is technical",
+      "d": "Severity is schedule"
+    },
+    "answer": "b",
+    "explanation": "Severity is business/technical impact; priority is urgency to address."
+  },
+  {
+    "domain": "QA",
+    "topic": "SDLC & STLC",
+    "level": "Hard",
+    "question": "Shift‑left testing means:",
+    "options": {
+      "a": "Test later",
+      "b": "Start testing earlier in lifecycle",
+      "c": "Only performance",
+      "d": "Only manual"
+    },
+    "answer": "b",
+    "explanation": "Testing earlier finds defects sooner, reducing cost and rework."
+  },
+  {
+    "domain": "QA",
+    "topic": "SDLC & STLC",
+    "level": "Hard",
+    "question": "Continuous testing integrates with:",
+    "options": {
+      "a": "Post‑release only",
+      "b": "CI/CD pipelines across SDLC",
+      "c": "Ops only",
+      "d": "Design only"
+    },
+    "answer": "b",
+    "explanation": "Tests run continuously from commit to deploy to give rapid feedback."
+  },
+  {
+    "domain": "QA",
+    "topic": "SDLC & STLC",
+    "level": "Hard",
+    "question": "Requirement volatility impacts:",
+    "options": {
+      "a": "Nothing",
+      "b": "Scope, estimates, testing artifacts",
+      "c": "Only UI",
+      "d": "Only DB"
+    },
+    "answer": "b",
+    "explanation": "Changing requirements affect plans, designs, and test coverage."
+  },
+  {
+    "domain": "QA",
+    "topic": "SDLC & STLC",
+    "level": "Hard",
+    "question": "In regulated domains, validation requires:",
+    "options": {
+      "a": "Informal notes",
+      "b": "Documented evidence of meeting requirements",
+      "c": "Only unit tests",
+      "d": "Vendor claims"
+    },
+    "answer": "b",
+    "explanation": "Compliance demands traceable documentation proving requirements are met."
+  },
+  {
+    "domain": "QA",
+    "topic": "SDLC & STLC",
+    "level": "Hard",
+    "question": "Risk‑based testing artifacts should map to:",
+    "options": {
+      "a": "Assumptions only",
+      "b": "Risk register and mitigation tests",
+      "c": "Only regression",
+      "d": "NFRs only"
+    },
+    "answer": "b",
+    "explanation": "Tests should target identified risks and show mitigation coverage."
+  },
+  {
+    "domain": "QA",
+    "topic": "Test Cases",
+    "level": "Easy",
+    "question": "A good test case includes:",
+    "options": {
+      "a": "Steps, data, expected result",
+      "b": "Code only",
+      "c": "Logs only",
+      "d": "URL only"
+    },
+    "answer": "a",
+    "explanation": "Clear steps with data and expected outcome make results reproducible."
+  },
+  {
+    "domain": "QA",
+    "topic": "Test Cases",
+    "level": "Easy",
+    "question": "Boundary value analysis targets:",
+    "options": {
+      "a": "Middle values",
+      "b": "Edge inputs",
+      "c": "Random inputs",
+      "d": "Average inputs"
+    },
+    "answer": "b",
+    "explanation": "Defects often cluster at boundaries; testing edges catches them."
+  },
+  {
+    "domain": "QA",
+    "topic": "Test Cases",
+    "level": "Easy",
+    "question": "Test scenario is:",
+    "options": {
+      "a": "Low‑level steps",
+      "b": "High‑level user flow",
+      "c": "Bug fix",
+      "d": "Build script"
+    },
+    "answer": "b",
+    "explanation": "Scenarios outline broader flows from which detailed cases derive."
+  },
+  {
+    "domain": "QA",
+    "topic": "Test Cases",
+    "level": "Easy",
+    "question": "Equivalence partitioning reduces:",
+    "options": {
+      "a": "Users",
+      "b": "Number of cases with similar coverage",
+      "c": "Bugs",
+      "d": "Logs"
+    },
+    "answer": "b",
+    "explanation": "By grouping equivalent inputs, you test fewer cases with similar assurance."
+  },
+  {
+    "domain": "QA",
+    "topic": "Test Cases",
+    "level": "Easy",
+    "question": "Priority defines:",
+    "options": {
+      "a": "Impact",
+      "b": "Order to execute/fix",
+      "c": "Severity level",
+      "d": "Root cause"
+    },
+    "answer": "b",
+    "explanation": "Priority indicates scheduling urgency; severity indicates impact."
+  },
+  {
+    "domain": "QA",
+    "topic": "Test Cases",
+    "level": "Medium",
+    "question": "A negative test case checks:",
+    "options": {
+      "a": "Valid inputs",
+      "b": "Invalid/unexpected inputs",
+      "c": "Only UI",
+      "d": "Only API"
+    },
+    "answer": "b",
+    "explanation": "Negative tests verify the system handles errors and bad data gracefully."
+  },
+  {
+    "domain": "QA",
+    "topic": "Test Cases",
+    "level": "Medium",
+    "question": "Precondition states:",
+    "options": {
+      "a": "Steps",
+      "b": "State required before execution",
+      "c": "Expected result",
+      "d": "Data set"
+    },
+    "answer": "b",
+    "explanation": "Preconditions define setup needed for the test to be meaningful."
+  },
+  {
+    "domain": "QA",
+    "topic": "Test Cases",
+    "level": "Medium",
+    "question": "Test data management includes:",
+    "options": {
+      "a": "Random data only",
+      "b": "Synthetic/anonymized/seed data",
+      "c": "Production edits",
+      "d": "No data"
+    },
+    "answer": "b",
+    "explanation": "Good data practices ensure realism while protecting privacy/security."
+  },
+  {
+    "domain": "QA",
+    "topic": "Test Cases",
+    "level": "Medium",
+    "question": "Traceability helps ensure:",
+    "options": {
+      "a": "Missing coverage is visible",
+      "b": "Faster UI",
+      "c": "No bugs",
+      "d": "Free hosting"
+    },
+    "answer": "a",
+    "explanation": "Mapping requirements to cases highlights gaps and redundant tests."
+  },
+  {
+    "domain": "QA",
+    "topic": "Test Cases",
+    "level": "Medium",
+    "question": "Acceptance criteria drive:",
+    "options": {
+      "a": "Implementation only",
+      "b": "Test cases ensuring definition of done",
+      "c": "Logging only",
+      "d": "Branching"
+    },
+    "answer": "b",
+    "explanation": "Well‑written acceptance criteria become verifiable test conditions."
+  },
+  {
+    "domain": "QA",
+    "topic": "Test Cases",
+    "level": "Hard",
+    "question": "Pairwise testing aims to:",
+    "options": {
+      "a": "Cover all permutations",
+      "b": "Cover all pairs of parameter values efficiently",
+      "c": "Skip edge cases",
+      "d": "Reduce defects only"
+    },
+    "answer": "b",
+    "explanation": "Many defects arise from pairwise interactions; covering pairs is efficient."
+  },
+  {
+    "domain": "QA",
+    "topic": "Test Cases",
+    "level": "Hard",
+    "question": "Orthogonal array testing is used for:",
+    "options": {
+      "a": "UI",
+      "b": "Combinatorial coverage with minimal cases",
+      "c": "Docs",
+      "d": "Security"
+    },
+    "answer": "b",
+    "explanation": "OA provides balanced test sets covering combinations with fewer cases."
+  },
+  {
+    "domain": "QA",
+    "topic": "Test Cases",
+    "level": "Hard",
+    "question": "Decision table testing models:",
+    "options": {
+      "a": "UI layouts",
+      "b": "Business rules with conditions/actions",
+      "c": "Performance",
+      "d": "Logs"
+    },
+    "answer": "b",
+    "explanation": "Decision tables map complex rules to ensure all outcomes are tested."
+  },
+  {
+    "domain": "QA",
+    "topic": "Test Cases",
+    "level": "Hard",
+    "question": "State transition testing checks:",
+    "options": {
+      "a": "Random inputs",
+      "b": "Valid/invalid state changes and transitions",
+      "c": "Only DB states",
+      "d": "None"
+    },
+    "answer": "b",
+    "explanation": "It validates how the system behaves as it moves between states."
+  },
+  {
+    "domain": "QA",
+    "topic": "Test Cases",
+    "level": "Hard",
+    "question": "Reduce requirements ambiguity with:",
+    "options": {
+      "a": "Vague cases",
+      "b": "Concrete acceptance tests/examples",
+      "c": "Fewer tests",
+      "d": "No reviews"
+    },
+    "answer": "b",
+    "explanation": "Examples clarify expectations and reduce misinterpretation."
+  },
+  {
+    "domain": "QA",
+    "topic": "Automation Testing",
+    "level": "Easy",
+    "question": "Automation best used for:",
+    "options": {
+      "a": "Ad‑hoc exploration",
+      "b": "Repetitive regression suites",
+      "c": "One‑time tasks",
+      "d": "UX studies"
+    },
+    "answer": "b",
+    "explanation": "Automated checks excel when tests are stable and frequently repeated."
+  },
+  {
+    "domain": "QA",
+    "topic": "Automation Testing",
+    "level": "Easy",
+    "question": "CI integrates automation by:",
+    "options": {
+      "a": "Manual triggers only",
+      "b": "Running tests on each commit/merge",
+      "c": "Skipping tests",
+      "d": "Monthly runs"
+    },
+    "answer": "b",
+    "explanation": "Automated tests on each change provide fast feedback and safety."
+  },
+  {
+    "domain": "QA",
+    "topic": "Automation Testing",
+    "level": "Easy",
+    "question": "A test automation framework provides:",
+    "options": {
+      "a": "Ad‑hoc scripts",
+      "b": "Structure, utilities, reporting",
+      "c": "Random files",
+      "d": "CSV only"
+    },
+    "answer": "b",
+    "explanation": "Frameworks standardize code, reuse utilities, and produce reports."
+  },
+  {
+    "domain": "QA",
+    "topic": "Automation Testing",
+    "level": "Easy",
+    "question": "Data‑driven testing separates:",
+    "options": {
+      "a": "UI and API",
+      "b": "Data from test logic",
+      "c": "Builds from deploy",
+      "d": "Logs from tests"
+    },
+    "answer": "b",
+    "explanation": "Separating data lets you run the same test with many data sets."
+  },
+  {
+    "domain": "QA",
+    "topic": "Automation Testing",
+    "level": "Easy",
+    "question": "Keyword‑driven testing defines:",
+    "options": {
+      "a": "Steps as reusable keywords/actions",
+      "b": "Only code",
+      "c": "Only configs",
+      "d": "Only YAML"
+    },
+    "answer": "a",
+    "explanation": "Keywords encapsulate steps so non‑coders can assemble tests."
+  },
+  {
+    "domain": "QA",
+    "topic": "Automation Testing",
+    "level": "Medium",
+    "question": "Flaky tests should be:",
+    "options": {
+      "a": "Ignored",
+      "b": "Quarantined and fixed",
+      "c": "Hidden",
+      "d": "Re‑run forever"
+    },
+    "answer": "b",
+    "explanation": "Quarantining prevents pipeline noise while root causes are addressed."
+  },
+  {
+    "domain": "QA",
+    "topic": "Automation Testing",
+    "level": "Medium",
+    "question": "Parallel execution aims to:",
+    "options": {
+      "a": "Reduce runtime",
+      "b": "Increase runtime",
+      "c": "Reduce accuracy",
+      "d": "Increase memory only"
+    },
+    "answer": "a",
+    "explanation": "Running tests concurrently cuts wall‑clock time significantly."
+  },
+  {
+    "domain": "QA",
+    "topic": "Automation Testing",
+    "level": "Medium",
+    "question": "Page Object pattern helps by:",
+    "options": {
+      "a": "Hardcoding selectors",
+      "b": "Centralizing locators and actions",
+      "c": "Removing waits",
+      "d": "Removing drivers"
+    },
+    "answer": "b",
+    "explanation": "Well‑structured page objects reduce duplication and simplify maintenance."
+  },
+  {
+    "domain": "QA",
+    "topic": "Automation Testing",
+    "level": "Medium",
+    "question": "API test automation tools include:",
+    "options": {
+      "a": "Photoshop",
+      "b": "Postman/Newman, RestAssured",
+      "c": "Excel",
+      "d": "Slack"
+    },
+    "answer": "b",
+    "explanation": "These tools/frameworks programmatically test HTTP endpoints and contracts."
+  },
+  {
+    "domain": "QA",
+    "topic": "Automation Testing",
+    "level": "Medium",
+    "question": "Headless CI browser execution reduces:",
+    "options": {
+      "a": "Determinism",
+      "b": "Resource usage",
+      "c": "Stability always",
+      "d": "Assertions"
+    },
+    "answer": "b",
+    "explanation": "Headless runs consume less CPU/memory—ideal for CI servers."
+  },
+  {
+    "domain": "QA",
+    "topic": "Automation Testing",
+    "level": "Hard",
+    "question": "BDD frameworks (Cucumber/Behave) use:",
+    "options": {
+      "a": "SQL",
+      "b": "Gherkin (Given‑When‑Then)",
+      "c": "XML",
+      "d": "Bash"
+    },
+    "answer": "b",
+    "explanation": "Gherkin scenarios describe behavior in a human‑readable format."
+  },
+  {
+    "domain": "QA",
+    "topic": "Automation Testing",
+    "level": "Hard",
+    "question": "Contract testing automation typically uses:",
+    "options": {
+      "a": "Pact",
+      "b": "JUnit only",
+      "c": "Selenium",
+      "d": "Lighthouse"
+    },
+    "answer": "a",
+    "explanation": "Pact tests verify provider/consumer interactions against a shared contract."
+  },
+  {
+    "domain": "QA",
+    "topic": "Automation Testing",
+    "level": "Hard",
+    "question": "Visual regression automation compares:",
+    "options": {
+      "a": "HTML only",
+      "b": "Screenshots/diff baselines",
+      "c": "JSON",
+      "d": "Logs"
+    },
+    "answer": "b",
+    "explanation": "Image diffs detect unintended UI changes pixel‑by‑pixel."
+  },
+  {
+    "domain": "QA",
+    "topic": "Automation Testing",
+    "level": "Hard",
+    "question": "Root causes of flakiness include:",
+    "options": {
+      "a": "Stable waits",
+      "b": "Dynamic locators, async loads, env instability",
+      "c": "Deterministic data",
+      "d": "Isolated tests"
+    },
+    "answer": "b",
+    "explanation": "Unstable environments and timing issues create inconsistent results."
+  },
+  {
+    "domain": "QA",
+    "topic": "Automation Testing",
+    "level": "Hard",
+    "question": "Reliable CI pipelines should:",
+    "options": {
+      "a": "Share state between tests",
+      "b": "Be idempotent, isolated, deterministic",
+      "c": "Depend on prod data",
+      "d": "Require manual steps"
+    },
+    "answer": "b",
+    "explanation": "Stable pipelines avoid side effects, ensuring reproducible outcomes."
+  }
+]

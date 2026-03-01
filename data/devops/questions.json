@@ -1,0 +1,1052 @@
+[
+  {
+    "domain": "DevOps",
+    "topic": "CI/CD",
+    "level": "Easy",
+    "question": "CI primarily focuses on:",
+    "options": {
+      "a": "Deployment frequency",
+      "b": "Integrating code frequently",
+      "c": "UI testing",
+      "d": "Cloud costs"
+    },
+    "answer": "b",
+    "explanation": "CI encourages frequent merges to detect issues early with automated builds/tests."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "CI/CD",
+    "level": "Easy",
+    "question": "CD in CI/CD stands for:",
+    "options": {
+      "a": "Continuous Development",
+      "b": "Continuous Delivery/Deployment",
+      "c": "Code Distribution",
+      "d": "Continuous Debugging"
+    },
+    "answer": "b",
+    "explanation": "CD automates releasing changes to environments via delivery or deployment."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "CI/CD",
+    "level": "Easy",
+    "question": "A typical CI step is:",
+    "options": {
+      "a": "Code compiling and unit tests",
+      "b": "Blue‑green routing",
+      "c": "Canary rollout",
+      "d": "A/B testing"
+    },
+    "answer": "a",
+    "explanation": "CI pipelines compile code and run unit tests to validate commits."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "CI/CD",
+    "level": "Easy",
+    "question": "Pipeline as Code is commonly defined in:",
+    "options": {
+      "a": "README",
+      "b": "Jenkinsfile",
+      "c": "Dockerfile",
+      "d": "Makefile"
+    },
+    "answer": "b",
+    "explanation": "Jenkins and similar tools use a Jenkinsfile/YAML to define pipeline stages as code."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "CI/CD",
+    "level": "Easy",
+    "question": "A failing CI build should:",
+    "options": {
+      "a": "Be ignored",
+      "b": "Auto‑merge",
+      "c": "Block merge",
+      "d": "Deploy anyway"
+    },
+    "answer": "c",
+    "explanation": "Failing builds block merges to keep the main branch stable."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "CI/CD",
+    "level": "Medium",
+    "question": "A canary deployment:",
+    "options": {
+      "a": "Sends 100% traffic to new version",
+      "b": "Sends a subset of traffic to new version",
+      "c": "Requires downtime",
+      "d": "Is the same as blue‑green"
+    },
+    "answer": "b",
+    "explanation": "Canary gradually exposes a new version to a small audience to reduce risk."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "CI/CD",
+    "level": "Medium",
+    "question": "Artifact repository in CI/CD is used to:",
+    "options": {
+      "a": "Store source code",
+      "b": "Store built binaries/images",
+      "c": "Store logs",
+      "d": "Store credentials"
+    },
+    "answer": "b",
+    "explanation": "Artifact repos keep versioned build outputs like JARs, images, and packages."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "CI/CD",
+    "level": "Medium",
+    "question": "A good CI practice is:",
+    "options": {
+      "a": "Long‑lived branches",
+      "b": "Frequent small commits",
+      "c": "Manual builds",
+      "d": "Skipping tests"
+    },
+    "answer": "b",
+    "explanation": "Small, frequent changes reduce merge conflicts and speed feedback."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "CI/CD",
+    "level": "Medium",
+    "question": "Rollback in CD means:",
+    "options": {
+      "a": "Rebuild code",
+      "b": "Return to a previous stable version",
+      "c": "Reset CI server",
+      "d": "Rebase branch"
+    },
+    "answer": "b",
+    "explanation": "Rollback restores a known good release when a deployment has issues."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "CI/CD",
+    "level": "Medium",
+    "question": "Which stage typically comes before deploy?",
+    "options": {
+      "a": "Commit",
+      "b": "Build",
+      "c": "Test",
+      "d": "Monitor"
+    },
+    "answer": "c",
+    "explanation": "After building, automated tests validate the release before deployment."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "CI/CD",
+    "level": "Hard",
+    "question": "Trunk‑based development helps CI by:",
+    "options": {
+      "a": "Encouraging large merges",
+      "b": "Reducing merge conflicts via short‑lived branches",
+      "c": "Avoiding code reviews",
+      "d": "Disabling tests"
+    },
+    "answer": "b",
+    "explanation": "Short‑lived branches and frequent merges keep integration simple and continuous."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "CI/CD",
+    "level": "Hard",
+    "question": "Progressive delivery extends CD by adding:",
+    "options": {
+      "a": "Static code analysis",
+      "b": "Feature flags and gradual rollouts",
+      "c": "Unit tests",
+      "d": "Docker caching"
+    },
+    "answer": "b",
+    "explanation": "Feature flagging enables safe, incremental exposure and quick rollbacks."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "CI/CD",
+    "level": "Hard",
+    "question": "In GitOps, the source of truth is:",
+    "options": {
+      "a": "CI server",
+      "b": "ChatOps",
+      "c": "Git repo with declarative manifests",
+      "d": "Artifact storage"
+    },
+    "answer": "c",
+    "explanation": "Git stores the desired state; controllers reconcile cluster state to Git."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "CI/CD",
+    "level": "Hard",
+    "question": "A pipeline fan‑in refers to:",
+    "options": {
+      "a": "Parallel deployments",
+      "b": "Multiple upstream artifacts feeding one stage",
+      "c": "Multi‑cloud deploys",
+      "d": "Horizontal scaling"
+    },
+    "answer": "b",
+    "explanation": "Fan‑in stages combine results from multiple build/test jobs before proceeding."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "CI/CD",
+    "level": "Hard",
+    "question": "Flaky tests should be:",
+    "options": {
+      "a": "Quarantined and investigated",
+      "b": "Ignored",
+      "c": "Disabled forever",
+      "d": "Retried indefinitely only"
+    },
+    "answer": "a",
+    "explanation": "Quarantine prevents blocking while teams fix root causes and stabilize tests."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Docker",
+    "level": "Easy",
+    "question": "A Docker image is:",
+    "options": {
+      "a": "Running instance",
+      "b": "Immutable template",
+      "c": "Virtual machine",
+      "d": "Service"
+    },
+    "answer": "b",
+    "explanation": "Images are read‑only blueprints used to create runnable containers."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Docker",
+    "level": "Easy",
+    "question": "Default Dockerfile base image instruction:",
+    "options": {
+      "a": "RUN",
+      "b": "COPY",
+      "c": "FROM",
+      "d": "WORKDIR"
+    },
+    "answer": "c",
+    "explanation": "`FROM` declares the base image for subsequent build steps."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Docker",
+    "level": "Easy",
+    "question": "Command to build image from Dockerfile:",
+    "options": {
+      "a": "docker create",
+      "b": "docker build",
+      "c": "docker run",
+      "d": "docker make"
+    },
+    "answer": "b",
+    "explanation": "`docker build` reads the Dockerfile and produces a local image."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Docker",
+    "level": "Easy",
+    "question": "Map host 8080 to container 80:",
+    "options": {
+      "a": "-p 80:8080",
+      "b": "-P 8080",
+      "c": "-p 8080:80",
+      "d": "--expose 80:8080"
+    },
+    "answer": "c",
+    "explanation": "Port mapping uses host:container order, so 8080→80 is `-p 8080:80`."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Docker",
+    "level": "Easy",
+    "question": "Persist data across restarts:",
+    "options": {
+      "a": "Layers",
+      "b": "Volumes",
+      "c": "Networks",
+      "d": "Entrypoint"
+    },
+    "answer": "b",
+    "explanation": "Volumes store data outside the container’s writable layer for persistence."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Docker",
+    "level": "Medium",
+    "question": "Multi‑stage builds help to:",
+    "options": {
+      "a": "Increase final image size",
+      "b": "Reduce final image size",
+      "c": "Disable caching",
+      "d": "Build without Dockerfile"
+    },
+    "answer": "b",
+    "explanation": "Build tools stay in intermediate stages; the final image remains slim."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Docker",
+    "level": "Medium",
+    "question": "ENTRYPOINT vs CMD:",
+    "options": {
+      "a": "Identical",
+      "b": "ENTRYPOINT is executable; CMD is default args",
+      "c": "CMD runs before ENTRYPOINT",
+      "d": "CMD sets environment"
+    },
+    "answer": "b",
+    "explanation": "ENTRYPOINT defines the main command; CMD supplies default parameters."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Docker",
+    "level": "Medium",
+    "question": "`docker exec -it <container> sh` does:",
+    "options": {
+      "a": "Starts container",
+      "b": "Stops container",
+      "c": "Opens interactive shell",
+      "d": "Builds image"
+    },
+    "answer": "c",
+    "explanation": "`exec` runs a command in an already running container; `-it` makes it interactive."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Docker",
+    "level": "Medium",
+    "question": "List images:",
+    "options": {
+      "a": "docker list",
+      "b": "docker ps -a",
+      "c": "docker images",
+      "d": "docker show"
+    },
+    "answer": "c",
+    "explanation": "`docker images` lists local images; `docker ps` shows containers."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Docker",
+    "level": "Medium",
+    "question": "Layer caching speeds up builds by:",
+    "options": {
+      "a": "Reusing unchanged steps",
+      "b": "Running parallel containers",
+      "c": "Increasing RAM",
+      "d": "Disabling COPY"
+    },
+    "answer": "a",
+    "explanation": "Docker reuses cached layers when inputs haven’t changed."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Docker",
+    "level": "Hard",
+    "question": "Best practice for secrets in containers:",
+    "options": {
+      "a": "Bake into image",
+      "b": "Hardcode in env",
+      "c": "Use secret managers/mounts",
+      "d": "Put in labels"
+    },
+    "answer": "c",
+    "explanation": "Inject secrets at runtime via orchestrators/secret stores; never bake them into images."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Docker",
+    "level": "Hard",
+    "question": "Default bridge networking uses:",
+    "options": {
+      "a": "Host NIC IPs",
+      "b": "NAT via docker0 bridge",
+      "c": "No connectivity",
+      "d": "Only IPv6"
+    },
+    "answer": "b",
+    "explanation": "The bridge driver gives containers private IPs with NAT to the host network."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Docker",
+    "level": "Hard",
+    "question": "Distroless images are used to:",
+    "options": {
+      "a": "Add package managers",
+      "b": "Reduce attack surface and size",
+      "c": "Enable shells",
+      "d": "Support GUIs"
+    },
+    "answer": "b",
+    "explanation": "They contain only the app and runtime, minimizing vulnerabilities and size."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Docker",
+    "level": "Hard",
+    "question": "To minimize image size you should:",
+    "options": {
+      "a": "Use alpine/slim bases",
+      "b": "Install compilers in final stage",
+      "c": "Keep caches",
+      "d": "Add build tools"
+    },
+    "answer": "a",
+    "explanation": "Small bases plus removing caches/artifacts keep images lean."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Docker",
+    "level": "Hard",
+    "question": "Content trust is enabled with:",
+    "options": {
+      "a": "DOCKER_TRUST=1",
+      "b": "DOCKER_CONTENT_TRUST=1",
+      "c": "TRUSTED=1",
+      "d": "SIGNED=1"
+    },
+    "answer": "b",
+    "explanation": "Setting DOCKER_CONTENT_TRUST=1 enforces image signature verification."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Git",
+    "level": "Easy",
+    "question": "Initialize a repo:",
+    "options": {
+      "a": "git start",
+      "b": "git init",
+      "c": "git create",
+      "d": "git new"
+    },
+    "answer": "b",
+    "explanation": "`git init` creates a new local repository in the current directory."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Git",
+    "level": "Easy",
+    "question": "Stage changes:",
+    "options": {
+      "a": "git stage",
+      "b": "git add",
+      "c": "git push",
+      "d": "git select"
+    },
+    "answer": "b",
+    "explanation": "`git add` moves changes into the staging area prior to commit."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Git",
+    "level": "Easy",
+    "question": "Commit with message:",
+    "options": {
+      "a": "git commit \"msg\"",
+      "b": "git save \"msg\"",
+      "c": "git commit -m \"msg\"",
+      "d": "git push \"msg\""
+    },
+    "answer": "c",
+    "explanation": "Use `-m` to attach an inline commit message."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Git",
+    "level": "Easy",
+    "question": "Switch branches:",
+    "options": {
+      "a": "git goto",
+      "b": "git switch <branch>",
+      "c": "git change",
+      "d": "git select"
+    },
+    "answer": "b",
+    "explanation": "`git switch` (or `git checkout`) changes the current branch."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Git",
+    "level": "Easy",
+    "question": "View commit history:",
+    "options": {
+      "a": "git show",
+      "b": "git history",
+      "c": "git log",
+      "d": "git status"
+    },
+    "answer": "c",
+    "explanation": "`git log` lists commits with messages, authors, and SHAs."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Git",
+    "level": "Medium",
+    "question": "Rebase does:",
+    "options": {
+      "a": "Merge histories",
+      "b": "Replay commits onto another base",
+      "c": "Delete commits",
+      "d": "Tag releases"
+    },
+    "answer": "b",
+    "explanation": "Rebase rewrites commits on top of a new base, creating a linear history."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Git",
+    "level": "Medium",
+    "question": "Stash saves:",
+    "options": {
+      "a": "Untracked files only",
+      "b": "Tracked changes temporarily",
+      "c": "Commits to remote",
+      "d": "Tags"
+    },
+    "answer": "b",
+    "explanation": "`git stash` shelves local modifications for later application."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Git",
+    "level": "Medium",
+    "question": "Resolve merge conflicts by:",
+    "options": {
+      "a": "Deleting repo",
+      "b": "Editing conflict markers then committing",
+      "c": "Ignoring them",
+      "d": "Running git clean"
+    },
+    "answer": "b",
+    "explanation": "Conflicted files show markers; you edit, stage, and commit the resolution."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Git",
+    "level": "Medium",
+    "question": "Create a lightweight tag:",
+    "options": {
+      "a": "git tag -a v1.0 -m 'msg'",
+      "b": "git tag v1.0",
+      "c": "git tag -d v1.0",
+      "d": "git push --tags"
+    },
+    "answer": "b",
+    "explanation": "A lightweight tag omits metadata; `git tag v1.0` creates one."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Git",
+    "level": "Medium",
+    "question": ".gitignore prevents:",
+    "options": {
+      "a": "Deletion",
+      "b": "Staging of matching files",
+      "c": "Commits",
+      "d": "Branch creation"
+    },
+    "answer": "b",
+    "explanation": "Ignored files aren’t shown as changes and aren’t staged by default."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Git",
+    "level": "Hard",
+    "question": "git reflog is used to:",
+    "options": {
+      "a": "View remote logs",
+      "b": "View local HEAD history",
+      "c": "View tag notes",
+      "d": "View stash list"
+    },
+    "answer": "b",
+    "explanation": "Reflog records movements of HEAD, helping recover lost commits."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Git",
+    "level": "Hard",
+    "question": "git cherry-pick does:",
+    "options": {
+      "a": "Delete commits",
+      "b": "Apply specific commit(s) to current branch",
+      "c": "Reset to previous commit",
+      "d": "Merge branches"
+    },
+    "answer": "b",
+    "explanation": "Cherry-pick copies one or more specific commits onto your current branch."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Git",
+    "level": "Hard",
+    "question": "Squash last 3 commits interactively:",
+    "options": {
+      "a": "git rebase -i HEAD~3",
+      "b": "git reset --hard HEAD~3",
+      "c": "git merge --squash 3",
+      "d": "git squash 3"
+    },
+    "answer": "a",
+    "explanation": "Interactive rebase lets you mark commits as `squash` or `fixup` to combine them."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Git",
+    "level": "Hard",
+    "question": "git clean -fd will:",
+    "options": {
+      "a": "Remove staged files",
+      "b": "Remove untracked files/dirs",
+      "c": "Remove history",
+      "d": "Remove remote branches"
+    },
+    "answer": "b",
+    "explanation": "`clean -fd` deletes untracked files and directories—use with caution."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Git",
+    "level": "Hard",
+    "question": "Push a new local branch:",
+    "options": {
+      "a": "git push origin",
+      "b": "git push origin HEAD",
+      "c": "git push -u origin <branch>",
+      "d": "git commit -u"
+    },
+    "answer": "c",
+    "explanation": "`-u` sets upstream so future pushes/pulls default to the same remote branch."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Kubernetes",
+    "level": "Easy",
+    "question": "Smallest deployable unit:",
+    "options": {
+      "a": "Node",
+      "b": "Pod",
+      "c": "Service",
+      "d": "Deployment"
+    },
+    "answer": "b",
+    "explanation": "A Pod groups one or more tightly coupled containers as a single unit."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Kubernetes",
+    "level": "Easy",
+    "question": "kubectl get pods shows:",
+    "options": {
+      "a": "Nodes",
+      "b": "Pods",
+      "c": "Services",
+      "d": "Deployments"
+    },
+    "answer": "b",
+    "explanation": "This command lists Pods in the current namespace by default."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Kubernetes",
+    "level": "Easy",
+    "question": "Service type ClusterIP:",
+    "options": {
+      "a": "Exposes externally",
+      "b": "Internal cluster IP only",
+      "c": "Load balances to internet",
+      "d": "Creates ingress"
+    },
+    "answer": "b",
+    "explanation": "ClusterIP exposes a service on a cluster‑internal IP only."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Kubernetes",
+    "level": "Easy",
+    "question": "ConfigMaps store:",
+    "options": {
+      "a": "Binary secrets",
+      "b": "Non‑secret configuration",
+      "c": "Logs",
+      "d": "Images"
+    },
+    "answer": "b",
+    "explanation": "Use ConfigMaps for config data; use Secrets for sensitive data."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Kubernetes",
+    "level": "Easy",
+    "question": "Scheduler does:",
+    "options": {
+      "a": "Schedules pods onto nodes",
+      "b": "Schedules services",
+      "c": "Schedules images",
+      "d": "Schedules CRDs"
+    },
+    "answer": "a",
+    "explanation": "The scheduler assigns unscheduled Pods to suitable nodes."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Kubernetes",
+    "level": "Medium",
+    "question": "Deployment manages:",
+    "options": {
+      "a": "Daemons",
+      "b": "ReplicaSets",
+      "c": "Nodes",
+      "d": "Namespaces"
+    },
+    "answer": "b",
+    "explanation": "Deployments manage ReplicaSets to orchestrate stateless app updates."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Kubernetes",
+    "level": "Medium",
+    "question": "StatefulSet ensures:",
+    "options": {
+      "a": "Random identity",
+      "b": "Stable identity and storage",
+      "c": "Cron jobs",
+      "d": "Node labels"
+    },
+    "answer": "b",
+    "explanation": "StatefulSets give Pods stable hostnames and persistent storage ordering."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Kubernetes",
+    "level": "Medium",
+    "question": "Readiness probe checks:",
+    "options": {
+      "a": "If container is alive",
+      "b": "If ready to receive traffic",
+      "c": "Node health",
+      "d": "Image status"
+    },
+    "answer": "b",
+    "explanation": "Readiness controls if a Pod receives traffic behind a Service."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Kubernetes",
+    "level": "Medium",
+    "question": "kubectl rollout undo deployment/<name>:",
+    "options": {
+      "a": "Deletes deployment",
+      "b": "Scales replicas",
+      "c": "Rolls back to previous revision",
+      "d": "Pauses status"
+    },
+    "answer": "c",
+    "explanation": "This command reverts a Deployment to a prior ReplicaSet revision."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Kubernetes",
+    "level": "Medium",
+    "question": "Taints & tolerations are used to:",
+    "options": {
+      "a": "Control service type",
+      "b": "Control pod placement",
+      "c": "Control logs",
+      "d": "Control network"
+    },
+    "answer": "b",
+    "explanation": "Taints repel Pods; tolerations let Pods schedule onto tainted nodes."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Kubernetes",
+    "level": "Hard",
+    "question": "etcd stores:",
+    "options": {
+      "a": "Container images",
+      "b": "Cluster state as key‑value",
+      "c": "Logs",
+      "d": "Secrets only"
+    },
+    "answer": "b",
+    "explanation": "etcd is a distributed KV store that holds the entire cluster state."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Kubernetes",
+    "level": "Hard",
+    "question": "NetworkPolicy can:",
+    "options": {
+      "a": "Restrict pod‑to‑pod traffic",
+      "b": "Create LoadBalancer",
+      "c": "Manage ingress certificates",
+      "d": "Scale pods"
+    },
+    "answer": "a",
+    "explanation": "NetworkPolicies define allowed ingress/egress between Pods and namespaces."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Kubernetes",
+    "level": "Hard",
+    "question": "Pod Disruption Budget ensures:",
+    "options": {
+      "a": "No pod ever evicted",
+      "b": "Minimum available pods during voluntary disruptions",
+      "c": "Faster scaling",
+      "d": "Dedicated nodes"
+    },
+    "answer": "b",
+    "explanation": "PDBs set availability targets during maintenance and upgrades."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Kubernetes",
+    "level": "Hard",
+    "question": "CSI refers to:",
+    "options": {
+      "a": "Container Service Interface",
+      "b": "Container Storage Interface",
+      "c": "Cloud Service Integration",
+      "d": "Cluster Storage Init"
+    },
+    "answer": "b",
+    "explanation": "CSI standardizes how storage systems integrate with Kubernetes."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Kubernetes",
+    "level": "Hard",
+    "question": "HPA scales based on:",
+    "options": {
+      "a": "Disk I/O",
+      "b": "CPU/memory and custom metrics",
+      "c": "Image size",
+      "d": "Log size"
+    },
+    "answer": "b",
+    "explanation": "Horizontal Pod Autoscaler adjusts replicas according to metrics like CPU or custom signals."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Linux",
+    "level": "Easy",
+    "question": "Show current directory:",
+    "options": {
+      "a": "ls",
+      "b": "pwd",
+      "c": "cd",
+      "d": "whoami"
+    },
+    "answer": "b",
+    "explanation": "`pwd` prints the present working directory path."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Linux",
+    "level": "Easy",
+    "question": "List all files including hidden:",
+    "options": {
+      "a": "ls -h",
+      "b": "ls -a",
+      "c": "ls -l",
+      "d": "ls -r"
+    },
+    "answer": "b",
+    "explanation": "Files beginning with `.` are shown with the `-a` flag."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Linux",
+    "level": "Easy",
+    "question": "Change permissions:",
+    "options": {
+      "a": "chown",
+      "b": "chmod",
+      "c": "chperm",
+      "d": "access"
+    },
+    "answer": "b",
+    "explanation": "`chmod` modifies file mode bits (read/write/execute)."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Linux",
+    "level": "Easy",
+    "question": "View file content one page at a time:",
+    "options": {
+      "a": "cat",
+      "b": "less",
+      "c": "echo",
+      "d": "nano"
+    },
+    "answer": "b",
+    "explanation": "`less` lets you page through content and search within it."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Linux",
+    "level": "Easy",
+    "question": "Search text in files:",
+    "options": {
+      "a": "find",
+      "b": "locate",
+      "c": "grep",
+      "d": "awk"
+    },
+    "answer": "c",
+    "explanation": "`grep` finds lines matching a pattern in files or stdin."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Linux",
+    "level": "Medium",
+    "question": "Find files by name from root:",
+    "options": {
+      "a": "locate name",
+      "b": "find / -name 'file'",
+      "c": "ls -R",
+      "d": "whereis file"
+    },
+    "answer": "b",
+    "explanation": "`find` traverses directories to locate files matching criteria."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Linux",
+    "level": "Medium",
+    "question": "`&&` between commands will:",
+    "options": {
+      "a": "Run in parallel",
+      "b": "Run second only if first succeeds",
+      "c": "Run both regardless",
+      "d": "Run second only"
+    },
+    "answer": "b",
+    "explanation": "`cmd1 && cmd2` executes cmd2 only if cmd1 exits successfully."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Linux",
+    "level": "Medium",
+    "question": "Show disk usage summary of current dir:",
+    "options": {
+      "a": "du -sh .",
+      "b": "df -h .",
+      "c": "ls -lh",
+      "d": "free -m"
+    },
+    "answer": "a",
+    "explanation": "`du -sh .` summarizes disk usage in human‑readable units."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Linux",
+    "level": "Medium",
+    "question": "Switch user:",
+    "options": {
+      "a": "su",
+      "b": "sudo",
+      "c": "switch",
+      "d": "who"
+    },
+    "answer": "a",
+    "explanation": "`su` opens a shell as another user; `sudo` runs a single command as another user."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Linux",
+    "level": "Medium",
+    "question": "Extract a tar.gz:",
+    "options": {
+      "a": "tar -xvf file.tar.gz",
+      "b": "tar -czf file.tar.gz",
+      "c": "unzip file.tar.gz",
+      "d": "gunzip -t"
+    },
+    "answer": "a",
+    "explanation": "`tar -xvf` extracts archives; `-z` handles gzip compression when present."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Linux",
+    "level": "Hard",
+    "question": "Send process to background:",
+    "options": {
+      "a": "ctrl+c",
+      "b": "&",
+      "c": "bg only",
+      "d": "nohup only"
+    },
+    "answer": "b",
+    "explanation": "Appending `&` runs the command in background; `bg` resumes a stopped job in background."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Linux",
+    "level": "Hard",
+    "question": "Niceness controls:",
+    "options": {
+      "a": "IO priority",
+      "b": "CPU scheduling priority",
+      "c": "Memory limits",
+      "d": "Network priority"
+    },
+    "answer": "b",
+    "explanation": "Nice values influence how the scheduler allocates CPU time to processes."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Linux",
+    "level": "Hard",
+    "question": "See open ports and processes (modern):",
+    "options": {
+      "a": "netstat -tulnp",
+      "b": "ss -tulnp",
+      "c": "ip a",
+      "d": "lsof -i :80 only"
+    },
+    "answer": "b",
+    "explanation": "`ss` is the modern replacement for `netstat` to inspect sockets."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Linux",
+    "level": "Hard",
+    "question": "SELinux enforcing mode means:",
+    "options": {
+      "a": "Logging only",
+      "b": "Deny actions violating policies",
+      "c": "Disabled",
+      "d": "Permissive"
+    },
+    "answer": "b",
+    "explanation": "In enforcing mode, SELinux blocks operations that violate its policy rules."
+  },
+  {
+    "domain": "DevOps",
+    "topic": "Linux",
+    "level": "Hard",
+    "question": "Hard link vs soft link: hard link…",
+    "options": {
+      "a": "Points to filename only",
+      "b": "Points to inode",
+      "c": "Breaks if source moved across FS",
+      "d": "Supports directories commonly"
+    },
+    "answer": "b",
+    "explanation": "Hard links reference the same inode; symlinks point to a pathname."
+  }
+]
