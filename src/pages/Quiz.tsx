@@ -13,6 +13,7 @@ interface QuestionData {
   question_text: string;
   options: string[];
   correct_answer: number;
+  explanation?: string;
   skill_id?: { name: string; difficulty_level: string };
 }
 
@@ -21,13 +22,19 @@ const Quiz = () => {
   const [searchParams] = useSearchParams();
   const isDaily = searchParams.get("mode") === "daily";
   const isAdaptive = searchParams.get("mode") === "adaptive";
-  const selectedDomain = localStorage.getItem("selectedDomain") || "";
+  let selectedDomain = localStorage.getItem("selectedDomain") || "";
+  if (selectedDomain && selectedDomain.length !== 24) {
+    localStorage.removeItem("selectedDomain");
+    localStorage.removeItem("selectedDomainName");
+    selectedDomain = "";
+  }
   const userId = localStorage.getItem("userId") || "";
 
   const [questions, setQuestions] = useState<QuestionData[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [answers, setAnswers] = useState<{ questionId: string; selectedAnswer: number }[]>([]);
+  const [isRevealed, setIsRevealed] = useState(false);
   const [timeLeft, setTimeLeft] = useState(300);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
@@ -161,61 +168,75 @@ const Quiz = () => {
   const handleSubmit = useCallback(() => {
     if (selectedAnswer === null || !currentQuestion) return;
 
-    const newAnswers = [...answers, { questionId: currentQuestion._id, selectedAnswer }];
-    setAnswers(newAnswers);
+    const processSubmit = (submitAnswers: { questionId: string; selectedAnswer: number }[]) => {
+      if (currentIndex + 1 >= totalQ) {
+        if (submitting) return;
+        setSubmitting(true);
 
-    if (currentIndex + 1 >= totalQ) {
-      // Need to submit with the new answers since state update is async
-      if (submitting) return;
-      setSubmitting(true);
-
-      if (userId) {
-        submitQuiz(userId, selectedDomain, newAnswers)
-          .then((result) => {
-            sessionStorage.setItem("quizResult", JSON.stringify({
-              score: result.attempt.score,
-              xpEarned: result.attempt.correctCount * 15,
-              totalQuestions: result.attempt.totalQuestions,
-              correctAnswers: result.attempt.correctCount,
-              weakSkills: result.weakSkills?.map((ws: any) => ws.skill_id?.name) || [],
-            }));
-            navigate(isAdaptive ? "/learning-path?mode=adaptive" : "/result");
-          })
-          .catch(() => {
-            // Fallback calculations locally when API errors out
-            const correctCount = newAnswers.filter((a) => {
-              const q = questions.find((q) => q._id === a.questionId);
-              return q && q.correct_answer === a.selectedAnswer;
-            }).length;
-            const score = Math.round((correctCount / newAnswers.length) * 100);
-            sessionStorage.setItem("quizResult", JSON.stringify({
-              score,
-              xpEarned: correctCount * 15,
-              totalQuestions: newAnswers.length,
-              correctAnswers: correctCount,
-            }));
-            navigate(isAdaptive ? "/learning-path?mode=adaptive" : "/result");
-          });
-      } else {
-        const correctCount = newAnswers.filter((a) => {
-          const q = questions.find((q) => q._id === a.questionId);
-          return q && q.correct_answer === a.selectedAnswer;
-        }).length;
-        const score = Math.round((correctCount / newAnswers.length) * 100);
-        sessionStorage.setItem("quizResult", JSON.stringify({
-          score,
-          xpEarned: correctCount * 15,
-          totalQuestions: newAnswers.length,
-          correctAnswers: correctCount,
-        }));
-        navigate(isAdaptive ? "/learning-path?mode=adaptive" : "/result");
+        if (userId) {
+          submitQuiz(userId, selectedDomain, submitAnswers)
+            .then((result) => {
+              sessionStorage.setItem("quizResult", JSON.stringify({
+                score: result.attempt.score,
+                xpEarned: result.attempt.correctCount * 15,
+                totalQuestions: result.attempt.totalQuestions,
+                correctAnswers: result.attempt.correctCount,
+                weakSkills: result.weakSkills?.map((ws: any) => ws.skill_id?.name) || [],
+              }));
+              navigate(isAdaptive ? "/learning-path?mode=adaptive" : "/result");
+            })
+            .catch(() => {
+              const correctCount = submitAnswers.filter((a) => {
+                const q = questions.find((q) => q._id === a.questionId);
+                return q && q.correct_answer === a.selectedAnswer;
+              }).length;
+              const score = Math.round((correctCount / submitAnswers.length) * 100);
+              sessionStorage.setItem("quizResult", JSON.stringify({
+                score,
+                xpEarned: correctCount * 15,
+                totalQuestions: submitAnswers.length,
+                correctAnswers: correctCount,
+              }));
+              navigate(isAdaptive ? "/learning-path?mode=adaptive" : "/result");
+            });
+        } else {
+          const correctCount = submitAnswers.filter((a) => {
+            const q = questions.find((q) => q._id === a.questionId);
+            return q && q.correct_answer === a.selectedAnswer;
+          }).length;
+          const score = Math.round((correctCount / submitAnswers.length) * 100);
+          sessionStorage.setItem("quizResult", JSON.stringify({
+            score,
+            xpEarned: correctCount * 15,
+            totalQuestions: submitAnswers.length,
+            correctAnswers: correctCount,
+          }));
+          navigate(isAdaptive ? "/learning-path?mode=adaptive" : "/result");
+        }
+        return;
       }
+
+      setCurrentIndex((prev) => prev + 1);
+      setSelectedAnswer(null);
+      setIsRevealed(false);
+    };
+
+    if (isAdaptive) {
+      const newAnswers = [...answers, { questionId: currentQuestion._id, selectedAnswer }];
+      setAnswers(newAnswers);
+      processSubmit(newAnswers);
       return;
     }
 
-    setCurrentIndex((prev) => prev + 1);
-    setSelectedAnswer(null);
-  }, [selectedAnswer, currentQuestion, answers, currentIndex, totalQ, submitting, userId, selectedDomain, questions, navigate, isAdaptive]);
+    if (isRevealed) {
+      processSubmit(answers);
+    } else {
+      // First click: reveal answer and save to state
+      const newAnswers = [...answers, { questionId: currentQuestion._id, selectedAnswer }];
+      setAnswers(newAnswers);
+      setIsRevealed(true);
+    }
+  }, [selectedAnswer, currentQuestion, answers, currentIndex, totalQ, submitting, userId, selectedDomain, questions, navigate, isAdaptive, isRevealed]);
 
   if (loading) {
     return (
@@ -249,14 +270,14 @@ const Quiz = () => {
 
   return (
     <Layout>
-      <div className="flex-1 flex py-8 items-start sm:items-center justify-center container mx-auto px-4 relative min-h-full">
-        <div className="w-full max-w-3xl glass-card rounded-3xl p-6 sm:p-8 animate-slide-up shadow-2xl relative z-10 border-border/50 mb-16">
+      <div className="flex-1 flex py-4 items-start sm:items-center justify-center container mx-auto px-4 relative min-h-full">
+        <div className="w-full max-w-3xl glass-card rounded-3xl p-4 sm:p-6 animate-slide-up shadow-2xl relative z-10 border-border/50 mb-4">
 
-          <div className="mb-4">
+          <div className="mb-3">
             <ProgressBar value={currentIndex + 1} max={totalQ} showValue={false} size="sm" variant="quiz" />
           </div>
 
-          <div className="flex flex-wrap items-center justify-between mb-6 gap-3">
+          <div className="flex flex-wrap items-center justify-between mb-4 gap-3">
             <div className="flex items-center gap-3">
               <span className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
                 Question {currentIndex + 1} <span className="text-muted-foreground/50 mx-1">•</span> {totalQ}
@@ -271,34 +292,67 @@ const Quiz = () => {
             </div>
           </div>
 
-          <div className="p-5 sm:p-6 mb-8 rounded-2xl bg-foreground/5 border border-border/50 shadow-inner">
+          <div className="p-4 sm:p-5 mb-4 rounded-2xl bg-foreground/5 border border-border/50 shadow-inner">
             <h2 className="font-heading font-bold text-lg sm:text-xl text-foreground leading-relaxed">
               {currentQuestion.question_text}
             </h2>
           </div>
 
-          <div className="flex flex-col gap-3 mb-8">
-            {currentQuestion.options.map((option, index) => (
-              <QuizCard
-                key={index}
-                option={option}
-                index={index}
-                selected={selectedAnswer === index}
-                onSelect={() => setSelectedAnswer(index)}
-              />
-            ))}
+          <div className="flex flex-col gap-2 mb-4">
+            {currentQuestion.options.map((option, index) => {
+              let isCorrectAnswer = false;
+              let isWrongSelected = false;
+
+              if (isRevealed) {
+                if (index === currentQuestion.correct_answer) isCorrectAnswer = true;
+                if (index === selectedAnswer && index !== currentQuestion.correct_answer) isWrongSelected = true;
+              }
+
+              return (
+                <div key={index} className="relative">
+                  <QuizCard
+                    option={option}
+                    index={index}
+                    selected={selectedAnswer === index}
+                    onSelect={() => !isRevealed && setSelectedAnswer(index)}
+                    disabled={isRevealed}
+                  />
+                  {/* Style overrides for correctness */}
+                  {isRevealed && isCorrectAnswer && (
+                    <div className="absolute inset-0 border-2 border-green-500 bg-green-500/10 rounded-xl flex items-center justify-end px-4 pointer-events-none">
+                      <span className="text-green-500 font-bold text-xl">✓</span>
+                    </div>
+                  )}
+                  {isRevealed && isWrongSelected && (
+                    <div className="absolute inset-0 border-2 border-destructive bg-destructive/10 rounded-xl flex items-center justify-end px-4 pointer-events-none">
+                      <span className="text-destructive font-bold text-xl">✗</span>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
 
-          <div className="flex justify-end pt-4 border-t border-border/40">
+          {isRevealed && currentQuestion.explanation && !isAdaptive && (
+            <div className="mb-4 p-4 rounded-2xl bg-primary/10 border border-primary/20 animate-fade-in shadow-inner backdrop-blur-sm">
+              <h3 className="text-primary font-bold mb-1.5 flex items-center gap-2">
+                <span className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center text-xs">i</span>
+                Explanation
+              </h3>
+              <p className="text-foreground/90 text-sm leading-relaxed">{currentQuestion.explanation}</p>
+            </div>
+          )}
+
+          <div className="flex justify-end pt-3 border-t border-border/40">
             <button
               onClick={handleSubmit}
               disabled={selectedAnswer === null || submitting}
-              className={`group flex items-center gap-2 px-8 py-3.5 rounded-xl font-heading font-semibold transition-all duration-300 ${selectedAnswer !== null && !submitting
+              className={`group flex items-center gap-2 px-6 py-3 rounded-xl font-heading font-semibold transition-all duration-300 ${selectedAnswer !== null && !submitting
                 ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-0.5"
                 : "bg-muted text-muted-foreground cursor-not-allowed opacity-70"
                 }`}
             >
-              {submitting ? "Submitting..." : currentIndex + 1 < totalQ ? "Next Question" : "Finish Quiz"}
+              {submitting ? "Submitting..." : (isRevealed || isAdaptive) ? (currentIndex + 1 < totalQ ? "Next Question" : "Finish Quiz") : "Submit Answer"}
               <ChevronRight className={`w-5 h-5 transition-transform ${selectedAnswer !== null && !submitting ? "group-hover:translate-x-1" : ""}`} />
             </button>
           </div>

@@ -34,7 +34,10 @@ const ChatbotButton = () => {
 
     try {
       // Get the user's selected domain from localStorage
-      const domain = localStorage.getItem("selectedDomainName") || "GenAI";
+      let domain = localStorage.getItem("selectedDomainName") || "Generative AI";
+      if (domain === "GenAI") domain = "Generative AI";
+      if (domain === "QA Testing") domain = "QA";
+      if (domain === "Java Development") domain = "Java";
 
       const res = await fetch("/chatbot/chat", {
         method: "POST",

@@ -39,6 +39,13 @@ const DomainSelection = () => {
   const [selectedDomainObj, setSelectedDomainObj] = useState<DomainData | null>(null);
 
   useEffect(() => {
+    // Clear legacy string domain IDs from localStorage (e.g. "java", "devops")
+    const currentDomain = localStorage.getItem("selectedDomain");
+    if (currentDomain && currentDomain.length !== 24) {
+      localStorage.removeItem("selectedDomain");
+      localStorage.removeItem("selectedDomainName");
+    }
+
     getDomains()
       .then((data) => {
         setDomains(data);
