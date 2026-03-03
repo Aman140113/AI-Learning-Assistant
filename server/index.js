@@ -19,6 +19,7 @@ app.use("/api/domains", require("./routes/domains"));
 app.use("/api/quiz", require("./routes/quiz"));
 app.use("/api/progress", require("./routes/progress"));
 app.use("/api/daily-tasks", require("./routes/dailyTasks"));
+app.use("/api/admin", require("./routes/admin"));
 
 // Health check
 app.get("/api/health", (req, res) => {

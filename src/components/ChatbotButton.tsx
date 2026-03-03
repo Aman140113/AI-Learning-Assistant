@@ -65,7 +65,7 @@ const ChatbotButton = () => {
   };
 
   // Only show chatbot on authenticated pages (not on landing, login, quiz, etc.)
-  const hiddenRoutes = ["/", "/login", "/domain-selection", "/quiz", "/result"];
+  const hiddenRoutes = ["/", "/login", "/domain-selection", "/quiz", "/result", "/admin"];
   const isLoggedIn = !!localStorage.getItem("userId");
   if (!isLoggedIn || hiddenRoutes.includes(location.pathname)) {
     return null;

@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
     Brain,
@@ -15,6 +16,47 @@ import TeamSection from "../components/TeamSection";
 export default function Landing() {
     const navigate = useNavigate();
 
+    // For Platform Preview section
+    const [activePreview, setActivePreview] = useState(0);
+
+    const platformPreviews = [
+        {
+            tabTitle: "LEARNING DASHBOARD",
+            title: "Track your progress with real-time statistics",
+            description: "Get a comprehensive view of your active quizzes, skill levels, and learning streaks. Engage with daily targets designed to maintain your momentum effectively.",
+            image: "/src/assets/dashboard.png",
+            gradient: "from-blue-500/20 to-purple-500/20"
+        },
+        {
+            tabTitle: "LEADERBOARD",
+            title: "Rise through the ranks and claim your spot",
+            description: "Benchmark your performance against top learners globally. Earn experience points, badges, and recognition for overcoming challenges consistently.",
+            image: "/src/assets/leaderboard.png",
+            gradient: "from-[#00F5D4]/20 to-emerald-500/20"
+        },
+        {
+            tabTitle: "AI LEARNING PATH",
+            title: "Intelligent curation aligned with your goals",
+            description: "Stop guessing what to learn next. SkillSpark’s AI generates personalized learning curves customized closely based on your past mock interviews and quiz attempts.",
+            image: "/src/assets/learningPath.png",
+            gradient: "from-orange-500/20 to-pink-500/20"
+        },
+        {
+            tabTitle: "MOCK INTERVIEWS",
+            title: "Practice perfectly with AI-driven interviews",
+            description: "Hone your interview skills under pressure with our fully AI-powered realistic interview platform mimicking real-world technical and behavioral rounds.",
+            image: "/src/assets/interview.png",
+            gradient: "from-indigo-500/20 to-cyan-500/20"
+        }
+    ];
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setActivePreview((prev) => (prev + 1) % platformPreviews.length);
+        }, 5000); // changes every 5 seconds
+        return () => clearInterval(interval);
+    }, [platformPreviews.length]);
+
     return (
         <div className="min-h-screen bg-[#0A0A0A] text-slate-200 font-sans selection:bg-[#00F5D4] selection:text-black overflow-x-hidden">
             {/* Background visual effects */}
@@ -26,7 +68,7 @@ export default function Landing() {
 
             {/* Navbar */}
             <nav className="fixed w-full z-50 border-b border-white/5 bg-[#0A0A0A]/60 backdrop-blur-xl">
-                <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+                <div className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between">
                     <div className="flex items-center gap-3">
                         <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#00F5D4] to-blue-500 flex items-center justify-center p-[1px]">
                             <div className="w-full h-full bg-[#121212] rounded-xl flex items-center justify-center overflow-hidden">
@@ -57,13 +99,13 @@ export default function Landing() {
             <main className="relative z-10">
 
                 {/* SECTION 1: HERO SECTION */}
-                <section className="relative pt-24 pb-10 px-6 min-h-[calc(100vh-80px)] flex flex-col justify-center items-center text-center">
+                <section className="relative pt-20 pb-6 px-6 min-h-[calc(80vh-60px)] flex flex-col justify-center items-center text-center">
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#121212] border border-white/5 mb-8 shadow-xl">
                         <span className="flex h-2 w-2 rounded-full bg-[#00F5D4] shadow-[0_0_10px_rgba(0,245,212,0.8)]"></span>
-                        <span className="text-sm font-medium text-slate-300">Team Koshish (Innovate by Trying)</span>
+                        <span className="text-sm font-medium text-slate-300">Team Koshish</span>
                     </div>
 
-                    <h1 className="text-5xl md:text-7xl font-extrabold text-white tracking-tight leading-tight max-w-4xl mx-auto mb-6">
+                    <h1 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight max-w-4xl mx-auto mb-4">
                         Empowering Learning Through <br className="hidden md:block" />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00F5D4] to-blue-500">
                             Adaptive Intelligence
@@ -85,7 +127,7 @@ export default function Landing() {
                 </section>
 
                 {/* SECTION 2: ABOUT THE PLATFORM */}
-                <section className="py-24 px-6 border-t border-white/5 relative">
+                <section className="py-12 px-6 border-t border-white/5 relative">
                     <div className="max-w-7xl mx-auto">
                         <div className="flex flex-col md:flex-row items-center gap-16">
                             <div className="flex-1 space-y-6">
@@ -93,7 +135,7 @@ export default function Landing() {
                                     <Brain className="w-5 h-5" />
                                     <span>About SkillSpark AI</span>
                                 </div>
-                                <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight">
+                                <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight">
                                     Intelligent learning, <br />tailored for <span className="text-white border-b-2 border-[#00F5D4]">you.</span>
                                 </h2>
                                 <p className="text-slate-400 text-lg leading-relaxed">
@@ -125,10 +167,10 @@ export default function Landing() {
                 </section>
 
                 {/* SECTION 3: FEATURES SECTION */}
-                <section className="py-24 px-6 relative bg-gradient-to-b from-[#0A0A0A] to-[#121212]/50 border-t border-white/5">
+                <section className="py-12 px-6 relative bg-gradient-to-b from-[#0A0A0A] to-[#121212]/50 border-t border-white/5">
                     <div className="max-w-7xl mx-auto">
                         <div className="text-center mb-16 space-y-4">
-                            <h2 className="text-3xl md:text-5xl font-bold text-white">Key Features</h2>
+                            <h2 className="text-3xl md:text-4xl font-bold text-white">Key Features</h2>
                             <p className="text-slate-400 text-lg max-w-2xl mx-auto">Experience the next generation of online learning powered by artificial intelligence.</p>
                         </div>
 
@@ -191,48 +233,63 @@ export default function Landing() {
                 </section>
 
                 {/* SECTION 4: PLATFORM PREVIEW */}
-                <section className="py-24 px-6 border-t border-white/5 bg-[#0A0A0A]">
+                <section className="py-12 px-6 border-t border-white/5 bg-[#0A0A0A]">
                     <div className="max-w-7xl mx-auto">
-                        <div className="text-center mb-16">
-                            <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Platform Preview</h2>
-                            <p className="text-slate-400 text-lg">A glimpse into the sleek and modern user interface of SkillSpark.</p>
+                        <div className="mb-12">
+                            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">
+                                Unify learning with adaptive insights <br className="hidden md:block" />
+                                to prioritize what truly matters
+                            </h2>
+                            <div className="flex items-center gap-6 md:gap-10 border-b border-white/10 overflow-x-auto pb-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                                {platformPreviews.map((preview, idx) => (
+                                    <button
+                                        key={idx}
+                                        onClick={() => setActivePreview(idx)}
+                                        className={`pb-4 whitespace-nowrap text-xs md:text-sm font-bold tracking-widest uppercase transition-all duration-300 relative ${activePreview === idx
+                                            ? "text-[#00F5D4]"
+                                            : "text-slate-500 hover:text-slate-300"
+                                            }`}
+                                    >
+                                        {preview.tabTitle}
+                                        {activePreview === idx && (
+                                            <span className="absolute bottom-0 left-0 w-full h-[2px] bg-[#00F5D4] shadow-[0_0_10px_rgba(0,245,212,0.8)]"></span>
+                                        )}
+                                    </button>
+                                ))}
+                            </div>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            {[
-                                { name: "Learning Dashboard", gradient: "from-blue-500/20 to-purple-500/20", img: "/src/assets/dashboard.png" },
-                                { name: "Leaderboard", gradient: "from-[#00F5D4]/20 to-emerald-500/20", img: "/src/assets/leaderboard.png" },
-                                { name: "AI Learning Path Map", gradient: "from-orange-500/20 to-pink-500/20", img: "/src/assets/learningPath.png" },
-                                { name: "AI Mock Interview Platform", gradient: "from-indigo-500/20 to-cyan-500/20", img: "/src/assets/interview.png" },
-                            ].map((item, i) => (
-                                <div key={i} className="group relative aspect-video bg-[#121212] rounded-2xl border border-white/5 overflow-hidden hover:border-white/20 transition-all duration-500 cursor-pointer">
-                                    <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-20 group-hover:opacity-60 transition-opacity duration-500 z-10 pointer-events-none`}></div>
+                        <div className="flex flex-col lg:flex-row bg-[#121212] rounded-2xl border border-white/5 overflow-hidden">
+                            {/* Left Info Box */}
+                            <div className="w-full lg:w-2/5 p-8 md:p-12 flex flex-col justify-center min-h-[300px]">
+                                <h3 className="text-2xl md:text-3xl font-bold text-white mb-3 leading-snug">
+                                    {platformPreviews[activePreview].title}
+                                </h3>
+                                <p className="text-slate-400 text-lg leading-relaxed">
+                                    {platformPreviews[activePreview].description}
+                                </p>
+                            </div>
 
-                                    {/* Glassmorphism Mockup UI elements overlay */}
-                                    <div className="absolute inset-4 rounded-xl border border-white/10 bg-[#0A0A0A]/40 backdrop-blur-md flex flex-col p-4 shadow-2xl transition-transform duration-500 group-hover:scale-[1.02] z-0">
-                                        <div className="flex gap-2 mb-4">
-                                            <div className="w-2 h-2 rounded-full bg-white/20"></div>
-                                            <div className="w-2 h-2 rounded-full bg-white/20"></div>
-                                            <div className="w-2 h-2 rounded-full bg-white/20"></div>
-                                        </div>
-                                        <div className="flex flex-1 gap-4">
-                                            <div className="w-1/4 h-full bg-white/5 rounded-lg border border-white/5"></div>
-                                            <div className="w-3/4 flex flex-col gap-4">
-                                                <div className="h-1/3 bg-white/5 rounded-lg border border-white/5"></div>
-                                                <div className="h-2/3 bg-white/5 rounded-lg border border-white/5"></div>
-                                            </div>
+                            {/* Right Image Box (Smooth Fading) */}
+                            <div className="w-full lg:w-3/5 relative h-[300px] sm:h-[400px] lg:h-[500px] bg-[#0A0A0A] overflow-hidden border-t lg:border-t-0 lg:border-l border-white/5">
+                                {platformPreviews.map((preview, idx) => (
+                                    <div
+                                        key={idx}
+                                        className={`absolute inset-0 transition-opacity duration-700 ease-in-out p-4 md:p-6 ${activePreview === idx ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+                                            }`}
+                                    >
+                                        <div className={`absolute inset-0 bg-gradient-to-br ${preview.gradient} opacity-20`}></div>
+                                        <div className="relative w-full h-full rounded-xl border border-white/10 shadow-xl overflow-hidden bg-[#121212]">
+                                            <img
+                                                src={preview.image}
+                                                alt={preview.tabTitle}
+                                                className="w-full h-full object-cover object-left-top"
+                                                onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                                            />
                                         </div>
                                     </div>
-
-                                    <img src={item.img} alt={item.name} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 z-20" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
-
-                                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40 backdrop-blur-sm z-30">
-                                        <span className="px-6 py-2 rounded-full bg-[#00F5D4] text-black font-bold text-sm tracking-wide shadow-lg">
-                                            {item.name}
-                                        </span>
-                                    </div>
-                                </div>
-                            ))}
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -241,10 +298,10 @@ export default function Landing() {
                 <TeamSection />
 
                 {/* SECTION 6: CALL TO ACTION */}
-                <section className="py-32 px-6 relative border-t border-white/5 overflow-hidden">
+                <section className="py-16 px-6 relative border-t border-white/5 overflow-hidden">
                     <div className="absolute inset-0 bg-[#00F5D4]/5"></div>
                     <div className="max-w-4xl mx-auto relative z-10 text-center space-y-8">
-                        <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight leading-tight">
+                        <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight leading-tight">
                             Start Your Personalized <br /> Learning Journey Today
                         </h2>
                         <p className="text-xl text-slate-400 max-w-2xl mx-auto">

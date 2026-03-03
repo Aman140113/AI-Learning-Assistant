@@ -150,3 +150,185 @@ export async function deleteAccount(userId: string) {
     if (!res.ok) throw new Error("Failed to delete account");
     return res.json();
 }
+
+// ── Admin ──
+function adminHeaders() {
+    const token = localStorage.getItem("adminToken");
+    return {
+        "Content-Type": "application/json",
+        "x-admin-token": token || "",
+    };
+}
+
+export async function adminLogin(email: string, password: string) {
+    const token = `${email}:${password}`;
+    const res = await fetch(`${API_BASE}/admin/login`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "x-admin-token": token,
+        },
+    });
+    if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.error || "Admin login failed");
+    }
+    localStorage.setItem("adminToken", token);
+    return res.json();
+}
+
+export async function getAdminStats() {
+    const res = await fetch(`${API_BASE}/admin/stats`, { headers: adminHeaders() });
+    if (!res.ok) throw new Error("Failed to fetch stats");
+    return res.json();
+}
+
+export async function getAdminUsers() {
+    const res = await fetch(`${API_BASE}/admin/users`, { headers: adminHeaders() });
+    if (!res.ok) throw new Error("Failed to fetch users");
+    return res.json();
+}
+
+export async function deleteAdminUser(userId: string) {
+    const res = await fetch(`${API_BASE}/admin/users/${userId}`, {
+        method: "DELETE",
+        headers: adminHeaders(),
+    });
+    if (!res.ok) throw new Error("Failed to delete user");
+    return res.json();
+}
+
+export async function getAdminDomains() {
+    const res = await fetch(`${API_BASE}/admin/domains`, { headers: adminHeaders() });
+    if (!res.ok) throw new Error("Failed to fetch domains");
+    return res.json();
+}
+
+export async function createAdminDomain(data: { name: string; description?: string; icon?: string }) {
+    const res = await fetch(`${API_BASE}/admin/domains`, {
+        method: "POST",
+        headers: adminHeaders(),
+        body: JSON.stringify(data),
+    });
+    if (!res.ok) throw new Error("Failed to create domain");
+    return res.json();
+}
+
+export async function updateAdminDomain(id: string, data: { name: string; description?: string; icon?: string }) {
+    const res = await fetch(`${API_BASE}/admin/domains/${id}`, {
+        method: "PUT",
+        headers: adminHeaders(),
+        body: JSON.stringify(data),
+    });
+    if (!res.ok) throw new Error("Failed to update domain");
+    return res.json();
+}
+
+export async function deleteAdminDomain(id: string) {
+    const res = await fetch(`${API_BASE}/admin/domains/${id}`, {
+        method: "DELETE",
+        headers: adminHeaders(),
+    });
+    if (!res.ok) throw new Error("Failed to delete domain");
+    return res.json();
+}
+
+export async function getAdminSkills(domainId?: string) {
+    const url = domainId
+        ? `${API_BASE}/admin/skills?domainId=${domainId}`
+        : `${API_BASE}/admin/skills`;
+    const res = await fetch(url, { headers: adminHeaders() });
+    if (!res.ok) throw new Error("Failed to fetch skills");
+    return res.json();
+}
+
+export async function createAdminSkill(data: { domain_id: string; name: string; description?: string; difficulty_level?: string }) {
+    const res = await fetch(`${API_BASE}/admin/skills`, {
+        method: "POST",
+        headers: adminHeaders(),
+        body: JSON.stringify(data),
+    });
+    if (!res.ok) throw new Error("Failed to create skill");
+    return res.json();
+}
+
+export async function updateAdminSkill(id: string, data: { name: string; description?: string; difficulty_level?: string }) {
+    const res = await fetch(`${API_BASE}/admin/skills/${id}`, {
+        method: "PUT",
+        headers: adminHeaders(),
+        body: JSON.stringify(data),
+    });
+    if (!res.ok) throw new Error("Failed to update skill");
+    return res.json();
+}
+
+export async function deleteAdminSkill(id: string) {
+    const res = await fetch(`${API_BASE}/admin/skills/${id}`, {
+        method: "DELETE",
+        headers: adminHeaders(),
+    });
+    if (!res.ok) throw new Error("Failed to delete skill");
+    return res.json();
+}
+
+export async function getAdminQuestions(filters?: { skillId?: string; domainId?: string; difficulty?: string }) {
+    let url = `${API_BASE}/admin/questions`;
+    const params = new URLSearchParams();
+    if (filters?.skillId) params.set("skillId", filters.skillId);
+    if (filters?.domainId) params.set("domainId", filters.domainId);
+    if (filters?.difficulty) params.set("difficulty", filters.difficulty);
+    if (params.toString()) url += `?${params.toString()}`;
+
+    const res = await fetch(url, { headers: adminHeaders() });
+    if (!res.ok) throw new Error("Failed to fetch questions");
+    return res.json();
+}
+
+export async function createAdminQuestion(data: {
+    skill_id: string;
+    question_text: string;
+    options: string[];
+    correct_answer: number;
+    explanation?: string;
+}) {
+    const res = await fetch(`${API_BASE}/admin/questions`, {
+        method: "POST",
+        headers: adminHeaders(),
+        body: JSON.stringify(data),
+    });
+    if (!res.ok) throw new Error("Failed to create question");
+    return res.json();
+}
+
+export async function updateAdminQuestion(id: string, data: {
+    question_text: string;
+    options: string[];
+    correct_answer: number;
+    explanation?: string;
+}) {
+    const res = await fetch(`${API_BASE}/admin/questions/${id}`, {
+        method: "PUT",
+        headers: adminHeaders(),
+        body: JSON.stringify(data),
+    });
+    if (!res.ok) throw new Error("Failed to update question");
+    return res.json();
+}
+
+export async function deleteAdminQuestion(id: string) {
+    const res = await fetch(`${API_BASE}/admin/questions/${id}`, {
+        method: "DELETE",
+        headers: adminHeaders(),
+    });
+    if (!res.ok) throw new Error("Failed to delete question");
+    return res.json();
+}
+
+export async function getAdminUserLearningPath(userId: string) {
+    const res = await fetch(`${API_BASE}/admin/users/${userId}/learning-path`, {
+        headers: adminHeaders(),
+    });
+    if (!res.ok) throw new Error("Failed to fetch learning path");
+    return res.json();
+}
+

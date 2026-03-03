@@ -14,6 +14,7 @@ import Leaderboard from "./pages/Leaderboard";
 import Profile from "./pages/Profile";
 import Performance from "./pages/Performance";
 import NotFound from "./pages/NotFound";
+import Admin from "./pages/Admin";
 import ChatbotButton from "./components/ChatbotButton";
 import { ThemeProvider } from "@/components/theme-provider";
 
@@ -35,6 +36,7 @@ const App = () => (
           <Route path="/leaderboard" element={<Leaderboard />} />
           <Route path="/performance" element={<Performance />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/admin" element={<Admin />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <ChatbotButton />
