@@ -332,3 +332,26 @@ export async function getAdminUserLearningPath(userId: string) {
     return res.json();
 }
 
+// ── Certification ──
+export async function getCertificationStatus(userId: string) {
+    const res = await fetch(`${API_BASE}/certification/status/${userId}`);
+    if (!res.ok) throw new Error("Failed to fetch certification status");
+    return res.json();
+}
+
+export async function getCertificationQuestions(domainId: string) {
+    const res = await fetch(`${API_BASE}/certification/questions?domainId=${domainId}`);
+    if (!res.ok) throw new Error("Failed to fetch certification questions");
+    return res.json();
+}
+
+export async function submitCertification(userId: string, domainId: string, level: string, answers: { questionId: string; selectedAnswer: number }[]) {
+    const res = await fetch(`${API_BASE}/certification/submit`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId, domainId, level, answers }),
+    });
+    if (!res.ok) throw new Error("Failed to submit certification");
+    return res.json();
+}
+

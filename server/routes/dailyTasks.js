@@ -1,4 +1,5 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const router = express.Router();
 const DailyTask = require("../models/DailyTask");
 
@@ -22,6 +23,10 @@ router.get("/:userId", async (req, res) => {
     try {
         const { userId } = req.params;
         const today = getToday();
+
+        if (!mongoose.Types.ObjectId.isValid(userId)) {
+            return res.status(400).json({ error: "Invalid user ID format" });
+        }
 
         let tasks = await DailyTask.find({ user_id: userId, date: today });
 

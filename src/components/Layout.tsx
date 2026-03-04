@@ -11,7 +11,8 @@ import {
     LogOut,
     Zap,
     Star,
-    Menu
+    Menu,
+    Award
 } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
 import { userData } from "@/data/dummyData";
@@ -32,6 +33,7 @@ const Layout = ({ children }: LayoutProps) => {
         { to: "/daily-tasks", label: "Daily Tasks", icon: ClipboardCheck },
         { to: "/interview", label: "Interview", icon: Users },
         { to: "/performance", label: "Performance", icon: LineChart },
+        { to: "/certifications", label: "Certifications", icon: Award },
         { to: "/leaderboard", label: "Leaderboard", icon: Trophy },
     ];
 

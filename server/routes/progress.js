@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const express = require("express");
 const router = express.Router();
 const UserSkillProgress = require("../models/UserSkillProgress");
@@ -9,6 +10,10 @@ const UserDomain = require("../models/UserDomain");
 router.get("/:userId", async (req, res) => {
     try {
         const { userId } = req.params;
+
+        if (!mongoose.Types.ObjectId.isValid(userId)) {
+            return res.status(400).json({ error: "Invalid user ID format" });
+        }
 
         // Get skill progress
         const skillProgress = await UserSkillProgress.find({ user_id: userId })

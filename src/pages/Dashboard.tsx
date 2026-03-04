@@ -130,9 +130,17 @@ const Dashboard = () => {
                 </h2>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {skills.map((skill) => (
-                  <SkillCard key={skill.name} {...skill} />
-                ))}
+                {skills.length > 0 ? (
+                  skills.map((skill) => (
+                    <SkillCard key={skill.name} {...skill} />
+                  ))
+                ) : (
+                  <div className="col-span-full border border-dashed border-primary/30 rounded-2xl p-6 text-center text-muted-foreground flex flex-col items-center justify-center min-h-[120px]">
+                    <Sparkles className="w-8 h-8 text-primary/40 mb-2" />
+                    <p className="font-semibold text-foreground/80">No skills assessed yet</p>
+                    <p className="text-sm mt-1">Take your first quiz to uncover your strengths!</p>
+                  </div>
+                )}
               </div>
             </div>
 

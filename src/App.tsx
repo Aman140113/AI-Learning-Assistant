@@ -13,6 +13,9 @@ import DailyTasks from "./pages/DailyTasks";
 import Leaderboard from "./pages/Leaderboard";
 import Profile from "./pages/Profile";
 import Performance from "./pages/Performance";
+import CertificationHub from "./pages/CertificationHub";
+import CertificationExam from "./pages/CertificationExam";
+import CertificationResult from "./pages/CertificationResult";
 import NotFound from "./pages/NotFound";
 import Admin from "./pages/Admin";
 import ChatbotButton from "./components/ChatbotButton";
@@ -35,6 +38,9 @@ const App = () => (
           <Route path="/interview" element={<Interview />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
           <Route path="/performance" element={<Performance />} />
+          <Route path="/certifications" element={<CertificationHub />} />
+          <Route path="/certifications/exam/:level" element={<CertificationExam />} />
+          <Route path="/certifications/result" element={<CertificationResult />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="*" element={<NotFound />} />
