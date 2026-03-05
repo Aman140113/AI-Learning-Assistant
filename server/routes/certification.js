@@ -23,7 +23,12 @@ router.get("/status/:userId", async (req, res) => {
     try {
         const { userId } = req.params;
         if (!mongoose.Types.ObjectId.isValid(userId)) {
-            return res.status(400).json({ error: "Invalid user ID" });
+            // For demo or non-persisted users, just return an empty status
+            return res.json({
+                pl1_passed: false,
+                pl2_passed: false,
+                certifications: []
+            });
         }
 
         const certs = await Certification.find({ user_id: userId, passed: true });
@@ -93,9 +98,7 @@ router.post("/submit", async (req, res) => {
         const { userId, domainId, level, answers } = req.body;
         // answers: [{ questionId, selectedAnswer }]
 
-        if (!mongoose.Types.ObjectId.isValid(userId)) {
-            return res.status(400).json({ error: "Invalid user ID" });
-        }
+        const isRealUserId = mongoose.Types.ObjectId.isValid(userId);
 
         let correctCount = 0;
         const total = answers.length || 15;
@@ -111,31 +114,42 @@ router.post("/submit", async (req, res) => {
         const passed = scorePercent >= 70; // 70% passing criteria
 
         let licence_id = null;
+        let savedCert = null;
+
         if (passed) {
             licence_id = generateLicenceId(domainId, level);
-            // Ensure uniqueness
-            let collision = await Certification.findOne({ licence_id });
-            while (collision) {
-                licence_id = generateLicenceId(domainId, level);
-                collision = await Certification.findOne({ licence_id });
+
+            if (isRealUserId) {
+                // Ensure uniqueness only when we are persisting a real user certification
+                let collision = await Certification.findOne({ licence_id });
+                while (collision) {
+                    licence_id = generateLicenceId(domainId, level);
+                    collision = await Certification.findOne({ licence_id });
+                }
             }
         }
 
-        const cert = await Certification.create({
-            user_id: userId,
-            domain_id: domainId,
-            level,
-            score: scorePercent,
-            passed,
-            licence_id
-        });
+        // Persist certification only for real (ObjectId) users.
+        if (isRealUserId) {
+            const certData = {
+                user_id: userId,
+                domain_id: domainId,
+                level,
+                score: scorePercent,
+                passed,
+            };
+            if (licence_id) {
+                certData.licence_id = licence_id;
+            }
+            savedCert = await Certification.create(certData);
+        }
 
         res.json({
             passed,
             score: scorePercent,
             correctCount,
             total,
-            licence_id: cert.licence_id
+            licence_id: savedCert?.licence_id || licence_id
         });
     } catch (error) {
         console.error("Error submitting certification:", error);

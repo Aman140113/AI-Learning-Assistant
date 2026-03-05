@@ -1,12 +1,20 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Shield, CheckCircle, Lock, ArrowRight, Award } from "lucide-react";
+import { Shield, CheckCircle, Lock, ArrowRight, Award, ShieldCheck } from "lucide-react";
 import Layout from "@/components/Layout";
 import { getCertificationStatus } from "@/services/api";
+
+interface CertificationRecord {
+    level: "PL-1" | "PL-2";
+    licence_id?: string;
+    score: number;
+    passed: boolean;
+}
 
 interface CertStatus {
     pl1_passed: boolean;
     pl2_passed: boolean;
+    certifications?: CertificationRecord[];
 }
 
 const CertificationHub = () => {
@@ -40,6 +48,10 @@ const CertificationHub = () => {
 
     const pl1Passed = status?.pl1_passed || false;
     const pl2Passed = status?.pl2_passed || false;
+    const pl1LicenceId =
+        status?.certifications?.find((c) => c.level === "PL-1" && c.passed && c.licence_id)?.licence_id || null;
+    const pl2LicenceId =
+        status?.certifications?.find((c) => c.level === "PL-2" && c.passed && c.licence_id)?.licence_id || null;
 
     return (
         <Layout>
@@ -88,17 +100,38 @@ const CertificationHub = () => {
                                     <span className="font-semibold text-foreground">70%</span>
                                 </div>
 
-                                <button
-                                    onClick={() => navigate("/certifications/exam/PL-1")}
-                                    disabled={pl1Passed}
-                                    className={`w-full py-3 rounded-xl font-bold flex items-center justify-center gap-2 transition-all ${pl1Passed
-                                            ? 'bg-success/10 text-success cursor-default'
-                                            : 'bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98]'
-                                        }`}
-                                >
-                                    {pl1Passed ? "Completed" : "Take Certification"}
-                                    {!pl1Passed && <ArrowRight className="w-4 h-4" />}
-                                </button>
+                                {pl1Passed ? (
+                                    <div className="space-y-3">
+                                        <button
+                                            type="button"
+                                            className="w-full py-3 rounded-xl font-bold flex items-center justify-center gap-2 bg-success/10 text-success"
+                                            onClick={() => {
+                                                if (pl1LicenceId) {
+                                                    navigator.clipboard?.writeText(pl1LicenceId).catch(() => { });
+                                                }
+                                            }}
+                                        >
+                                            <ShieldCheck className="w-4 h-4" />
+                                            View Licence
+                                        </button>
+                                        {pl1LicenceId && (
+                                            <div className="text-xs text-muted-foreground bg-background/60 border border-border/60 rounded-xl px-3 py-2 flex items-center justify-between gap-2">
+                                                <span className="font-semibold text-foreground/80">Licence ID</span>
+                                                <code className="text-[11px] font-mono font-bold break-all">
+                                                    {pl1LicenceId}
+                                                </code>
+                                            </div>
+                                        )}
+                                    </div>
+                                ) : (
+                                    <button
+                                        onClick={() => navigate("/certifications/exam/PL-1")}
+                                        className="w-full py-3 rounded-xl font-bold flex items-center justify-center gap-2 transition-all bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98]"
+                                    >
+                                        Take Certification
+                                        <ArrowRight className="w-4 h-4" />
+                                    </button>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -135,9 +168,28 @@ const CertificationHub = () => {
                                 </div>
 
                                 {pl2Passed ? (
-                                    <button disabled className="w-full py-3 rounded-xl font-bold flex items-center justify-center gap-2 bg-success/10 text-success cursor-default">
-                                        Completed
-                                    </button>
+                                    <div className="space-y-3">
+                                        <button
+                                            type="button"
+                                            className="w-full py-3 rounded-xl font-bold flex items-center justify-center gap-2 bg-success/10 text-success"
+                                            onClick={() => {
+                                                if (pl2LicenceId) {
+                                                    navigator.clipboard?.writeText(pl2LicenceId).catch(() => { });
+                                                }
+                                            }}
+                                        >
+                                            <ShieldCheck className="w-4 h-4" />
+                                            View Licence
+                                        </button>
+                                        {pl2LicenceId && (
+                                            <div className="text-xs text-muted-foreground bg-background/60 border border-border/60 rounded-xl px-3 py-2 flex items-center justify-between gap-2">
+                                                <span className="font-semibold text-foreground/80">Licence ID</span>
+                                                <code className="text-[11px] font-mono font-bold break-all">
+                                                    {pl2LicenceId}
+                                                </code>
+                                            </div>
+                                        )}
+                                    </div>
                                 ) : !pl1Passed ? (
                                     <div className="w-full py-3 rounded-xl font-bold flex items-center justify-center gap-2 bg-muted text-muted-foreground cursor-not-allowed border border-border/50 text-center text-sm px-2">
                                         <Lock className="w-4 h-4 shrink-0" />

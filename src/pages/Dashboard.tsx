@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Flame, Star, AlertTriangle, Sparkles, ArrowRight } from "lucide-react";
+import { Flame, Star, AlertTriangle, Sparkles, ArrowRight, Award, X } from "lucide-react";
 import Layout from "@/components/Layout";
 import ProgressBar from "@/components/ProgressBar";
 import SkillCard from "@/components/SkillCard";
 import CalendarCard from "@/components/CalendarCard";
-import { getUserProgress, getDailyTasks as fetchDailyTasks } from "@/services/api";
+import { getUserProgress, getDailyTasks as fetchDailyTasks, getCertificationStatus } from "@/services/api";
 import { userData as fallbackUserData, skills as fallbackSkills, weakSkills as fallbackWeakSkills } from "@/data/dummyData";
 
 interface ProgressData {
@@ -33,6 +33,7 @@ const Dashboard = () => {
   const [data, setData] = useState<ProgressData | null>(null);
   const [completedDates, setCompletedDates] = useState<CompletedDate[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showCertModal, setShowCertModal] = useState(false);
 
   useEffect(() => {
     if (userId) {
@@ -44,6 +45,17 @@ const Dashboard = () => {
         if (tasksData?.completedDates) setCompletedDates(tasksData.completedDates);
         setLoading(false);
       });
+
+      // Certification readiness check (once per session)
+      const certAlertShown = sessionStorage.getItem("certAlertShown");
+      if (!certAlertShown && userId !== "demo_user") {
+        getCertificationStatus(userId).then((certStatus) => {
+          if (!certStatus.pl1_passed) {
+            setShowCertModal(true);
+            sessionStorage.setItem("certAlertShown", "true");
+          }
+        }).catch(() => { });
+      }
     } else {
       setLoading(false);
     }
@@ -75,6 +87,41 @@ const Dashboard = () => {
 
   return (
     <Layout>
+      {/* Certification Readiness Modal */}
+      {showCertModal && (
+        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/70 backdrop-blur-sm" onClick={() => setShowCertModal(false)}>
+          <div className="bg-card border border-primary/20 rounded-3xl p-8 w-[90%] max-w-md shadow-2xl animate-in fade-in zoom-in-95 relative" onClick={e => e.stopPropagation()}>
+            <button onClick={() => setShowCertModal(false)} className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors">
+              <X className="w-5 h-5" />
+            </button>
+            <div className="flex justify-center mb-5">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/80 to-primary/30 flex items-center justify-center shadow-xl">
+                <Award className="w-8 h-8 text-white" />
+              </div>
+            </div>
+            <h2 className="text-xl font-bold text-foreground text-center mb-2">Ready for Certification?</h2>
+            <p className="text-sm text-muted-foreground text-center mb-6">
+              Have you completed all the recommended courses and feel ready to take the <span className="text-primary font-semibold">PL-1 Certification Exam</span>?
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <button
+                onClick={() => setShowCertModal(false)}
+                className="flex-1 py-3 rounded-2xl text-sm font-semibold bg-white/5 text-foreground border border-white/10 hover:bg-white/10 transition-all"
+              >
+                Not Yet
+              </button>
+              <button
+                onClick={() => { setShowCertModal(false); navigate("/certifications"); }}
+                className="flex-1 py-3 rounded-2xl text-sm font-bold bg-[#00F5D4] text-black hover:bg-white transition-all shadow-[0_0_20px_rgba(0,245,212,0.2)] flex items-center justify-center gap-2"
+              >
+                Yes, Let's Go!
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="container mx-auto px-4 py-8 max-w-5xl pb-16">
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

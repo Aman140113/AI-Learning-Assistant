@@ -355,3 +355,39 @@ export async function submitCertification(userId: string, domainId: string, leve
     return res.json();
 }
 
+// ── Dossier ──
+export async function getDossierProfile(userId: string) {
+    const res = await fetch(`${API_BASE}/dossier/profile/${userId}`);
+    if (!res.ok) throw new Error("Failed to fetch dossier profile");
+    return res.json();
+}
+
+export async function saveDossierProfile(userId: string, data: Record<string, unknown>) {
+    const res = await fetch(`${API_BASE}/dossier/profile/${userId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+    });
+    if (!res.ok) throw new Error("Failed to save dossier profile");
+    return res.json();
+}
+
+export async function searchDossierUsers(filters: { domain?: string; skill?: string; certification?: string; q?: string }) {
+    const params = new URLSearchParams();
+    if (filters.domain) params.set("domain", filters.domain);
+    if (filters.skill) params.set("skill", filters.skill);
+    if (filters.certification) params.set("certification", filters.certification);
+    if (filters.q) params.set("q", filters.q);
+
+    const url = `${API_BASE}/dossier/search${params.toString() ? `?${params.toString()}` : ""}`;
+    const res = await fetch(url, { headers: adminHeaders() });
+    if (!res.ok) throw new Error("Failed to search dossier users");
+    return res.json();
+}
+
+export async function downloadDossierPdf(userId: string) {
+    const res = await fetch(`${API_BASE}/dossier/download/${userId}`);
+    if (!res.ok) throw new Error("Failed to download dossier PDF");
+    return res.blob();
+}
+

@@ -6,7 +6,8 @@ import Layout from "@/components/Layout";
 const CertificationResult = () => {
     const location = useLocation();
     const navigate = useNavigate();
-    const { result, level, domainId } = location.state || {};
+    const { result, level } = location.state || {};
+    const domainName = localStorage.getItem("selectedDomainName") || "your domain";
 
     useEffect(() => {
         if (!result) {
@@ -50,7 +51,7 @@ const CertificationResult = () => {
 
                     <p className="text-lg text-muted-foreground mb-8 max-w-md mx-auto">
                         {passed
-                            ? `Congratulations! You've successfully completed the ${level} certification for ${domainId?.toUpperCase() || 'your domain'}.`
+                            ? `Congratulations! You've successfully completed the ${level} certification for ${domainName}.`
                             : `Don't give up! Review your weak areas and try again when you feel ready. Remember, practice makes perfect.`}
                     </p>
 
@@ -83,6 +84,23 @@ const CertificationResult = () => {
                                     <span className="text-xs font-bold text-primary uppercase bg-background px-3 py-1 rounded-full shadow-md">Click to Copy</span>
                                 </div>
                             </div>
+                        </div>
+                    )}
+
+                    {/* Profile Completion Prompt for PL-1 */}
+                    {passed && level === "PL-1" && (
+                        <div className="mb-8 bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20 rounded-2xl p-6 animate-fade-in text-center">
+                            <p className="text-base font-semibold text-foreground mb-2">🎉 Congratulations on completing PL-1!</p>
+                            <p className="text-sm text-muted-foreground mb-4">
+                                You are now eligible to complete your <span className="text-primary font-semibold">Skills &amp; Education Profile</span>. Build your trainee dossier now!
+                            </p>
+                            <button
+                                onClick={() => navigate("/skills-profile")}
+                                className="mx-auto px-8 py-3.5 rounded-xl font-bold flex items-center justify-center gap-2 bg-[#00F5D4] text-black hover:bg-white transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(0,245,212,0.2)]"
+                            >
+                                Complete Your Profile
+                                <ArrowRight className="w-5 h-5" />
+                            </button>
                         </div>
                     )}
 

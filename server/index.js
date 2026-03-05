@@ -21,6 +21,7 @@ app.use("/api/progress", require("./routes/progress"));
 app.use("/api/daily-tasks", require("./routes/dailyTasks"));
 app.use("/api/certification", require("./routes/certification"));
 app.use("/api/admin", require("./routes/admin"));
+app.use("/api/dossier", require("./routes/dossier"));
 
 // Health check
 app.get("/api/health", (req, res) => {

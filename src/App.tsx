@@ -16,6 +16,7 @@ import Performance from "./pages/Performance";
 import CertificationHub from "./pages/CertificationHub";
 import CertificationExam from "./pages/CertificationExam";
 import CertificationResult from "./pages/CertificationResult";
+import SkillsProfile from "./pages/SkillsProfile";
 import NotFound from "./pages/NotFound";
 import Admin from "./pages/Admin";
 import ChatbotButton from "./components/ChatbotButton";
@@ -42,6 +43,7 @@ const App = () => (
           <Route path="/certifications/exam/:level" element={<CertificationExam />} />
           <Route path="/certifications/result" element={<CertificationResult />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/skills-profile" element={<SkillsProfile />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

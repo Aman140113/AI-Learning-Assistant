@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Mail, Calendar, Trophy, Zap, Flame, X, Plus, AlertTriangle, Trash2, ArrowLeft } from "lucide-react";
+import { Mail, Calendar, Trophy, Zap, Flame, X, Plus, AlertTriangle, Trash2, ArrowLeft, FileText, ArrowRight } from "lucide-react";
 import Layout from "@/components/Layout";
 import { getUserProgress, updateAvatar, deleteAccount } from "@/services/api";
 import { userData as fallbackUserData } from "@/data/dummyData";
@@ -181,6 +181,28 @@ const Profile = () => {
                                 Change Avatar
                             </button>
                         </div>
+                    </div>
+                </div>
+
+                {/* Skills Profile */}
+                <div className="glass-card p-6 mb-6 animate-slide-up stagger-2" style={{ opacity: 0, animationFillMode: "forwards" }}>
+                    <div className="flex items-center justify-between">
+                        <div>
+                            <h2 className="text-lg font-bold text-foreground flex items-center gap-2">
+                                <FileText className="w-5 h-5 text-primary" />
+                                Skills & Education Profile
+                            </h2>
+                            <p className="text-sm text-muted-foreground mt-1">
+                                Manage your trainee dossier — education, skills, projects, achievements, and activities.
+                            </p>
+                        </div>
+                        <button
+                            onClick={() => navigate("/skills-profile")}
+                            className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition-all hover:scale-105 active:scale-95 shrink-0"
+                        >
+                            Edit Profile
+                            <ArrowRight className="w-4 h-4" />
+                        </button>
                     </div>
                 </div>
 

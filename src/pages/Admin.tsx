@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import {
     Shield, Users, BookOpen, HelpCircle, BarChart3, LogOut,
     Trash2, Plus, Pencil, X, ChevronDown, Search, AlertTriangle,
-    TrendingUp, UserCheck, Brain, Hash, Layers, Route, Filter
+    TrendingUp, UserCheck, Brain, Hash, Layers, Route, Filter,
+    FileText, Download, Award
 } from "lucide-react";
 import {
     getAdminStats, getAdminUsers, deleteAdminUser,
@@ -11,6 +12,7 @@ import {
     getAdminSkills, createAdminSkill, updateAdminSkill, deleteAdminSkill,
     getAdminQuestions, createAdminQuestion, updateAdminQuestion, deleteAdminQuestion,
     getAdminUserLearningPath,
+    searchDossierUsers, downloadDossierPdf,
 } from "@/services/api";
 
 // ═══════════════════════════════════════
@@ -66,7 +68,7 @@ interface QuestionData {
     skill_id: { _id: string; name: string; difficulty_level: string; domain_id: { _id: string; name: string } };
 }
 
-type Tab = "overview" | "users" | "content" | "questions";
+type Tab = "overview" | "users" | "content" | "questions" | "skillportal";
 
 // ═══════════════════════════════════════
 //  MODAL COMPONENT
@@ -131,6 +133,7 @@ const Admin = () => {
         { id: "users", label: "Users", icon: Users },
         { id: "content", label: "Domains & Skills", icon: BookOpen },
         { id: "questions", label: "Questions", icon: HelpCircle },
+        { id: "skillportal", label: "Skill Portal", icon: FileText },
     ];
 
     const handleLogout = () => {
@@ -186,6 +189,7 @@ const Admin = () => {
                     {activeTab === "users" && <UsersTab />}
                     {activeTab === "content" && <ContentTab />}
                     {activeTab === "questions" && <QuestionsTab />}
+                    {activeTab === "skillportal" && <SkillPortalTab />}
                 </div>
             </main>
         </div>
@@ -1149,6 +1153,235 @@ function QuestionsTab() {
                 onConfirm={handleDelete}
                 message={`Delete this question? This action cannot be undone.`}
             />
+        </div>
+    );
+}
+
+// ═══════════════════════════════════════
+//  TAB 5: SKILL PORTAL (Dossier)
+// ═══════════════════════════════════════
+interface DossierUser {
+    _id: string;
+    name: string;
+    email: string;
+    avatar: string | null;
+    domain: string;
+    skills: string[];
+    certifications: { level: string; licence_id: string; score: number; issued_at: string }[];
+    hasProfile: boolean;
+    profileCompletedAt: string | null;
+}
+
+function SkillPortalTab() {
+    const [users, setUsers] = useState<DossierUser[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [searchQuery, setSearchQuery] = useState("");
+    const [filterDomain, setFilterDomain] = useState("");
+    const [filterSkill, setFilterSkill] = useState("");
+    const [filterCert, setFilterCert] = useState("");
+    const [domains, setDomains] = useState<DomainData[]>([]);
+    const [downloading, setDownloading] = useState<string | null>(null);
+
+    const search = () => {
+        setLoading(true);
+        searchDossierUsers({
+            q: searchQuery || undefined,
+            domain: filterDomain || undefined,
+            skill: filterSkill || undefined,
+            certification: filterCert || undefined,
+        })
+            .then(setUsers)
+            .catch(console.error)
+            .finally(() => setLoading(false));
+    };
+
+    useEffect(() => {
+        search();
+        getAdminDomains().then(setDomains).catch(console.error);
+    }, []);
+
+    useEffect(() => {
+        const debounce = setTimeout(() => search(), 400);
+        return () => clearTimeout(debounce);
+    }, [searchQuery, filterDomain, filterSkill, filterCert]);
+
+    const handleDownloadPdf = async (userId: string, userName: string) => {
+        setDownloading(userId);
+        try {
+            const blob = await downloadDossierPdf(userId);
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = `Dossier_${userName.replace(/\s+/g, "_")}.pdf`;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            window.URL.revokeObjectURL(url);
+        } catch (e) {
+            console.error(e);
+        } finally {
+            setDownloading(null);
+        }
+    };
+
+    return (
+        <div className="space-y-6">
+            <div>
+                <h2 className="text-2xl font-bold mb-1 flex items-center gap-2">
+                    <FileText className="w-6 h-6 text-purple-400" />
+                    Skill Portal
+                </h2>
+                <p className="text-slate-500 text-sm">Search trainees by domain, skills, or certifications and download their dossier</p>
+            </div>
+
+            {/* Filters Row */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                <div className="relative">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                    <input
+                        type="text"
+                        value={searchQuery}
+                        onChange={e => setSearchQuery(e.target.value)}
+                        placeholder="Search by name or email..."
+                        className="w-full bg-[#121212] border border-white/10 text-white placeholder:text-slate-500 rounded-xl pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500 focus:border-purple-500 transition-all"
+                    />
+                </div>
+                <div className="relative">
+                    <Filter className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                    <select
+                        value={filterDomain}
+                        onChange={e => setFilterDomain(e.target.value)}
+                        className="w-full bg-[#121212] border border-white/10 text-white rounded-xl pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500 appearance-none cursor-pointer"
+                    >
+                        <option value="">All Domains</option>
+                        {domains.map(d => <option key={d._id} value={d._id}>{d.name}</option>)}
+                    </select>
+                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 pointer-events-none" />
+                </div>
+                <div>
+                    <input
+                        type="text"
+                        value={filterSkill}
+                        onChange={e => setFilterSkill(e.target.value)}
+                        placeholder="Filter by skill..."
+                        className="w-full bg-[#121212] border border-white/10 text-white placeholder:text-slate-500 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500 transition-all"
+                    />
+                </div>
+                <div className="relative">
+                    <Award className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                    <select
+                        value={filterCert}
+                        onChange={e => setFilterCert(e.target.value)}
+                        className="w-full bg-[#121212] border border-white/10 text-white rounded-xl pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500 appearance-none cursor-pointer"
+                    >
+                        <option value="">All Certifications</option>
+                        <option value="any">Any Certification</option>
+                        <option value="PL-1">PL-1 Only</option>
+                        <option value="PL-2">PL-2 Only</option>
+                    </select>
+                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 pointer-events-none" />
+                </div>
+            </div>
+
+            {/* Results */}
+            {loading ? (
+                <LoadingState />
+            ) : (
+                <div className="bg-[#121212] border border-white/5 rounded-2xl overflow-hidden">
+                    <div className="px-5 py-4 border-b border-white/5 flex items-center justify-between">
+                        <h3 className="font-bold text-sm text-white">{users.length} Trainee{users.length !== 1 ? "s" : ""} Found</h3>
+                    </div>
+                    <div className="overflow-x-auto">
+                        <table className="w-full">
+                            <thead>
+                                <tr className="border-b border-white/5">
+                                    <th className="text-left px-5 py-3 text-xs text-slate-500 font-semibold uppercase tracking-wider">Trainee</th>
+                                    <th className="text-left px-5 py-3 text-xs text-slate-500 font-semibold uppercase tracking-wider">Domain</th>
+                                    <th className="text-left px-5 py-3 text-xs text-slate-500 font-semibold uppercase tracking-wider">Skills</th>
+                                    <th className="text-left px-5 py-3 text-xs text-slate-500 font-semibold uppercase tracking-wider">Certifications</th>
+                                    <th className="text-left px-5 py-3 text-xs text-slate-500 font-semibold uppercase tracking-wider">Profile</th>
+                                    <th className="text-right px-5 py-3 text-xs text-slate-500 font-semibold uppercase tracking-wider">Dossier</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {users.map(user => (
+                                    <tr key={user._id} className="border-b border-white/[0.03] hover:bg-white/[0.02] transition-colors">
+                                        <td className="px-5 py-3.5">
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-8 h-8 rounded-full bg-purple-500/20 flex items-center justify-center shrink-0 overflow-hidden">
+                                                    {user.avatar ? (
+                                                        <img src={`/src/assets/avatars/${user.avatar}`} alt="" className="w-7 h-7 object-contain" />
+                                                    ) : (
+                                                        <span className="text-xs font-bold text-purple-400">{user.name.charAt(0)}</span>
+                                                    )}
+                                                </div>
+                                                <div>
+                                                    <p className="text-sm font-medium text-white">{user.name}</p>
+                                                    <p className="text-xs text-slate-500">{user.email}</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td className="px-5 py-3.5">
+                                            <span className="text-xs font-medium text-slate-300 bg-white/5 px-2.5 py-1 rounded-lg">{user.domain}</span>
+                                        </td>
+                                        <td className="px-5 py-3.5">
+                                            <div className="flex flex-wrap gap-1 max-w-[200px]">
+                                                {user.skills.length > 0 ? (
+                                                    <>
+                                                        {user.skills.slice(0, 3).map(s => (
+                                                            <span key={s} className="text-[10px] px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">{s}</span>
+                                                        ))}
+                                                        {user.skills.length > 3 && (
+                                                            <span className="text-[10px] px-2 py-0.5 rounded-md bg-white/5 text-slate-400">+{user.skills.length - 3}</span>
+                                                        )}
+                                                    </>
+                                                ) : (
+                                                    <span className="text-xs text-slate-600">—</span>
+                                                )}
+                                            </div>
+                                        </td>
+                                        <td className="px-5 py-3.5">
+                                            <div className="flex flex-wrap gap-1">
+                                                {user.certifications.length > 0 ? (
+                                                    user.certifications.map((c, i) => (
+                                                        <span key={i} className="text-[10px] px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-400 border border-amber-500/20 font-bold">
+                                                            {c.level} ({c.score}%)
+                                                        </span>
+                                                    ))
+                                                ) : (
+                                                    <span className="text-xs text-slate-600">None</span>
+                                                )}
+                                            </div>
+                                        </td>
+                                        <td className="px-5 py-3.5">
+                                            {user.hasProfile ? (
+                                                <span className="text-[10px] px-2 py-0.5 rounded-md bg-emerald-500/15 text-emerald-400 font-bold">Complete</span>
+                                            ) : (
+                                                <span className="text-[10px] px-2 py-0.5 rounded-md bg-white/5 text-slate-500">Incomplete</span>
+                                            )}
+                                        </td>
+                                        <td className="px-5 py-3.5 text-right">
+                                            <button
+                                                onClick={() => handleDownloadPdf(user._id, user.name)}
+                                                disabled={downloading === user._id}
+                                                className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium bg-purple-500/15 text-purple-400 border border-purple-500/30 hover:bg-purple-500/25 transition-colors ml-auto disabled:opacity-50"
+                                            >
+                                                <Download className="w-3.5 h-3.5" />
+                                                {downloading === user._id ? "Downloading..." : "Download PDF"}
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
+                                {users.length === 0 && (
+                                    <tr>
+                                        <td colSpan={6} className="text-center py-10 text-slate-500 text-sm">No trainees found matching your filters</td>
+                                    </tr>
+                                )}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
