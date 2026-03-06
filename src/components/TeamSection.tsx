@@ -47,7 +47,7 @@ const teamData = [
         id: 7,
         name: "Akash Singh",
         role: "Backend Developer",
-        image: "src/assets/Team/Akash.png",
+        image: "src/assets/Team/Akash.jpg",
         socials: { ig: "https://www.linkedin.com/in/akashraj77312"}
     }
 ];

@@ -6,7 +6,5 @@ def safe_json_parse(output: str):
     except Exception:
         return {
             "answer": output,
-            "confidence": "unknown",
-            "related_topics": [],
-            "suggested_next_action": ""
+            
         }

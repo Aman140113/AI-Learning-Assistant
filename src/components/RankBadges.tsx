@@ -1,5 +1,6 @@
 // SVG rank badge components — no background, just the badge shape
 
+
 interface BadgeProps {
     className?: string;
 }
