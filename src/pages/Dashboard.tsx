@@ -41,7 +41,12 @@ const Dashboard = () => {
         getUserProgress(userId).catch(() => null),
         fetchDailyTasks(userId).catch(() => null),
       ]).then(([progressData, tasksData]) => {
-        if (progressData) setData(progressData);
+        if (progressData) {
+          setData(progressData);
+          if (progressData.selectedDomain) {
+            localStorage.setItem("selectedDomainName", progressData.selectedDomain);
+          }
+        }
         if (tasksData?.completedDates) setCompletedDates(tasksData.completedDates);
         setLoading(false);
       });

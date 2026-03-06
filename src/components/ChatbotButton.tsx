@@ -39,10 +39,24 @@ const ChatbotButton = () => {
       if (domain === "QA Testing") domain = "QA";
       if (domain === "Java Development") domain = "Java";
 
+      // Get user name from localStorage or use a default
+      const learnerDetailsStr = localStorage.getItem("userDetails");
+      let learner_name = "Learner";
+      if (learnerDetailsStr) {
+        try {
+          const details = JSON.parse(learnerDetailsStr);
+          if (details && details.name) {
+            learner_name = details.name;
+          }
+        } catch (e) {
+          // ignore parse errors
+        }
+      }
+
       const res = await fetch("/chatbot/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ domain, message: trimmed }),
+        body: JSON.stringify({ domain, message: trimmed, learner_name }),
       });
 
       if (!res.ok) {

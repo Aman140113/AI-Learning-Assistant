@@ -1,6 +1,5 @@
 from fastapi import FastAPI
 from app.llm_service import generate_chat_response
-from app.validators import safe_json_parse
 from app.models import ChatRequest
 
 
@@ -15,6 +14,4 @@ def chat(request: ChatRequest):
         request.learner_name
     )
 
-    parsed_output = safe_json_parse(raw_output)
-
-    return parsed_output
+    return raw_output

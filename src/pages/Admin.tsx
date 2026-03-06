@@ -14,6 +14,7 @@ import {
     getAdminUserLearningPath,
     searchDossierUsers, downloadDossierPdf,
 } from "@/services/api";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 // ═══════════════════════════════════════
 //  TYPES
@@ -78,12 +79,12 @@ function Modal({ open, onClose, title, children }: { open: boolean; onClose: () 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm" onClick={onClose}>
             <div
-                className="bg-[#141414] border border-white/10 rounded-2xl p-6 w-[90%] max-w-lg shadow-2xl max-h-[85vh] overflow-y-auto animate-in fade-in zoom-in-95"
+                className="bg-background border border-border rounded-2xl p-6 w-[90%] max-w-lg shadow-2xl max-h-[85vh] overflow-y-auto animate-in fade-in zoom-in-95"
                 onClick={(e) => e.stopPropagation()}
             >
                 <div className="flex items-center justify-between mb-5">
-                    <h3 className="text-lg font-bold text-white">{title}</h3>
-                    <button onClick={onClose} className="text-slate-400 hover:text-white transition-colors">
+                    <h3 className="text-lg font-bold text-foreground">{title}</h3>
+                    <button onClick={onClose} className="text-muted-foreground hover:text-foreground transition-colors">
                         <X className="w-5 h-5" />
                     </button>
                 </div>
@@ -100,19 +101,19 @@ function ConfirmDialog({ open, onClose, onConfirm, message }: { open: boolean; o
     if (!open) return null;
     return (
         <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/70 backdrop-blur-sm" onClick={onClose}>
-            <div className="bg-[#141414] border border-white/10 rounded-2xl p-6 w-[90%] max-w-sm shadow-2xl" onClick={(e) => e.stopPropagation()}>
+            <div className="bg-background border border-border rounded-2xl p-6 w-[90%] max-w-sm shadow-2xl" onClick={(e) => e.stopPropagation()}>
                 <div className="flex items-center gap-3 mb-4">
                     <div className="w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center">
-                        <AlertTriangle className="w-5 h-5 text-red-400" />
+                        <AlertTriangle className="w-5 h-5 text-red-500" />
                     </div>
-                    <h3 className="text-lg font-bold text-white">Confirm Delete</h3>
+                    <h3 className="text-lg font-bold text-foreground">Confirm Delete</h3>
                 </div>
-                <p className="text-slate-400 text-sm mb-6">{message}</p>
+                <p className="text-muted-foreground text-sm mb-6">{message}</p>
                 <div className="flex gap-3 justify-end">
-                    <button onClick={onClose} className="px-4 py-2 rounded-xl bg-white/5 text-slate-300 hover:bg-white/10 text-sm font-medium transition-colors">
+                    <button onClick={onClose} className="px-4 py-2 rounded-xl bg-muted text-muted-foreground hover:bg-muted/80 text-sm font-medium transition-colors">
                         Cancel
                     </button>
-                    <button onClick={onConfirm} className="px-4 py-2 rounded-xl bg-red-500/20 text-red-400 hover:bg-red-500/30 border border-red-500/30 text-sm font-medium transition-colors">
+                    <button onClick={onConfirm} className="px-4 py-2 rounded-xl bg-red-500/20 text-red-500 hover:bg-red-500/30 border border-red-500/30 text-sm font-medium transition-colors">
                         Delete
                     </button>
                 </div>
@@ -142,16 +143,16 @@ const Admin = () => {
     };
 
     return (
-        <div className="flex h-screen bg-[#0A0A0A] text-white overflow-hidden">
+        <div className="flex h-screen bg-background text-foreground overflow-hidden">
             {/* Sidebar */}
-            <aside className="w-64 border-r border-white/5 bg-[#0E0E0E] flex flex-col shrink-0">
-                <div className="flex items-center gap-3 p-6 border-b border-white/5">
+            <aside className="w-64 border-r border-border bg-card flex flex-col shrink-0">
+                <div className="flex items-center gap-3 p-6 border-b border-border">
                     <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-purple-500/20">
                         <Shield className="w-5 h-5 text-white" />
                     </div>
                     <div>
-                        <h1 className="font-bold text-sm">SkillSpark<span className="text-purple-400">AI</span></h1>
-                        <p className="text-[10px] text-slate-500 uppercase tracking-widest font-semibold">Admin Panel</p>
+                        <h1 className="font-bold text-sm">SkillSpark<span className="text-purple-500">AI</span></h1>
+                        <p className="text-[10px] text-muted-foreground uppercase tracking-widest font-semibold">Admin Panel</p>
                     </div>
                 </div>
 
@@ -161,8 +162,8 @@ const Admin = () => {
                             key={tab.id}
                             onClick={() => setActiveTab(tab.id)}
                             className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${activeTab === tab.id
-                                ? "bg-purple-500/15 text-purple-400 shadow-inner"
-                                : "text-slate-400 hover:bg-white/5 hover:text-slate-200"
+                                ? "bg-purple-500/15 text-purple-600 dark:text-purple-400 shadow-inner"
+                                : "text-muted-foreground hover:bg-muted hover:text-foreground"
                                 }`}
                         >
                             <tab.icon className="w-4.5 h-4.5" />
@@ -171,10 +172,14 @@ const Admin = () => {
                     ))}
                 </nav>
 
-                <div className="p-4 border-t border-white/5">
+                <div className="p-4 border-t border-border flex flex-col gap-2">
+                    <div className="flex items-center justify-between px-2 mb-2">
+                        <span className="text-sm font-medium text-muted-foreground">Theme</span>
+                        <ThemeToggle />
+                    </div>
                     <button
                         onClick={handleLogout}
-                        className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-red-400 hover:bg-red-500/10 transition-colors"
+                        className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-red-500 hover:bg-red-500/10 transition-colors"
                     >
                         <LogOut className="w-4.5 h-4.5" />
                         Logout
@@ -222,21 +227,21 @@ function OverviewTab() {
     return (
         <div className="space-y-8">
             <div>
-                <h2 className="text-2xl font-bold mb-1">Dashboard Overview</h2>
-                <p className="text-slate-500 text-sm">Platform analytics at a glance</p>
+                <h2 className="text-2xl font-bold mb-1 text-foreground">Dashboard Overview</h2>
+                <p className="text-muted-foreground text-sm">Platform analytics at a glance</p>
             </div>
 
             {/* Stat Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {statCards.map((card) => (
-                    <div key={card.label} className="bg-[#121212] border border-white/5 rounded-2xl p-5 hover:border-white/10 transition-colors">
+                    <div key={card.label} className="bg-card border border-border rounded-2xl p-5 hover:border-border/80 transition-colors">
                         <div className="flex items-center justify-between mb-3">
-                            <span className="text-xs text-slate-500 font-semibold uppercase tracking-wider">{card.label}</span>
+                            <span className="text-xs text-muted-foreground font-semibold uppercase tracking-wider">{card.label}</span>
                             <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${card.color} flex items-center justify-center shadow-lg ${card.shadow}`}>
                                 <card.icon className="w-4.5 h-4.5 text-white" />
                             </div>
                         </div>
-                        <p className="text-3xl font-bold text-white">{card.value}</p>
+                        <p className="text-3xl font-bold text-foreground">{card.value}</p>
                     </div>
                 ))}
             </div>
@@ -244,22 +249,22 @@ function OverviewTab() {
             {/* Charts Row */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {/* Domain Distribution */}
-                <div className="bg-[#121212] border border-white/5 rounded-2xl p-6">
-                    <h3 className="font-bold text-sm text-white mb-5 flex items-center gap-2">
-                        <Layers className="w-4 h-4 text-purple-400" />
+                <div className="bg-card border border-border rounded-2xl p-6">
+                    <h3 className="font-bold text-sm text-foreground mb-5 flex items-center gap-2">
+                        <Layers className="w-4 h-4 text-purple-500" />
                         Domain Distribution
                     </h3>
                     {stats.domainDistribution.length === 0 ? (
-                        <p className="text-slate-500 text-sm">No user domain selections yet</p>
+                        <p className="text-muted-foreground text-sm">No user domain selections yet</p>
                     ) : (
                         <div className="space-y-4">
                             {stats.domainDistribution.map((d) => (
                                 <div key={d._id}>
                                     <div className="flex items-center justify-between mb-1.5">
-                                        <span className="text-sm text-slate-300 font-medium">{d.name}</span>
-                                        <span className="text-sm text-slate-500 font-semibold">{d.count} users</span>
+                                        <span className="text-sm text-foreground font-medium">{d.name}</span>
+                                        <span className="text-sm text-muted-foreground font-semibold">{d.count} users</span>
                                     </div>
-                                    <div className="h-2.5 bg-white/5 rounded-full overflow-hidden">
+                                    <div className="h-2.5 bg-secondary rounded-full overflow-hidden">
                                         <div
                                             className="h-full rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 transition-all duration-700"
                                             style={{ width: `${(d.count / maxDistribution) * 100}%` }}
@@ -272,24 +277,24 @@ function OverviewTab() {
                 </div>
 
                 {/* Average Scores */}
-                <div className="bg-[#121212] border border-white/5 rounded-2xl p-6">
-                    <h3 className="font-bold text-sm text-white mb-5 flex items-center gap-2">
-                        <TrendingUp className="w-4 h-4 text-emerald-400" />
+                <div className="bg-card border border-border rounded-2xl p-6">
+                    <h3 className="font-bold text-sm text-foreground mb-5 flex items-center gap-2">
+                        <TrendingUp className="w-4 h-4 text-emerald-500" />
                         Average Quiz Scores
                     </h3>
                     {stats.avgScores.length === 0 ? (
-                        <p className="text-slate-500 text-sm">No quiz attempts yet</p>
+                        <p className="text-muted-foreground text-sm">No quiz attempts yet</p>
                     ) : (
                         <div className="space-y-4">
                             {stats.avgScores.map((s) => (
                                 <div key={s._id}>
                                     <div className="flex items-center justify-between mb-1.5">
-                                        <span className="text-sm text-slate-300 font-medium">{s.name}</span>
-                                        <span className={`text-sm font-bold ${s.avgScore >= 70 ? "text-emerald-400" : s.avgScore >= 40 ? "text-amber-400" : "text-red-400"}`}>
+                                        <span className="text-sm text-foreground font-medium">{s.name}</span>
+                                        <span className={`text-sm font-bold ${s.avgScore >= 70 ? "text-emerald-500" : s.avgScore >= 40 ? "text-amber-500" : "text-red-500"}`}>
                                             {s.avgScore}%
                                         </span>
                                     </div>
-                                    <div className="h-2.5 bg-white/5 rounded-full overflow-hidden">
+                                    <div className="h-2.5 bg-secondary rounded-full overflow-hidden">
                                         <div
                                             className={`h-full rounded-full transition-all duration-700 ${s.avgScore >= 70 ? "bg-gradient-to-r from-emerald-500 to-teal-500" :
                                                 s.avgScore >= 40 ? "bg-gradient-to-r from-amber-500 to-orange-500" :
@@ -298,7 +303,7 @@ function OverviewTab() {
                                             style={{ width: `${s.avgScore}%` }}
                                         />
                                     </div>
-                                    <p className="text-[11px] text-slate-600 mt-1">{s.totalAttempts} attempts</p>
+                                    <p className="text-[11px] text-muted-foreground mt-1">{s.totalAttempts} attempts</p>
                                 </div>
                             ))}
                         </div>
@@ -319,11 +324,11 @@ function OverviewTab() {
 
 function InfoCard({ label, value, icon: Icon }: { label: string; value: number; icon: React.ElementType }) {
     return (
-        <div className="bg-[#121212] border border-white/5 rounded-xl p-4 flex items-center gap-3">
-            <Icon className="w-5 h-5 text-slate-500" />
+        <div className="bg-card border border-border rounded-xl p-4 flex items-center gap-3">
+            <Icon className="w-5 h-5 text-muted-foreground" />
             <div>
-                <p className="text-xs text-slate-500 font-medium">{label}</p>
-                <p className="text-lg font-bold">{value}</p>
+                <p className="text-xs text-muted-foreground font-medium">{label}</p>
+                <p className="text-lg font-bold text-foreground">{value}</p>
             </div>
         </div>
     );
@@ -396,74 +401,74 @@ function UsersTab() {
         <div className="space-y-6">
             <div className="flex items-center justify-between">
                 <div>
-                    <h2 className="text-2xl font-bold mb-1">User Management</h2>
-                    <p className="text-slate-500 text-sm">{users.length} registered users</p>
+                    <h2 className="text-2xl font-bold mb-1 text-foreground">User Management</h2>
+                    <p className="text-muted-foreground text-sm">{users.length} registered users</p>
                 </div>
             </div>
 
             {/* Search */}
             <div className="relative max-w-md">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <input
                     type="text"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                     placeholder="Search by name or email..."
-                    className="w-full bg-[#121212] border border-white/10 text-white placeholder:text-slate-500 rounded-xl pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500 focus:border-purple-500 transition-all"
+                    className="w-full bg-background border border-border text-foreground placeholder:text-muted-foreground rounded-xl pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500 focus:border-purple-500 transition-all"
                 />
             </div>
 
             {/* Table */}
-            <div className="bg-[#121212] border border-white/5 rounded-2xl overflow-hidden">
+            <div className="bg-card border border-border rounded-2xl overflow-hidden">
                 <div className="overflow-x-auto">
                     <table className="w-full">
                         <thead>
-                            <tr className="border-b border-white/5">
-                                <th className="text-left px-5 py-3 text-xs text-slate-500 font-semibold uppercase tracking-wider">User</th>
-                                <th className="text-left px-5 py-3 text-xs text-slate-500 font-semibold uppercase tracking-wider">Domain</th>
-                                <th className="text-left px-5 py-3 text-xs text-slate-500 font-semibold uppercase tracking-wider">Level</th>
-                                <th className="text-left px-5 py-3 text-xs text-slate-500 font-semibold uppercase tracking-wider">Score</th>
-                                <th className="text-left px-5 py-3 text-xs text-slate-500 font-semibold uppercase tracking-wider">Attempts</th>
-                                <th className="text-left px-5 py-3 text-xs text-slate-500 font-semibold uppercase tracking-wider">Joined</th>
-                                <th className="text-right px-5 py-3 text-xs text-slate-500 font-semibold uppercase tracking-wider">Actions</th>
+                            <tr className="border-b border-border">
+                                <th className="text-left px-5 py-3 text-xs text-muted-foreground font-semibold uppercase tracking-wider">User</th>
+                                <th className="text-left px-5 py-3 text-xs text-muted-foreground font-semibold uppercase tracking-wider">Domain</th>
+                                <th className="text-left px-5 py-3 text-xs text-muted-foreground font-semibold uppercase tracking-wider">Level</th>
+                                <th className="text-left px-5 py-3 text-xs text-muted-foreground font-semibold uppercase tracking-wider">Score</th>
+                                <th className="text-left px-5 py-3 text-xs text-muted-foreground font-semibold uppercase tracking-wider">Attempts</th>
+                                <th className="text-left px-5 py-3 text-xs text-muted-foreground font-semibold uppercase tracking-wider">Joined</th>
+                                <th className="text-right px-5 py-3 text-xs text-muted-foreground font-semibold uppercase tracking-wider">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             {filtered.map((user) => (
                                 <>
-                                    <tr key={user._id} className="border-b border-white/[0.03] hover:bg-white/[0.02] transition-colors">
+                                    <tr key={user._id} className="border-b border-border hover:bg-muted/50 transition-colors">
                                         <td className="px-5 py-3.5">
                                             <div className="flex items-center gap-3">
                                                 <div className="w-8 h-8 rounded-full bg-purple-500/20 flex items-center justify-center shrink-0 overflow-hidden">
                                                     {user.avatar ? (
                                                         <img src={`/src/assets/avatars/${user.avatar}`} alt="" className="w-7 h-7 object-contain" />
                                                     ) : (
-                                                        <span className="text-xs font-bold text-purple-400">{user.name.charAt(0)}</span>
+                                                        <span className="text-xs font-bold text-purple-600 dark:text-purple-400">{user.name.charAt(0)}</span>
                                                     )}
                                                 </div>
                                                 <div>
-                                                    <p className="text-sm font-medium text-white">{user.name}</p>
-                                                    <p className="text-xs text-slate-500">{user.email}</p>
+                                                    <p className="text-sm font-medium text-foreground">{user.name}</p>
+                                                    <p className="text-xs text-muted-foreground">{user.email}</p>
                                                 </div>
                                             </div>
                                         </td>
                                         <td className="px-5 py-3.5">
-                                            <span className="text-xs font-medium text-slate-300 bg-white/5 px-2.5 py-1 rounded-lg">{user.domain}</span>
+                                            <span className="text-xs font-medium text-foreground bg-muted px-2.5 py-1 rounded-lg">{user.domain}</span>
                                         </td>
                                         <td className="px-5 py-3.5">
-                                            <span className={`text-xs font-bold px-2.5 py-1 rounded-lg ${user.level === "Advanced" ? "bg-emerald-500/15 text-emerald-400" :
-                                                user.level === "Intermediate" ? "bg-amber-500/15 text-amber-400" :
-                                                    user.level === "Beginner" ? "bg-blue-500/15 text-blue-400" :
-                                                        "bg-white/5 text-slate-500"
+                                            <span className={`text-xs font-bold px-2.5 py-1 rounded-lg ${user.level === "Advanced" ? "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400" :
+                                                user.level === "Intermediate" ? "bg-amber-500/15 text-amber-600 dark:text-amber-400" :
+                                                    user.level === "Beginner" ? "bg-blue-500/15 text-blue-600 dark:text-blue-400" :
+                                                        "bg-muted text-muted-foreground"
                                                 }`}>
                                                 {user.level}
                                             </span>
                                         </td>
-                                        <td className="px-5 py-3.5 text-sm text-slate-300 font-medium">
+                                        <td className="px-5 py-3.5 text-sm text-foreground font-medium">
                                             {user.latestScore !== null ? `${user.latestScore}%` : "—"}
                                         </td>
-                                        <td className="px-5 py-3.5 text-sm text-slate-400">{user.attemptCount}</td>
-                                        <td className="px-5 py-3.5 text-xs text-slate-500">
+                                        <td className="px-5 py-3.5 text-sm text-muted-foreground">{user.attemptCount}</td>
+                                        <td className="px-5 py-3.5 text-xs text-muted-foreground">
                                             {new Date(user.created_at).toLocaleDateString()}
                                         </td>
                                         <td className="px-5 py-3.5 text-right">
@@ -471,8 +476,8 @@ function UsersTab() {
                                                 <button
                                                     onClick={() => toggleLearningPath(user._id)}
                                                     className={`p-2 rounded-lg transition-colors ${expandedUser === user._id
-                                                        ? "bg-purple-500/15 text-purple-400"
-                                                        : "text-slate-400 hover:text-purple-400 hover:bg-purple-500/10"
+                                                        ? "bg-purple-500/15 text-purple-600 dark:text-purple-400"
+                                                        : "text-muted-foreground hover:text-purple-600 dark:hover:text-purple-400 hover:bg-purple-500/10"
                                                         }`}
                                                     title="View learning path"
                                                 >
@@ -480,7 +485,7 @@ function UsersTab() {
                                                 </button>
                                                 <button
                                                     onClick={() => setDeleteTarget(user)}
-                                                    className="p-2 rounded-lg text-red-400/60 hover:text-red-400 hover:bg-red-500/10 transition-colors"
+                                                    className="p-2 rounded-lg text-red-500/60 hover:text-red-500 hover:bg-red-500/10 transition-colors"
                                                     title="Delete user"
                                                 >
                                                     <Trash2 className="w-4 h-4" />
@@ -492,12 +497,12 @@ function UsersTab() {
                                     {expandedUser === user._id && (
                                         <tr key={`${user._id}-path`}>
                                             <td colSpan={7} className="px-5 py-0">
-                                                <div className="bg-[#0A0A0A] border border-white/5 rounded-xl p-5 my-2 animate-in fade-in slide-in-from-top-2">
+                                                <div className="bg-background border border-border rounded-xl p-5 my-2 animate-in fade-in slide-in-from-top-2">
                                                     <div className="flex items-center gap-2 mb-4">
-                                                        <Route className="w-4 h-4 text-purple-400" />
-                                                        <h4 className="text-sm font-bold text-white">Learning Path</h4>
+                                                        <Route className="w-4 h-4 text-purple-500" />
+                                                        <h4 className="text-sm font-bold text-foreground">Learning Path</h4>
                                                         {learningPath && (
-                                                            <span className="text-xs text-slate-500 bg-white/5 px-2 py-0.5 rounded-md">
+                                                            <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded-md">
                                                                 {learningPath.domain}
                                                             </span>
                                                         )}
@@ -514,30 +519,30 @@ function UsersTab() {
                                                                 {learningPath.path.map((step) => (
                                                                     <div key={step._id} className="flex items-start gap-4 relative">
                                                                         {/* Dot */}
-                                                                        <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 z-10 text-[10px] font-bold border-2 ${step.difficulty === "Easy" ? "bg-emerald-500/20 border-emerald-500/40 text-emerald-400" :
-                                                                            step.difficulty === "Medium" ? "bg-amber-500/20 border-amber-500/40 text-amber-400" :
-                                                                                "bg-red-500/20 border-red-500/40 text-red-400"
+                                                                        <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 z-10 text-[10px] font-bold border-2 ${step.difficulty === "Easy" ? "bg-emerald-500/20 border-emerald-500/40 text-emerald-600 dark:text-emerald-400" :
+                                                                            step.difficulty === "Medium" ? "bg-amber-500/20 border-amber-500/40 text-amber-600 dark:text-amber-400" :
+                                                                                "bg-red-500/20 border-red-500/40 text-red-600 dark:text-red-400"
                                                                             }`}>
                                                                             W{step.week}
                                                                         </div>
                                                                         {/* Content */}
-                                                                        <div className="flex-1 bg-white/[0.02] border border-white/5 rounded-xl px-4 py-3 hover:border-white/10 transition-colors">
+                                                                        <div className="flex-1 bg-muted/50 border border-border rounded-xl px-4 py-3 hover:border-border/80 transition-colors">
                                                                             <div className="flex items-center justify-between gap-2">
-                                                                                <p className="text-sm font-medium text-white">{step.name}</p>
+                                                                                <p className="text-sm font-medium text-foreground">{step.name}</p>
                                                                                 <div className="flex items-center gap-2 shrink-0">
-                                                                                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded-md ${step.difficulty === "Easy" ? "bg-emerald-500/15 text-emerald-400" :
-                                                                                        step.difficulty === "Medium" ? "bg-amber-500/15 text-amber-400" :
-                                                                                            "bg-red-500/15 text-red-400"
+                                                                                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded-md ${step.difficulty === "Easy" ? "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400" :
+                                                                                        step.difficulty === "Medium" ? "bg-amber-500/15 text-amber-600 dark:text-amber-400" :
+                                                                                            "bg-red-500/15 text-red-600 dark:text-red-400"
                                                                                         }`}>
                                                                                         {step.difficulty}
                                                                                     </span>
-                                                                                    <span className="text-[10px] text-slate-500">
+                                                                                    <span className="text-[10px] text-muted-foreground">
                                                                                         {step.questionCount} Q
                                                                                     </span>
                                                                                 </div>
                                                                             </div>
                                                                             {step.description && (
-                                                                                <p className="text-xs text-slate-500 mt-1 line-clamp-1">{step.description}</p>
+                                                                                <p className="text-xs text-muted-foreground mt-1 line-clamp-1">{step.description}</p>
                                                                             )}
                                                                         </div>
                                                                     </div>
@@ -545,7 +550,7 @@ function UsersTab() {
                                                             </div>
                                                         </div>
                                                     ) : (
-                                                        <p className="text-xs text-slate-500 text-center py-4">
+                                                        <p className="text-xs text-muted-foreground text-center py-4">
                                                             No learning path available — domain not selected
                                                         </p>
                                                     )}
@@ -557,7 +562,7 @@ function UsersTab() {
                             ))}
                             {filtered.length === 0 && (
                                 <tr>
-                                    <td colSpan={7} className="text-center py-10 text-slate-500 text-sm">No users found</td>
+                                    <td colSpan={7} className="text-center py-10 text-muted-foreground text-sm">No users found</td>
                                 </tr>
                             )}
                         </tbody>
@@ -683,8 +688,8 @@ function ContentTab() {
         <div className="space-y-6">
             <div className="flex items-center justify-between">
                 <div>
-                    <h2 className="text-2xl font-bold mb-1">Domains & Skills</h2>
-                    <p className="text-slate-500 text-sm">Manage learning content structure</p>
+                    <h2 className="text-2xl font-bold mb-1 text-foreground">Domains & Skills</h2>
+                    <p className="text-muted-foreground text-sm">Manage learning content structure</p>
                 </div>
                 <div className="flex gap-2">
                     <button onClick={() => openDomainModal()} className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-purple-500/20 text-purple-400 border border-purple-500/30 text-sm font-medium hover:bg-purple-500/30 transition-colors">
@@ -702,39 +707,39 @@ function ContentTab() {
                     <div
                         key={d._id}
                         onClick={() => setSelectedDomain(selectedDomain === d._id ? null : d._id)}
-                        className={`bg-[#121212] border rounded-2xl p-5 cursor-pointer transition-all duration-200 ${selectedDomain === d._id
+                        className={`bg-card border rounded-2xl p-5 cursor-pointer transition-all duration-200 ${selectedDomain === d._id
                             ? "border-purple-500/40 bg-purple-500/5 shadow-lg shadow-purple-500/5"
-                            : "border-white/5 hover:border-white/10"
+                            : "border-border hover:border-border/80"
                             }`}
                     >
                         <div className="flex items-center justify-between mb-3">
-                            <h3 className="font-bold text-sm text-white">{d.name}</h3>
+                            <h3 className="font-bold text-sm text-foreground">{d.name}</h3>
                             <div className="flex gap-1">
-                                <button onClick={(e) => { e.stopPropagation(); openDomainModal(d); }} className="p-1.5 rounded-lg hover:bg-white/10 text-slate-400 hover:text-white transition-colors">
+                                <button onClick={(e) => { e.stopPropagation(); openDomainModal(d); }} className="p-1.5 rounded-lg hover:bg-muted text-muted-foreground hover:text-foreground transition-colors">
                                     <Pencil className="w-3.5 h-3.5" />
                                 </button>
-                                <button onClick={(e) => { e.stopPropagation(); setDeleteTarget({ type: "domain", item: d }); }} className="p-1.5 rounded-lg hover:bg-red-500/10 text-slate-400 hover:text-red-400 transition-colors">
+                                <button onClick={(e) => { e.stopPropagation(); setDeleteTarget({ type: "domain", item: d }); }} className="p-1.5 rounded-lg hover:bg-red-500/10 text-muted-foreground hover:text-red-500 transition-colors">
                                     <Trash2 className="w-3.5 h-3.5" />
                                 </button>
                             </div>
                         </div>
-                        <p className="text-xs text-slate-500 mb-3 line-clamp-2">{d.description}</p>
+                        <p className="text-xs text-muted-foreground mb-3 line-clamp-2">{d.description}</p>
                         <div className="flex gap-3 text-[11px]">
-                            <span className="text-slate-400"><span className="text-white font-bold">{d.skillCount}</span> skills</span>
-                            <span className="text-slate-400"><span className="text-white font-bold">{d.questionCount}</span> questions</span>
+                            <span className="text-muted-foreground"><span className="text-foreground font-bold">{d.skillCount}</span> skills</span>
+                            <span className="text-muted-foreground"><span className="text-foreground font-bold">{d.questionCount}</span> questions</span>
                         </div>
                     </div>
                 ))}
             </div>
 
             {/* Skills Table */}
-            <div className="bg-[#121212] border border-white/5 rounded-2xl overflow-hidden">
-                <div className="px-5 py-4 border-b border-white/5 flex items-center justify-between">
-                    <h3 className="font-bold text-sm text-white">
+            <div className="bg-card border border-border rounded-2xl overflow-hidden">
+                <div className="px-5 py-4 border-b border-border flex items-center justify-between">
+                    <h3 className="font-bold text-sm text-foreground">
                         {selectedDomain ? `Skills — ${domains.find(d => d._id === selectedDomain)?.name}` : "All Skills"}
                     </h3>
                     {selectedDomain && (
-                        <button onClick={() => setSelectedDomain(null)} className="text-xs text-slate-500 hover:text-white transition-colors">
+                        <button onClick={() => setSelectedDomain(null)} className="text-xs text-muted-foreground hover:text-foreground transition-colors">
                             Show all
                         </button>
                     )}
@@ -742,37 +747,37 @@ function ContentTab() {
                 <div className="overflow-x-auto">
                     <table className="w-full">
                         <thead>
-                            <tr className="border-b border-white/5">
-                                <th className="text-left px-5 py-3 text-xs text-slate-500 font-semibold uppercase tracking-wider">Skill Name</th>
-                                <th className="text-left px-5 py-3 text-xs text-slate-500 font-semibold uppercase tracking-wider">Domain</th>
-                                <th className="text-left px-5 py-3 text-xs text-slate-500 font-semibold uppercase tracking-wider">Difficulty</th>
-                                <th className="text-left px-5 py-3 text-xs text-slate-500 font-semibold uppercase tracking-wider">Questions</th>
-                                <th className="text-right px-5 py-3 text-xs text-slate-500 font-semibold uppercase tracking-wider">Actions</th>
+                            <tr className="border-b border-border">
+                                <th className="text-left px-5 py-3 text-xs text-muted-foreground font-semibold uppercase tracking-wider">Skill Name</th>
+                                <th className="text-left px-5 py-3 text-xs text-muted-foreground font-semibold uppercase tracking-wider">Domain</th>
+                                <th className="text-left px-5 py-3 text-xs text-muted-foreground font-semibold uppercase tracking-wider">Difficulty</th>
+                                <th className="text-left px-5 py-3 text-xs text-muted-foreground font-semibold uppercase tracking-wider">Questions</th>
+                                <th className="text-right px-5 py-3 text-xs text-muted-foreground font-semibold uppercase tracking-wider">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             {skills.map((s) => (
-                                <tr key={s._id} className="border-b border-white/[0.03] hover:bg-white/[0.02] transition-colors">
+                                <tr key={s._id} className="border-b border-border hover:bg-muted/50 transition-colors">
                                     <td className="px-5 py-3.5">
-                                        <p className="text-sm font-medium text-white">{s.name}</p>
-                                        <p className="text-xs text-slate-500 line-clamp-1">{s.description}</p>
+                                        <p className="text-sm font-medium text-foreground">{s.name}</p>
+                                        <p className="text-xs text-muted-foreground line-clamp-1">{s.description}</p>
                                     </td>
-                                    <td className="px-5 py-3.5 text-xs text-slate-300">{s.domain_id?.name}</td>
+                                    <td className="px-5 py-3.5 text-xs text-muted-foreground">{s.domain_id?.name}</td>
                                     <td className="px-5 py-3.5">
-                                        <span className={`text-xs font-bold px-2.5 py-1 rounded-lg ${s.difficulty_level === "Hard" ? "bg-red-500/15 text-red-400" :
-                                            s.difficulty_level === "Medium" ? "bg-amber-500/15 text-amber-400" :
-                                                "bg-emerald-500/15 text-emerald-400"
+                                        <span className={`text-xs font-bold px-2.5 py-1 rounded-lg ${s.difficulty_level === "Hard" ? "bg-red-500/15 text-red-600 dark:text-red-400" :
+                                            s.difficulty_level === "Medium" ? "bg-amber-500/15 text-amber-600 dark:text-amber-400" :
+                                                "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400"
                                             }`}>
                                             {s.difficulty_level}
                                         </span>
                                     </td>
-                                    <td className="px-5 py-3.5 text-sm text-slate-400">{s.questionCount}</td>
+                                    <td className="px-5 py-3.5 text-sm text-muted-foreground">{s.questionCount}</td>
                                     <td className="px-5 py-3.5 text-right">
                                         <div className="flex gap-1 justify-end">
-                                            <button onClick={() => openSkillModal(s)} className="p-2 rounded-lg hover:bg-white/10 text-slate-400 hover:text-white transition-colors">
+                                            <button onClick={() => openSkillModal(s)} className="p-2 rounded-lg hover:bg-muted text-muted-foreground hover:text-foreground transition-colors">
                                                 <Pencil className="w-3.5 h-3.5" />
                                             </button>
-                                            <button onClick={() => setDeleteTarget({ type: "skill", item: s })} className="p-2 rounded-lg hover:bg-red-500/10 text-red-400/60 hover:text-red-400 transition-colors">
+                                            <button onClick={() => setDeleteTarget({ type: "skill", item: s })} className="p-2 rounded-lg hover:bg-red-500/10 text-red-500/60 hover:text-red-500 transition-colors">
                                                 <Trash2 className="w-3.5 h-3.5" />
                                             </button>
                                         </div>
@@ -780,7 +785,7 @@ function ContentTab() {
                                 </tr>
                             ))}
                             {skills.length === 0 && (
-                                <tr><td colSpan={5} className="text-center py-10 text-slate-500 text-sm">No skills found</td></tr>
+                                <tr><td colSpan={5} className="text-center py-10 text-muted-foreground text-sm">No skills found</td></tr>
                             )}
                         </tbody>
                     </table>
@@ -791,16 +796,16 @@ function ContentTab() {
             <Modal open={domainModal} onClose={() => setDomainModal(false)} title={editDomain ? "Edit Domain" : "New Domain"}>
                 <div className="space-y-4">
                     <div>
-                        <label className="text-xs text-slate-400 font-medium mb-1.5 block">Name *</label>
-                        <input value={domainForm.name} onChange={(e) => setDomainForm({ ...domainForm, name: e.target.value })} className="w-full bg-[#0A0A0A] border border-white/10 text-white rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500" placeholder="e.g., Python Development" />
+                        <label className="text-xs text-muted-foreground font-medium mb-1.5 block">Name *</label>
+                        <input value={domainForm.name} onChange={(e) => setDomainForm({ ...domainForm, name: e.target.value })} className="w-full bg-background border border-border text-foreground rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500" placeholder="e.g., Python Development" />
                     </div>
                     <div>
-                        <label className="text-xs text-slate-400 font-medium mb-1.5 block">Description</label>
-                        <textarea value={domainForm.description} onChange={(e) => setDomainForm({ ...domainForm, description: e.target.value })} className="w-full bg-[#0A0A0A] border border-white/10 text-white rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500 resize-none" rows={3} placeholder="Brief description..." />
+                        <label className="text-xs text-muted-foreground font-medium mb-1.5 block">Description</label>
+                        <textarea value={domainForm.description} onChange={(e) => setDomainForm({ ...domainForm, description: e.target.value })} className="w-full bg-background border border-border text-foreground rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500 resize-none" rows={3} placeholder="Brief description..." />
                     </div>
                     <div>
-                        <label className="text-xs text-slate-400 font-medium mb-1.5 block">Icon</label>
-                        <input value={domainForm.icon} onChange={(e) => setDomainForm({ ...domainForm, icon: e.target.value })} className="w-full bg-[#0A0A0A] border border-white/10 text-white rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500" placeholder="e.g., Coffee, Bug, Server" />
+                        <label className="text-xs text-muted-foreground font-medium mb-1.5 block">Icon</label>
+                        <input value={domainForm.icon} onChange={(e) => setDomainForm({ ...domainForm, icon: e.target.value })} className="w-full bg-background border border-border text-foreground rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500" placeholder="e.g., Coffee, Bug, Server" />
                     </div>
                     <button onClick={saveDomain} disabled={!domainForm.name} className="w-full py-2.5 rounded-xl bg-purple-500 text-white font-medium text-sm hover:bg-purple-400 disabled:opacity-40 transition-colors">
                         {editDomain ? "Update Domain" : "Create Domain"}
@@ -813,24 +818,24 @@ function ContentTab() {
                 <div className="space-y-4">
                     {!editSkill && (
                         <div>
-                            <label className="text-xs text-slate-400 font-medium mb-1.5 block">Domain *</label>
-                            <select value={skillForm.domain_id} onChange={(e) => setSkillForm({ ...skillForm, domain_id: e.target.value })} className="w-full bg-[#0A0A0A] border border-white/10 text-white rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500 appearance-none">
+                            <label className="text-xs text-muted-foreground font-medium mb-1.5 block">Domain *</label>
+                            <select value={skillForm.domain_id} onChange={(e) => setSkillForm({ ...skillForm, domain_id: e.target.value })} className="w-full bg-background border border-border text-foreground rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500 appearance-none">
                                 <option value="">Select domain...</option>
                                 {domains.map((d) => <option key={d._id} value={d._id}>{d.name}</option>)}
                             </select>
                         </div>
                     )}
                     <div>
-                        <label className="text-xs text-slate-400 font-medium mb-1.5 block">Skill Name *</label>
-                        <input value={skillForm.name} onChange={(e) => setSkillForm({ ...skillForm, name: e.target.value })} className="w-full bg-[#0A0A0A] border border-white/10 text-white rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500" placeholder="e.g., Data Structures" />
+                        <label className="text-xs text-muted-foreground font-medium mb-1.5 block">Skill Name *</label>
+                        <input value={skillForm.name} onChange={(e) => setSkillForm({ ...skillForm, name: e.target.value })} className="w-full bg-background border border-border text-foreground rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500" placeholder="e.g., Data Structures" />
                     </div>
                     <div>
-                        <label className="text-xs text-slate-400 font-medium mb-1.5 block">Description</label>
-                        <textarea value={skillForm.description} onChange={(e) => setSkillForm({ ...skillForm, description: e.target.value })} className="w-full bg-[#0A0A0A] border border-white/10 text-white rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500 resize-none" rows={2} placeholder="Brief description..." />
+                        <label className="text-xs text-muted-foreground font-medium mb-1.5 block">Description</label>
+                        <textarea value={skillForm.description} onChange={(e) => setSkillForm({ ...skillForm, description: e.target.value })} className="w-full bg-background border border-border text-foreground rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500 resize-none" rows={2} placeholder="Brief description..." />
                     </div>
                     <div>
-                        <label className="text-xs text-slate-400 font-medium mb-1.5 block">Difficulty</label>
-                        <select value={skillForm.difficulty_level} onChange={(e) => setSkillForm({ ...skillForm, difficulty_level: e.target.value })} className="w-full bg-[#0A0A0A] border border-white/10 text-white rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500 appearance-none">
+                        <label className="text-xs text-muted-foreground font-medium mb-1.5 block">Difficulty</label>
+                        <select value={skillForm.difficulty_level} onChange={(e) => setSkillForm({ ...skillForm, difficulty_level: e.target.value })} className="w-full bg-background border border-border text-foreground rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500 appearance-none">
                             <option value="Easy">Easy</option>
                             <option value="Medium">Medium</option>
                             <option value="Hard">Hard</option>
@@ -971,17 +976,17 @@ function QuestionsTab() {
         <div className="space-y-6">
             <div className="flex items-center justify-between">
                 <div>
-                    <h2 className="text-2xl font-bold mb-1">Question Bank</h2>
-                    <p className="text-slate-500 text-sm">{questions.length} questions</p>
+                    <h2 className="text-2xl font-bold mb-1 text-foreground">Question Bank</h2>
+                    <p className="text-muted-foreground text-sm">{questions.length} questions</p>
                 </div>
-                <button onClick={() => openQuestionModal()} className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-purple-500/20 text-purple-400 border border-purple-500/30 text-sm font-medium hover:bg-purple-500/30 transition-colors">
+                <button onClick={() => openQuestionModal()} className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-purple-500/20 text-purple-600 dark:text-purple-400 border border-purple-500/30 text-sm font-medium hover:bg-purple-500/30 transition-colors">
                     <Plus className="w-4 h-4" /> Add Question
                 </button>
             </div>
 
             {/* Filters */}
             <div className="flex flex-wrap items-center gap-3">
-                <div className="flex items-center gap-2 text-xs text-slate-500">
+                <div className="flex items-center gap-2 text-xs text-muted-foreground">
                     <Filter className="w-3.5 h-3.5" />
                     Filters:
                 </div>
@@ -989,29 +994,29 @@ function QuestionsTab() {
                     <select
                         value={filterDomain}
                         onChange={(e) => { setFilterDomain(e.target.value); setFilterSkill(""); }}
-                        className="bg-[#121212] border border-white/10 text-white rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500 appearance-none pr-10 min-w-[180px]"
+                        className="bg-background border border-border text-foreground rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500 appearance-none pr-10 min-w-[180px]"
                     >
                         <option value="">All Domains</option>
                         {domains.map((d) => <option key={d._id} value={d._id}>{d.name}</option>)}
                     </select>
-                    <ChevronDown className="w-4 h-4 text-slate-500 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                    <ChevronDown className="w-4 h-4 text-muted-foreground absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
                 </div>
                 <div className="relative">
                     <select
                         value={filterSkill}
                         onChange={(e) => setFilterSkill(e.target.value)}
-                        className="bg-[#121212] border border-white/10 text-white rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500 appearance-none pr-10 min-w-[180px]"
+                        className="bg-background border border-border text-foreground rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500 appearance-none pr-10 min-w-[180px]"
                     >
                         <option value="">All Skills</option>
                         {filteredSkills.map((s) => <option key={s._id} value={s._id}>{s.name}</option>)}
                     </select>
-                    <ChevronDown className="w-4 h-4 text-slate-500 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                    <ChevronDown className="w-4 h-4 text-muted-foreground absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
                 </div>
                 <div className="relative">
                     <select
                         value={filterDifficulty}
                         onChange={(e) => setFilterDifficulty(e.target.value)}
-                        className={`bg-[#121212] border text-white rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500 appearance-none pr-10 min-w-[160px] ${filterDifficulty ? "border-purple-500/30" : "border-white/10"
+                        className={`bg-background border text-foreground rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500 appearance-none pr-10 min-w-[160px] ${filterDifficulty ? "border-purple-500/30" : "border-border"
                             }`}
                     >
                         <option value="">All Difficulty</option>
@@ -1019,12 +1024,12 @@ function QuestionsTab() {
                         <option value="Medium">🟡 Medium</option>
                         <option value="Hard">🔴 Hard</option>
                     </select>
-                    <ChevronDown className="w-4 h-4 text-slate-500 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                    <ChevronDown className="w-4 h-4 text-muted-foreground absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
                 </div>
                 {hasActiveFilters && (
                     <button
                         onClick={clearAllFilters}
-                        className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-red-500/10 text-red-400 text-xs font-medium hover:bg-red-500/20 transition-colors border border-red-500/20"
+                        className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-red-500/10 text-red-600 dark:text-red-400 text-xs font-medium hover:bg-red-500/20 transition-colors border border-red-500/20"
                     >
                         <X className="w-3 h-3" /> Clear filters
                     </button>
@@ -1034,36 +1039,36 @@ function QuestionsTab() {
             {/* Question Cards */}
             <div className="space-y-3">
                 {questions.map((q, idx) => (
-                    <div key={q._id} className="bg-[#121212] border border-white/5 rounded-2xl p-5 hover:border-white/10 transition-colors">
+                    <div key={q._id} className="bg-card border border-border rounded-2xl p-5 hover:border-border/80 transition-colors">
                         <div className="flex items-start justify-between gap-4">
                             <div className="flex-1 min-w-0">
                                 <div className="flex items-center gap-2 mb-2 flex-wrap">
-                                    <span className="text-xs text-slate-500 font-mono">#{idx + 1}</span>
-                                    <span className="text-[10px] font-bold text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded-md uppercase">
+                                    <span className="text-xs text-muted-foreground font-mono">#{idx + 1}</span>
+                                    <span className="text-[10px] font-bold text-purple-600 dark:text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded-md uppercase">
                                         {q.skill_id?.domain_id?.name}
                                     </span>
-                                    <span className="text-[10px] font-bold text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded-md">
+                                    <span className="text-[10px] font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded-md">
                                         {q.skill_id?.name}
                                     </span>
-                                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded-md ${q.skill_id?.difficulty_level === "Easy" ? "bg-emerald-500/10 text-emerald-400" :
-                                        q.skill_id?.difficulty_level === "Medium" ? "bg-amber-500/10 text-amber-400" :
-                                            q.skill_id?.difficulty_level === "Hard" ? "bg-red-500/10 text-red-400" :
-                                                "bg-white/5 text-slate-500"
+                                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded-md ${q.skill_id?.difficulty_level === "Easy" ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400" :
+                                        q.skill_id?.difficulty_level === "Medium" ? "bg-amber-500/10 text-amber-600 dark:text-amber-400" :
+                                            q.skill_id?.difficulty_level === "Hard" ? "bg-red-500/10 text-red-600 dark:text-red-400" :
+                                                "bg-muted text-muted-foreground"
                                         }`}>
                                         {q.skill_id?.difficulty_level || "N/A"}
                                     </span>
                                 </div>
-                                <p className="text-sm font-medium text-white mb-3">{q.question_text}</p>
+                                <p className="text-sm font-medium text-foreground mb-3">{q.question_text}</p>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                                     {q.options.map((opt, i) => (
                                         <div
                                             key={i}
                                             className={`flex items-center gap-2 px-3 py-2 rounded-xl text-xs ${i === q.correct_answer
-                                                ? "bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-medium"
-                                                : "bg-white/[0.02] border border-white/5 text-slate-400"
+                                                ? "bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 font-medium"
+                                                : "bg-muted/50 border border-border text-muted-foreground"
                                                 }`}
                                         >
-                                            <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 ${i === q.correct_answer ? "bg-emerald-500 text-white" : "bg-white/10 text-slate-500"
+                                            <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 ${i === q.correct_answer ? "bg-emerald-500 text-white" : "bg-muted text-muted-foreground"
                                                 }`}>
                                                 {String.fromCharCode(65 + i)}
                                             </span>
@@ -1073,10 +1078,10 @@ function QuestionsTab() {
                                 </div>
                             </div>
                             <div className="flex gap-1 shrink-0">
-                                <button onClick={() => openQuestionModal(q)} className="p-2 rounded-lg hover:bg-white/10 text-slate-400 hover:text-white transition-colors">
+                                <button onClick={() => openQuestionModal(q)} className="p-2 rounded-lg hover:bg-muted text-muted-foreground hover:text-foreground transition-colors">
                                     <Pencil className="w-3.5 h-3.5" />
                                 </button>
-                                <button onClick={() => setDeleteTarget(q)} className="p-2 rounded-lg hover:bg-red-500/10 text-red-400/60 hover:text-red-400 transition-colors">
+                                <button onClick={() => setDeleteTarget(q)} className="p-2 rounded-lg hover:bg-red-500/10 text-red-500/60 hover:text-red-500 transition-colors">
                                     <Trash2 className="w-3.5 h-3.5" />
                                 </button>
                             </div>
@@ -1084,7 +1089,7 @@ function QuestionsTab() {
                     </div>
                 ))}
                 {questions.length === 0 && (
-                    <div className="text-center py-16 text-slate-500 text-sm">No questions found</div>
+                    <div className="text-center py-16 text-muted-foreground text-sm">No questions found</div>
                 )}
             </div>
 
@@ -1093,27 +1098,27 @@ function QuestionsTab() {
                 <div className="space-y-4">
                     {!editQuestion && (
                         <div>
-                            <label className="text-xs text-slate-400 font-medium mb-1.5 block">Skill *</label>
-                            <select value={qForm.skill_id} onChange={(e) => setQForm({ ...qForm, skill_id: e.target.value })} className="w-full bg-[#0A0A0A] border border-white/10 text-white rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500 appearance-none">
+                            <label className="text-xs text-muted-foreground font-medium mb-1.5 block">Skill *</label>
+                            <select value={qForm.skill_id} onChange={(e) => setQForm({ ...qForm, skill_id: e.target.value })} className="w-full bg-background border border-border text-foreground rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500 appearance-none">
                                 <option value="">Select skill...</option>
                                 {skills.map((s) => <option key={s._id} value={s._id}>{s.domain_id?.name} → {s.name} ({s.difficulty_level})</option>)}
                             </select>
-                            <p className="text-[11px] text-slate-500 mt-1">Difficulty level is inherited from the selected skill</p>
+                            <p className="text-[11px] text-muted-foreground mt-1">Difficulty level is inherited from the selected skill</p>
                         </div>
                     )}
                     <div>
-                        <label className="text-xs text-slate-400 font-medium mb-1.5 block">Question *</label>
-                        <textarea value={qForm.question_text} onChange={(e) => setQForm({ ...qForm, question_text: e.target.value })} className="w-full bg-[#0A0A0A] border border-white/10 text-white rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500 resize-none" rows={2} placeholder="Enter question text..." />
+                        <label className="text-xs text-muted-foreground font-medium mb-1.5 block">Question *</label>
+                        <textarea value={qForm.question_text} onChange={(e) => setQForm({ ...qForm, question_text: e.target.value })} className="w-full bg-background border border-border text-foreground rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500 resize-none" rows={2} placeholder="Enter question text..." />
                     </div>
                     <div>
-                        <label className="text-xs text-slate-400 font-medium mb-1.5 block">Options *</label>
+                        <label className="text-xs text-muted-foreground font-medium mb-1.5 block">Options *</label>
                         <div className="space-y-2">
                             {qForm.options.map((opt, i) => (
                                 <div key={i} className="flex items-center gap-2">
                                     <button
                                         type="button"
                                         onClick={() => setQForm({ ...qForm, correct_answer: i })}
-                                        className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shrink-0 transition-colors ${qForm.correct_answer === i ? "bg-emerald-500 text-white" : "bg-white/10 text-slate-500 hover:bg-white/20"
+                                        className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shrink-0 transition-colors ${qForm.correct_answer === i ? "bg-emerald-500 text-white" : "bg-muted text-muted-foreground hover:bg-muted/80"
                                             }`}
                                     >
                                         {String.fromCharCode(65 + i)}
@@ -1125,17 +1130,17 @@ function QuestionsTab() {
                                             newOpts[i] = e.target.value;
                                             setQForm({ ...qForm, options: newOpts });
                                         }}
-                                        className="flex-1 bg-[#0A0A0A] border border-white/10 text-white rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500"
+                                        className="flex-1 bg-background border border-border text-foreground rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500"
                                         placeholder={`Option ${String.fromCharCode(65 + i)}`}
                                     />
                                 </div>
                             ))}
                         </div>
-                        <p className="text-[11px] text-slate-500 mt-1.5">Click a letter to mark the correct answer</p>
+                        <p className="text-[11px] text-muted-foreground mt-1.5">Click a letter to mark the correct answer</p>
                     </div>
                     <div>
-                        <label className="text-xs text-slate-400 font-medium mb-1.5 block">Explanation (optional)</label>
-                        <textarea value={qForm.explanation} onChange={(e) => setQForm({ ...qForm, explanation: e.target.value })} className="w-full bg-[#0A0A0A] border border-white/10 text-white rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500 resize-none" rows={2} placeholder="Why is this the correct answer?" />
+                        <label className="text-xs text-muted-foreground font-medium mb-1.5 block">Explanation (optional)</label>
+                        <textarea value={qForm.explanation} onChange={(e) => setQForm({ ...qForm, explanation: e.target.value })} className="w-full bg-background border border-border text-foreground rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500 resize-none" rows={2} placeholder="Why is this the correct answer?" />
                     </div>
                     <button
                         onClick={saveQuestion}
@@ -1227,36 +1232,36 @@ function SkillPortalTab() {
     return (
         <div className="space-y-6">
             <div>
-                <h2 className="text-2xl font-bold mb-1 flex items-center gap-2">
-                    <FileText className="w-6 h-6 text-purple-400" />
+                <h2 className="text-2xl font-bold mb-1 flex items-center gap-2 text-foreground">
+                    <FileText className="w-6 h-6 text-purple-600 dark:text-purple-400" />
                     Skill Portal
                 </h2>
-                <p className="text-slate-500 text-sm">Search trainees by domain, skills, or certifications and download their dossier</p>
+                <p className="text-muted-foreground text-sm">Search trainees by domain, skills, or certifications and download their dossier</p>
             </div>
 
             {/* Filters Row */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                 <div className="relative">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                     <input
                         type="text"
                         value={searchQuery}
                         onChange={e => setSearchQuery(e.target.value)}
                         placeholder="Search by name or email..."
-                        className="w-full bg-[#121212] border border-white/10 text-white placeholder:text-slate-500 rounded-xl pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500 focus:border-purple-500 transition-all"
+                        className="w-full bg-background border border-border text-foreground placeholder:text-muted-foreground rounded-xl pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500 focus:border-purple-500 transition-all"
                     />
                 </div>
                 <div className="relative">
-                    <Filter className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                    <Filter className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                     <select
                         value={filterDomain}
                         onChange={e => setFilterDomain(e.target.value)}
-                        className="w-full bg-[#121212] border border-white/10 text-white rounded-xl pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500 appearance-none cursor-pointer"
+                        className="w-full bg-background border border-border text-foreground rounded-xl pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500 appearance-none cursor-pointer"
                     >
                         <option value="">All Domains</option>
                         {domains.map(d => <option key={d._id} value={d._id}>{d.name}</option>)}
                     </select>
-                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 pointer-events-none" />
+                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
                 </div>
                 <div>
                     <input
@@ -1264,22 +1269,22 @@ function SkillPortalTab() {
                         value={filterSkill}
                         onChange={e => setFilterSkill(e.target.value)}
                         placeholder="Filter by skill..."
-                        className="w-full bg-[#121212] border border-white/10 text-white placeholder:text-slate-500 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500 transition-all"
+                        className="w-full bg-background border border-border text-foreground placeholder:text-muted-foreground rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500 transition-all"
                     />
                 </div>
                 <div className="relative">
-                    <Award className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                    <Award className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                     <select
                         value={filterCert}
                         onChange={e => setFilterCert(e.target.value)}
-                        className="w-full bg-[#121212] border border-white/10 text-white rounded-xl pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500 appearance-none cursor-pointer"
+                        className="w-full bg-background border border-border text-foreground rounded-xl pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-purple-500 appearance-none cursor-pointer"
                     >
                         <option value="">All Certifications</option>
                         <option value="any">Any Certification</option>
                         <option value="PL-1">PL-1 Only</option>
                         <option value="PL-2">PL-2 Only</option>
                     </select>
-                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 pointer-events-none" />
+                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
                 </div>
             </div>
 
@@ -1287,56 +1292,56 @@ function SkillPortalTab() {
             {loading ? (
                 <LoadingState />
             ) : (
-                <div className="bg-[#121212] border border-white/5 rounded-2xl overflow-hidden">
-                    <div className="px-5 py-4 border-b border-white/5 flex items-center justify-between">
-                        <h3 className="font-bold text-sm text-white">{users.length} Trainee{users.length !== 1 ? "s" : ""} Found</h3>
+                <div className="bg-card border border-border rounded-2xl overflow-hidden">
+                    <div className="px-5 py-4 border-b border-border flex items-center justify-between">
+                        <h3 className="font-bold text-sm text-foreground">{users.length} Trainee{users.length !== 1 ? "s" : ""} Found</h3>
                     </div>
                     <div className="overflow-x-auto">
                         <table className="w-full">
                             <thead>
-                                <tr className="border-b border-white/5">
-                                    <th className="text-left px-5 py-3 text-xs text-slate-500 font-semibold uppercase tracking-wider">Trainee</th>
-                                    <th className="text-left px-5 py-3 text-xs text-slate-500 font-semibold uppercase tracking-wider">Domain</th>
-                                    <th className="text-left px-5 py-3 text-xs text-slate-500 font-semibold uppercase tracking-wider">Skills</th>
-                                    <th className="text-left px-5 py-3 text-xs text-slate-500 font-semibold uppercase tracking-wider">Certifications</th>
-                                    <th className="text-left px-5 py-3 text-xs text-slate-500 font-semibold uppercase tracking-wider">Profile</th>
-                                    <th className="text-right px-5 py-3 text-xs text-slate-500 font-semibold uppercase tracking-wider">Dossier</th>
+                                <tr className="border-b border-border">
+                                    <th className="text-left px-5 py-3 text-xs text-muted-foreground font-semibold uppercase tracking-wider">Trainee</th>
+                                    <th className="text-left px-5 py-3 text-xs text-muted-foreground font-semibold uppercase tracking-wider">Domain</th>
+                                    <th className="text-left px-5 py-3 text-xs text-muted-foreground font-semibold uppercase tracking-wider">Skills</th>
+                                    <th className="text-left px-5 py-3 text-xs text-muted-foreground font-semibold uppercase tracking-wider">Certifications</th>
+                                    <th className="text-left px-5 py-3 text-xs text-muted-foreground font-semibold uppercase tracking-wider">Profile</th>
+                                    <th className="text-right px-5 py-3 text-xs text-muted-foreground font-semibold uppercase tracking-wider">Dossier</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {users.map(user => (
-                                    <tr key={user._id} className="border-b border-white/[0.03] hover:bg-white/[0.02] transition-colors">
+                                    <tr key={user._id} className="border-b border-border hover:bg-muted/50 transition-colors">
                                         <td className="px-5 py-3.5">
                                             <div className="flex items-center gap-3">
                                                 <div className="w-8 h-8 rounded-full bg-purple-500/20 flex items-center justify-center shrink-0 overflow-hidden">
                                                     {user.avatar ? (
                                                         <img src={`/src/assets/avatars/${user.avatar}`} alt="" className="w-7 h-7 object-contain" />
                                                     ) : (
-                                                        <span className="text-xs font-bold text-purple-400">{user.name.charAt(0)}</span>
+                                                        <span className="text-xs font-bold text-purple-600 dark:text-purple-400">{user.name.charAt(0)}</span>
                                                     )}
                                                 </div>
                                                 <div>
-                                                    <p className="text-sm font-medium text-white">{user.name}</p>
-                                                    <p className="text-xs text-slate-500">{user.email}</p>
+                                                    <p className="text-sm font-medium text-foreground">{user.name}</p>
+                                                    <p className="text-xs text-muted-foreground">{user.email}</p>
                                                 </div>
                                             </div>
                                         </td>
                                         <td className="px-5 py-3.5">
-                                            <span className="text-xs font-medium text-slate-300 bg-white/5 px-2.5 py-1 rounded-lg">{user.domain}</span>
+                                            <span className="text-xs font-medium text-muted-foreground bg-muted px-2.5 py-1 rounded-lg">{user.domain}</span>
                                         </td>
                                         <td className="px-5 py-3.5">
                                             <div className="flex flex-wrap gap-1 max-w-[200px]">
                                                 {user.skills.length > 0 ? (
                                                     <>
                                                         {user.skills.slice(0, 3).map(s => (
-                                                            <span key={s} className="text-[10px] px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">{s}</span>
+                                                            <span key={s} className="text-[10px] px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">{s}</span>
                                                         ))}
                                                         {user.skills.length > 3 && (
-                                                            <span className="text-[10px] px-2 py-0.5 rounded-md bg-white/5 text-slate-400">+{user.skills.length - 3}</span>
+                                                            <span className="text-[10px] px-2 py-0.5 rounded-md bg-muted text-muted-foreground">+{user.skills.length - 3}</span>
                                                         )}
                                                     </>
                                                 ) : (
-                                                    <span className="text-xs text-slate-600">—</span>
+                                                    <span className="text-xs text-muted-foreground">—</span>
                                                 )}
                                             </div>
                                         </td>
@@ -1344,27 +1349,27 @@ function SkillPortalTab() {
                                             <div className="flex flex-wrap gap-1">
                                                 {user.certifications.length > 0 ? (
                                                     user.certifications.map((c, i) => (
-                                                        <span key={i} className="text-[10px] px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-400 border border-amber-500/20 font-bold">
+                                                        <span key={i} className="text-[10px] px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 font-bold">
                                                             {c.level} ({c.score}%)
                                                         </span>
                                                     ))
                                                 ) : (
-                                                    <span className="text-xs text-slate-600">None</span>
+                                                    <span className="text-xs text-muted-foreground">None</span>
                                                 )}
                                             </div>
                                         </td>
                                         <td className="px-5 py-3.5">
                                             {user.hasProfile ? (
-                                                <span className="text-[10px] px-2 py-0.5 rounded-md bg-emerald-500/15 text-emerald-400 font-bold">Complete</span>
+                                                <span className="text-[10px] px-2 py-0.5 rounded-md bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-bold">Complete</span>
                                             ) : (
-                                                <span className="text-[10px] px-2 py-0.5 rounded-md bg-white/5 text-slate-500">Incomplete</span>
+                                                <span className="text-[10px] px-2 py-0.5 rounded-md bg-muted text-muted-foreground">Incomplete</span>
                                             )}
                                         </td>
                                         <td className="px-5 py-3.5 text-right">
                                             <button
                                                 onClick={() => handleDownloadPdf(user._id, user.name)}
                                                 disabled={downloading === user._id}
-                                                className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium bg-purple-500/15 text-purple-400 border border-purple-500/30 hover:bg-purple-500/25 transition-colors ml-auto disabled:opacity-50"
+                                                className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium bg-purple-500/15 text-purple-600 dark:text-purple-400 border border-purple-500/30 hover:bg-purple-500/25 transition-colors ml-auto disabled:opacity-50"
                                             >
                                                 <Download className="w-3.5 h-3.5" />
                                                 {downloading === user._id ? "Downloading..." : "Download PDF"}
@@ -1374,7 +1379,7 @@ function SkillPortalTab() {
                                 ))}
                                 {users.length === 0 && (
                                     <tr>
-                                        <td colSpan={6} className="text-center py-10 text-slate-500 text-sm">No trainees found matching your filters</td>
+                                        <td colSpan={6} className="text-center py-10 text-muted-foreground text-sm">No trainees found matching your filters</td>
                                     </tr>
                                 )}
                             </tbody>
@@ -1394,7 +1399,7 @@ function LoadingState() {
         <div className="flex items-center justify-center py-20">
             <div className="flex flex-col items-center gap-3">
                 <div className="w-8 h-8 border-2 border-purple-500/30 border-t-purple-500 rounded-full animate-spin" />
-                <p className="text-slate-500 text-sm">Loading...</p>
+                <p className="text-muted-foreground text-sm">Loading...</p>
             </div>
         </div>
     );
@@ -1404,8 +1409,8 @@ function ErrorState({ message }: { message: string }) {
     return (
         <div className="flex items-center justify-center py-20">
             <div className="flex flex-col items-center gap-3">
-                <AlertTriangle className="w-8 h-8 text-red-400" />
-                <p className="text-slate-400 text-sm">{message}</p>
+                <AlertTriangle className="w-8 h-8 text-red-500" />
+                <p className="text-muted-foreground text-sm">{message}</p>
             </div>
         </div>
     );
