@@ -28,8 +28,13 @@ router.get("/:userId", async (req, res) => {
         const selectedDomains = await UserDomain.find({ user_id: userId })
             .populate("domain_id");
 
-        // Calculate XP (10 per attempt + score bonus)
-        const totalXp = attempts.reduce((sum, a) => sum + 10 + Math.round(a.score / 10), 0);
+        // Get completed daily tasks XP
+        const DailyTask = require("../models/DailyTask");
+        const completedTasks = await DailyTask.find({ user_id: userId, completed: true });
+        const taskXp = completedTasks.reduce((sum, t) => sum + (t.xp_reward || 0), 0);
+
+        // Calculate XP (10 per attempt + score bonus + daily task XP)
+        const totalXp = attempts.reduce((sum, a) => sum + 10 + Math.round(a.score / 10), 0) + taskXp;
 
         // Determine level
         let level = "Beginner";

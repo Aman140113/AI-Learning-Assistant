@@ -99,6 +99,7 @@ router.post("/submit", async (req, res) => {
         // answers: [{ questionId, selectedAnswer }]
 
         const isRealUserId = mongoose.Types.ObjectId.isValid(userId);
+        const isRealDomainId = mongoose.Types.ObjectId.isValid(domainId);
 
         let correctCount = 0;
         const total = answers.length || 15;
@@ -117,13 +118,26 @@ router.post("/submit", async (req, res) => {
         let savedCert = null;
 
         if (passed) {
-            licence_id = generateLicenceId(domainId, level);
+            let domainNameForId = "GEN";
+
+            if (isRealDomainId) {
+                const Domain = require("../models/Domain");
+                const domainDoc = await Domain.findById(domainId);
+
+                if (domainDoc && domainDoc.name) {
+                    domainNameForId = domainDoc.name
+                        .replace(/[^a-zA-Z0-9]/g, '')
+                        .substring(0, 10)
+                        .toUpperCase();
+                }
+            }
+            licence_id = generateLicenceId(domainNameForId, level);
 
             if (isRealUserId) {
                 // Ensure uniqueness only when we are persisting a real user certification
                 let collision = await Certification.findOne({ licence_id });
                 while (collision) {
-                    licence_id = generateLicenceId(domainId, level);
+                    licence_id = generateLicenceId(domainNameForId, level);
                     collision = await Certification.findOne({ licence_id });
                 }
             }

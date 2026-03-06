@@ -70,6 +70,14 @@ const Login = () => {
           setLoading(false);
           return;
         }
+
+        const passwordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*()[\]{}\\|;:'",.<>/?`~_\-=+]).{8,}$/;
+        if (!passwordRegex.test(password)) {
+          setError("Password must be at least 8 characters long and contain at least 1 number and 1 special character");
+          setLoading(false);
+          return;
+        }
+
         if (password !== confirmPassword) {
           setError("Passwords do not match");
           setLoading(false);
@@ -271,25 +279,30 @@ const Login = () => {
 
             {/* Confirm Password (signup only, not admin) */}
             {!isLogin && !isAdminMode && (
-              <div className="relative group animate-in fade-in slide-in-from-top-2">
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500 group-focus-within:text-[#00F5D4] transition-colors">
-                  <Lock className="h-5 w-5" />
+              <div className="space-y-2 animate-in fade-in slide-in-from-top-2">
+                <div className="relative group">
+                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500 group-focus-within:text-[#00F5D4] transition-colors">
+                    <Lock className="h-5 w-5" />
+                  </div>
+                  <input
+                    type={showConfirmPassword ? "text" : "password"}
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    placeholder="Confirm Password"
+                    required
+                    className="w-full bg-[#0A0A0A] border border-white/10 text-white placeholder:text-slate-500 rounded-2xl pl-11 pr-12 py-3.5 text-sm focus:outline-none focus:ring-1 focus:ring-[#00F5D4] focus:border-[#00F5D4] transition-all"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-500 hover:text-white transition-colors outline-none"
+                  >
+                    {showConfirmPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                  </button>
                 </div>
-                <input
-                  type={showConfirmPassword ? "text" : "password"}
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  placeholder="Confirm Password"
-                  required
-                  className="w-full bg-[#0A0A0A] border border-white/10 text-white placeholder:text-slate-500 rounded-2xl pl-11 pr-12 py-3.5 text-sm focus:outline-none focus:ring-1 focus:ring-[#00F5D4] focus:border-[#00F5D4] transition-all"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-500 hover:text-white transition-colors outline-none"
-                >
-                  {showConfirmPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
-                </button>
+                <p className="text-[11px] text-slate-400 pl-2">
+                  * Password must be 8+ characters and contain at least 1 number and 1 special character.
+                </p>
               </div>
             )}
 
@@ -298,8 +311,8 @@ const Login = () => {
               type="submit"
               disabled={loading}
               className={`w-full group relative flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl font-bold overflow-hidden transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] mt-4 disabled:opacity-50 ${isAdminMode
-                  ? "bg-purple-500 text-white hover:bg-purple-400 shadow-[0_0_20px_rgba(168,85,247,0.2)] hover:shadow-[0_0_30px_rgba(168,85,247,0.4)]"
-                  : "bg-[#00F5D4] text-black hover:bg-white shadow-[0_0_20px_rgba(0,245,212,0.2)] hover:shadow-[0_0_30px_rgba(0,245,212,0.4)]"
+                ? "bg-purple-500 text-white hover:bg-purple-400 shadow-[0_0_20px_rgba(168,85,247,0.2)] hover:shadow-[0_0_30px_rgba(168,85,247,0.4)]"
+                : "bg-[#00F5D4] text-black hover:bg-white shadow-[0_0_20px_rgba(0,245,212,0.2)] hover:shadow-[0_0_30px_rgba(0,245,212,0.4)]"
                 }`}
             >
               <span className="relative z-10">
@@ -332,8 +345,8 @@ const Login = () => {
               <button
                 onClick={toggleAdminMode}
                 className={`flex items-center justify-center gap-2 mx-auto px-4 py-2 rounded-xl text-xs font-medium transition-all duration-300 ${isAdminMode
-                    ? "bg-purple-500/15 text-purple-400 border border-purple-500/30 hover:bg-purple-500/25"
-                    : "bg-white/5 text-slate-500 hover:text-slate-300 hover:bg-white/10 border border-transparent"
+                  ? "bg-purple-500/15 text-purple-400 border border-purple-500/30 hover:bg-purple-500/25"
+                  : "bg-white/5 text-slate-500 hover:text-slate-300 hover:bg-white/10 border border-transparent"
                   }`}
               >
                 <Shield className="w-3.5 h-3.5" />

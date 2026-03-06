@@ -71,11 +71,11 @@ const CertificationHub = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                     {/* PL-1 Certification Card */}
                     <div className="relative group animate-slide-up stagger-1 h-full">
-                        <div className={`absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl blur-xl transition-all duration-500 ${pl1Passed ? 'opacity-50' : 'opacity-0 group-hover:opacity-100'}`}></div>
-                        <div className={`relative h-full glass-card p-8 border-2 transition-all flex flex-col ${pl1Passed ? 'border-success/50 bg-success/5' : 'border-primary/20 hover:border-primary/50'}`}>
+                        <div className={`absolute inset-0 rounded-2xl blur-xl transition-all duration-500 ${pl1Passed ? 'bg-gradient-to-br from-emerald-500/40 to-emerald-300/20 opacity-70' : 'bg-gradient-to-br from-primary/20 to-accent/20 opacity-0 group-hover:opacity-100'}`}></div>
+                        <div className={`relative h-full glass-card p-8 border-2 transition-all flex flex-col ${pl1Passed ? 'border-emerald-500/50 bg-gradient-to-br from-emerald-500/10 to-transparent' : 'border-primary/20 hover:border-primary/50'}`}>
 
                             <div className="flex justify-between items-start mb-6">
-                                <div className="w-14 h-14 rounded-xl flex items-center justify-center bg-primary/10 text-primary">
+                                <div className={`w-14 h-14 rounded-xl flex items-center justify-center ${pl1Passed ? 'bg-emerald-500/20 text-emerald-500' : 'bg-primary/10 text-primary'}`}>
                                     <Shield className="w-8 h-8" />
                                 </div>
                                 {pl1Passed && (
@@ -138,11 +138,11 @@ const CertificationHub = () => {
 
                     {/* PL-2 Certification Card */}
                     <div className="relative group animate-slide-up stagger-2 h-full">
-                        <div className={`absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-2xl blur-xl transition-all duration-500 ${!pl1Passed ? 'opacity-0' : pl2Passed ? 'opacity-50' : 'opacity-0 group-hover:opacity-100'}`}></div>
-                        <div className={`relative h-full glass-card p-8 border-2 transition-all flex flex-col ${!pl1Passed ? 'border-border/50 opacity-75' : pl2Passed ? 'border-success/50 bg-success/5' : 'border-purple-500/20 hover:border-purple-500/50'}`}>
+                        <div className={`absolute inset-0 rounded-2xl blur-xl transition-all duration-500 ${!pl1Passed ? 'bg-gradient-to-br from-purple-500/10 to-pink-500/10 opacity-0' : pl2Passed ? 'bg-gradient-to-br from-emerald-500/40 to-emerald-300/20 opacity-70' : 'bg-gradient-to-br from-purple-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100'}`}></div>
+                        <div className={`relative h-full glass-card p-8 border-2 transition-all flex flex-col ${!pl1Passed ? 'border-border/50 opacity-75' : pl2Passed ? 'border-emerald-500/50 bg-gradient-to-br from-emerald-500/10 to-transparent' : 'border-purple-500/20 hover:border-purple-500/50'}`}>
 
                             <div className="flex justify-between items-start mb-6">
-                                <div className={`w-14 h-14 rounded-xl flex items-center justify-center ${!pl1Passed ? 'bg-muted text-muted-foreground' : 'bg-purple-500/10 text-purple-400'}`}>
+                                <div className={`w-14 h-14 rounded-xl flex items-center justify-center ${!pl1Passed ? 'bg-muted text-muted-foreground' : pl2Passed ? 'bg-emerald-500/20 text-emerald-500' : 'bg-purple-500/10 text-purple-400'}`}>
                                     {pl2Passed ? <Shield className="w-8 h-8" /> : !pl1Passed ? <Lock className="w-8 h-8" /> : <Shield className="w-8 h-8" />}
                                 </div>
                                 {pl2Passed && (
