@@ -9,7 +9,10 @@ import {
     ChevronRight,
     Github,
     Zap,
-    Video
+    Video,
+    Award,
+    FileText,
+    Shield
 } from "lucide-react";
 import TeamSection from "../components/TeamSection";
 
@@ -47,13 +50,34 @@ export default function Landing() {
             description: "Hone your interview skills under pressure with our fully AI-powered realistic interview platform mimicking real-world technical and behavioral rounds.",
             image: "/src/assets/interview.png",
             gradient: "from-indigo-500/20 to-cyan-500/20"
+        },
+        {
+            tabTitle: "CERTIFICATIONS",
+            title: "Validate your expertise with official assessments",
+            description: "Take comprehensive, industry-aligned exams to earn recognized certifications that prove your mastery in specific domains.",
+            image: "/src/assets/certification.png",
+            gradient: "from-yellow-500/20 to-orange-500/20"
+        },
+        {
+            tabTitle: "BU DOSSIER",
+            title: "Comprehensive skill profiles for Business Units",
+            description: "Generate detailed, professional dossiers summarizing your capabilities, certifications, and project readiness specifically tailored for BU allocations.",
+            image: "/src/assets/SkillPortal.png",
+            gradient: "from-blue-500/20 to-indigo-500/20"
+        },
+        {
+            tabTitle: "ADMIN PANEL",
+            title: "Comprehensive platform management ecosystem",
+            description: "Gain full control over learning content, manage domains and skill parameters, filter resources by difficulty, and actively monitor individual user learning paths.",
+            image: "/src/assets/admin.png",
+            gradient: "from-red-500/20 to-purple-500/20"
         }
     ];
 
     useEffect(() => {
         const interval = setInterval(() => {
             setActivePreview((prev) => (prev + 1) % platformPreviews.length);
-        }, 5000); // changes every 5 seconds
+        }, 2000); // changes every 2 seconds
         return () => clearInterval(interval);
     }, [platformPreviews.length]);
 
@@ -70,8 +94,8 @@ export default function Landing() {
             <nav className="fixed w-full z-50 border-b border-white/5 bg-[#0A0A0A]/60 backdrop-blur-xl">
                 <div className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#00F5D4] to-blue-500 flex items-center justify-center p-[1px]">
-                            <div className="w-full h-full bg-[#121212] rounded-xl flex items-center justify-center overflow-hidden">
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#00F5D4] to-blue-500 flex items-center justify-center p-[1px]">
+                            <div className="w-full h-full bg-[#121212] rounded-full flex items-center justify-center overflow-hidden">
                                 <img src="/src/assets/koshishLogo.png" alt="Logo" className="w-full h-full object-cover scale-150" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
                             </div>
                         </div>
@@ -221,12 +245,39 @@ export default function Landing() {
                             </div>
 
                             {/* Feature 6 */}
-                            <div className="group bg-[#121212] border border-white/5 hover:border-[#00F5D4]/50 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(0,245,212,0.2)] md:col-span-2 lg:col-span-1">
+                            <div className="group bg-[#121212] border border-white/5 hover:border-[#00F5D4]/50 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(0,245,212,0.2)]">
                                 <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#00F5D4]/10 to-blue-500/10 flex items-center justify-center mb-6 border border-[#00F5D4]/20 group-hover:scale-110 transition-transform">
                                     <Video className="w-6 h-6 text-[#00F5D4]" />
                                 </div>
                                 <h3 className="text-xl font-bold text-white mb-3">AI Mock Interview Platform</h3>
                                 <p className="text-slate-400">Practice your soft skills and technical knowledge with a real-time AI mock interviewer.</p>
+                            </div>
+
+                            {/* Feature 7 */}
+                            <div className="group bg-[#121212] border border-white/5 hover:border-[#00F5D4]/50 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(0,245,212,0.2)]">
+                                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#00F5D4]/10 to-blue-500/10 flex items-center justify-center mb-6 border border-[#00F5D4]/20 group-hover:scale-110 transition-transform">
+                                    <Award className="w-6 h-6 text-[#00F5D4]" />
+                                </div>
+                                <h3 className="text-xl font-bold text-white mb-3">Certification System</h3>
+                                <p className="text-slate-400">Validate your knowledge by taking proctored-style exams to earn verifiable credentials on various domains.</p>
+                            </div>
+
+                            {/* Feature 8 */}
+                            <div className="group bg-[#121212] border border-white/5 hover:border-[#00F5D4]/50 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(0,245,212,0.2)]">
+                                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#00F5D4]/10 to-blue-500/10 flex items-center justify-center mb-6 border border-[#00F5D4]/20 group-hover:scale-110 transition-transform">
+                                    <FileText className="w-6 h-6 text-[#00F5D4]" />
+                                </div>
+                                <h3 className="text-xl font-bold text-white mb-3">BU Dossier Generation</h3>
+                                <p className="text-slate-400">Auto-generate professional learner profiles and PDF dossiers for Business Units to assess talent capabilities effortlessly.</p>
+                            </div>
+
+                            {/* Feature 9 */}
+                            <div className="group bg-[#121212] border border-white/5 hover:border-[#00F5D4]/50 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(0,245,212,0.2)]">
+                                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#00F5D4]/10 to-blue-500/10 flex items-center justify-center mb-6 border border-[#00F5D4]/20 group-hover:scale-110 transition-transform">
+                                    <Shield className="w-6 h-6 text-[#00F5D4]" />
+                                </div>
+                                <h3 className="text-xl font-bold text-white mb-3">Admin Management</h3>
+                                <p className="text-slate-400">Manage domains, skills, platform configurations, and perform deep analytics on user progress easily through the unified Admin portal.</p>
                             </div>
                         </div>
                     </div>
@@ -322,8 +373,8 @@ export default function Landing() {
             <footer className="border-t border-white/10 bg-[#0A0A0A] py-12 px-6">
                 <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
                     <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#00F5D4] to-blue-500 flex items-center justify-center p-[1px]">
-                            <div className="w-full h-full bg-[#121212] rounded-lg overflow-hidden flex items-center justify-center">
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#00F5D4] to-blue-500 flex items-center justify-center p-[1px]">
+                            <div className="w-full h-full bg-[#121212] rounded-full overflow-hidden flex items-center justify-center">
                                 <img src="/src/assets/koshishLogo.png" alt="Logo" className="w-full h-full object-cover scale-150" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
                             </div>
                         </div>
@@ -333,6 +384,7 @@ export default function Landing() {
                     <div className="text-slate-500 text-sm font-medium flex-col items-center flex md:items-start">
                         <span>Project: SkillSpark AI</span>
                         <span>A Hackathon Project</span>
+                        <span className="mt-2 text-xs opacity-75">&copy; {new Date().getFullYear()} Team Koshish. All rights reserved.</span>
                     </div>
 
                     <div className="flex gap-4">

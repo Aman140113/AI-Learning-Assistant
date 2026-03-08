@@ -149,7 +149,7 @@ const Login = () => {
           {/* Logo */}
           <div className="flex items-center justify-center gap-3 mb-6 cursor-pointer" onClick={() => navigate('/')}>
             <div
-              className="w-12 h-12 rounded-2xl flex items-center justify-center p-[1px] transition-all duration-500"
+              className="w-12 h-12 rounded-full flex items-center justify-center p-[1px] transition-all duration-500"
               style={{
                 background: isAdminMode
                   ? "linear-gradient(to top right, #A855F7, #6366F1)"
@@ -157,7 +157,7 @@ const Login = () => {
                 boxShadow: `0 0 20px rgba(${accentRgb}, 0.3)`,
               }}
             >
-              <div className="w-full h-full bg-[#121212] rounded-2xl overflow-hidden flex items-center justify-center">
+              <div className="w-full h-full bg-[#121212] rounded-full overflow-hidden flex items-center justify-center">
                 {isAdminMode ? (
                   <Shield className="w-6 h-6 text-purple-400" />
                 ) : (

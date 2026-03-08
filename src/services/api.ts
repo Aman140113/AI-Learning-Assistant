@@ -83,6 +83,7 @@ export async function getUserProgress(userId: string) {
             level: "Proficient",
             streak: 15,
             selectedDomain: "GenAI & Prompt Engineering",
+            domainId: null,
             skills: fallbackSkills,
             weakSkills: ["Hallucinations Control", "Context Limits"],
             recentAttempts: []

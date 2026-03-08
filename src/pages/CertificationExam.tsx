@@ -9,7 +9,7 @@ const CertificationExam = () => {
     const { level } = useParams();
     const navigate = useNavigate();
     const userId = localStorage.getItem("userId") || "";
-    const domainId = localStorage.getItem("selectedDomain") || "java"; // Fallback to java if not found
+    const domainId = localStorage.getItem("selectedDomain") || "";
 
     const [questions, setQuestions] = useState<any[]>([]);
     const [answers, setAnswers] = useState<{ questionId: string; selectedAnswer: number }[]>([]);
@@ -20,8 +20,8 @@ const CertificationExam = () => {
     const [submitError, setSubmitError] = useState("");
 
     useEffect(() => {
-        if (!level || !userId) {
-            navigate("/certifications");
+        if (!level || !userId || !domainId || domainId.length !== 24) {
+            navigate("/dashboard");
             return;
         }
 

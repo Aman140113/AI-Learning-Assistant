@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
     LayoutDashboard,
@@ -9,13 +9,13 @@ import {
     Trophy,
     User,
     LogOut,
-    Zap,
     Star,
     Menu,
     Award
 } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
-import { userData } from "@/data/dummyData";
+import { userData as fallbackUserData } from "@/data/dummyData";
+import { getUserProgress } from "@/services/api";
 
 interface LayoutProps {
     children: ReactNode;
@@ -23,9 +23,42 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
     const [collapsed, setCollapsed] = useState(true);
+
+    const cachedXp = localStorage.getItem("userXp");
+    const cachedMaxXp = localStorage.getItem("userMaxXp");
+    const cachedLevel = localStorage.getItem("userLevel");
+
+    const [progressData, setProgressData] = useState({
+        level: cachedLevel || fallbackUserData.level,
+        xp: cachedXp ? parseInt(cachedXp, 10) : 0,
+        maxXp: cachedMaxXp ? parseInt(cachedMaxXp, 10) : 1000,
+    });
     const location = useLocation();
     const navigate = useNavigate();
     const userAvatar = localStorage.getItem("userAvatar") || null;
+    const userId = localStorage.getItem("userId");
+
+    useEffect(() => {
+        if (userId) {
+            getUserProgress(userId)
+                .then(data => {
+                    const newLevel = data.level || fallbackUserData.level;
+                    const newXp = data.xp || 0;
+                    const newMaxXp = data.maxXp || 1000;
+
+                    setProgressData({
+                        level: newLevel,
+                        xp: newXp,
+                        maxXp: newMaxXp
+                    });
+
+                    localStorage.setItem("userLevel", String(newLevel));
+                    localStorage.setItem("userXp", String(newXp));
+                    localStorage.setItem("userMaxXp", String(newMaxXp));
+                })
+                .catch(err => console.error("Failed to fetch user progress:", err));
+        }
+    }, [userId]);
 
     const links = [
         { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -84,9 +117,6 @@ const Layout = ({ children }: LayoutProps) => {
                 <header className="h-16 border-b border-border bg-card/30 backdrop-blur-md flex items-center justify-between px-6 z-30 shrink-0">
                     {/* Logo (Static in Top Bar) */}
                     <div className="flex items-center gap-3">
-                        <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center shrink-0 shadow-lg shadow-primary/20">
-                            <Zap className="w-5 h-5 text-primary-foreground" />
-                        </div>
                         <span className="font-heading font-bold text-xl text-foreground whitespace-nowrap">
                             SkillSpark<span className="text-primary">AI</span>
                         </span>
@@ -98,12 +128,12 @@ const Layout = ({ children }: LayoutProps) => {
                         <div className="flex items-center gap-4 pl-2">
                             <div className="flex flex-col items-end">
                                 <span className="text-[10px] text-muted-foreground font-semibold uppercase tracking-wider leading-none mb-1">Level</span>
-                                <span className="text-sm font-bold text-foreground leading-none">{userData.level}</span>
+                                <span className="text-sm font-bold text-foreground leading-none">{progressData.level}</span>
                             </div>
                             <div className="h-8 w-px bg-border hidden md:block"></div>
                             <div className="flex items-center gap-2 bg-primary/10 px-3 py-1.5 rounded-lg border border-primary/20">
                                 <Star className="w-4 h-4 text-primary fill-primary" />
-                                <span className="text-sm font-bold text-primary">{userData.xp} <span className="text-xs font-semibold text-primary/70">/ {userData.maxXp} XP</span></span>
+                                <span className="text-sm font-bold text-primary">{progressData.xp} <span className="text-xs font-semibold text-primary/70">/ {progressData.maxXp} XP</span></span>
                             </div>
                         </div>
 

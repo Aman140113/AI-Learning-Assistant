@@ -59,6 +59,7 @@ router.get("/:userId", async (req, res) => {
             level,
             streak: attempts.length,
             selectedDomain: selectedDomains[0]?.domain_id?.name || "None",
+            domainId: selectedDomains[0]?.domain_id?._id || null,
             skills,
             weakSkills,
             recentAttempts: attempts.slice(0, 5),

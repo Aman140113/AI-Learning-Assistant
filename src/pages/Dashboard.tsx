@@ -14,6 +14,7 @@ interface ProgressData {
   level: "Beginner" | "Intermediate" | "Proficient";
   streak: number;
   selectedDomain: string;
+  domainId?: string;
   skills: { name: string; progress: number; status: "Beginner" | "Intermediate" | "Proficient" }[];
   weakSkills: string[];
 }
@@ -45,6 +46,9 @@ const Dashboard = () => {
           setData(progressData);
           if (progressData.selectedDomain) {
             localStorage.setItem("selectedDomainName", progressData.selectedDomain);
+          }
+          if (progressData.domainId) {
+            localStorage.setItem("selectedDomain", progressData.domainId);
           }
         }
         if (tasksData?.completedDates) setCompletedDates(tasksData.completedDates);

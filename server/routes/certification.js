@@ -12,10 +12,11 @@ const User = require("../models/User");
 // Let's check if there is a Question model. Yes, there is admin/questions so probably Question model exists.
 const QuizQuestion = require("../models/QuizQuestion");
 
-function generateLicenceId(domain, level) {
+function generateLicenceId(domainNameForId, level) {
+    const domain = domainNameForId.toUpperCase();
     const year = new Date().getFullYear();
     const random8 = Math.random().toString(36).substring(2, 10).toUpperCase();
-    return `SSAI-${domain.toUpperCase()}-${level}-${year}-${random8}`;
+    return `SSAI-${domain}-${level}-${year}-${random8}`;
 }
 
 // GET /api/certification/status/:userId
