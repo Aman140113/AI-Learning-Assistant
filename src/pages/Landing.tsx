@@ -168,21 +168,19 @@ export default function Landing() {
                             </div>
                             <div className="flex-1 relative w-full">
                                 <div className="absolute inset-0 bg-gradient-to-r from-[#00F5D4]/20 to-blue-500/20 rounded-2xl blur-xl transform rotate-3 scale-105"></div>
-                                <div className="relative bg-[#121212] border border-white/10 rounded-2xl p-6 shadow-2xl backdrop-blur-sm">
-                                    <div className="flex items-center gap-2 mb-4">
+                                <div className="relative bg-[#121212] border border-white/10 rounded-2xl p-2 md:p-4 shadow-2xl backdrop-blur-sm">
+                                    <div className="flex items-center gap-2 mb-3 px-2">
                                         <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
                                         <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
                                         <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
                                     </div>
-                                    <div className="space-y-4">
-                                        <div className="h-8 bg-white/5 rounded-md w-1/3"></div>
-                                        <div className="h-32 bg-white/5 rounded-md w-full relative overflow-hidden">
-                                            <div className="absolute left-0 bottom-0 w-[75%] h-[2px] bg-[#00F5D4] shadow-[0_0_10px_rgba(0,245,212,0.5)]"></div>
-                                        </div>
-                                        <div className="flex gap-4">
-                                            <div className="h-24 bg-white/5 rounded-md w-1/2"></div>
-                                            <div className="h-24 bg-white/5 rounded-md w-1/2"></div>
-                                        </div>
+                                    <div className="rounded-lg overflow-hidden border border-white/5">
+                                        <img
+                                            src="/src/assets/dashboard.png"
+                                            alt="Dashboard Preview"
+                                            className="w-full h-auto object-cover"
+                                            onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                                        />
                                     </div>
                                 </div>
                             </div>
