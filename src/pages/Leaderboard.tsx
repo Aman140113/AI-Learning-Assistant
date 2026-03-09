@@ -13,13 +13,13 @@ const getRankBadge = (xp: number, className = "w-8 h-8") => {
 
 // Static dummy data — each user now has an avatar image filename
 const leaderboardData = [
-    { id: 1, rank: 1, name: "Aman Mansuri", xp: 1540, level: "Proficient", avatarImg: "man_945230.png", trend: "up", isCurrentUser: false },
-    { id: 2, rank: 2, name: "OM Thakur", xp: 1250, level: "Intermediate", avatarImg: "boy_706836.png", trend: "up", isCurrentUser: false },
-    { id: 3, rank: 3, name: "Rohit Kumbhakar", xp: 950, level: "Beginner", avatarImg: "pirate_1999508.png", trend: "same", isCurrentUser: true },
-    { id: 4, rank: 4, name: "Shree Shetty", xp: 820, level: "Beginner", avatarImg: "woman_706803.png", trend: "down", isCurrentUser: false },
-    { id: 5, rank: 5, name: "Vivek Aggrawal", xp: 600, level: "Beginner", avatarImg: "beard_5184768.png", trend: "up", isCurrentUser: false },
-    { id: 6, rank: 6, name: "Bhagyashree Patil", xp: 450, level: "Beginner", avatarImg: "woman_706806.png", trend: "down", isCurrentUser: false },
-    { id: 7, rank: 7, name: "Akash Singh", xp: 320, level: "Beginner", avatarImg: "boy_6247196.png", trend: "same", isCurrentUser: false },
+    { id: 1, rank: 1, name: "User1", xp: 1540, level: "Proficient", avatarImg: "man_945230.png", trend: "up", isCurrentUser: false },
+    { id: 2, rank: 2, name: "User2", xp: 1250, level: "Intermediate", avatarImg: "boy_706836.png", trend: "up", isCurrentUser: false },
+    { id: 3, rank: 3, name: "User3", xp: 950, level: "Beginner", avatarImg: "pirate_1999508.png", trend: "same", isCurrentUser: true },
+    { id: 4, rank: 4, name: "User4", xp: 820, level: "Beginner", avatarImg: "woman_706803.png", trend: "down", isCurrentUser: false },
+    { id: 5, rank: 5, name: "User5", xp: 600, level: "Beginner", avatarImg: "beard_5184768.png", trend: "up", isCurrentUser: false },
+    { id: 6, rank: 6, name: "User6", xp: 450, level: "Beginner", avatarImg: "woman_706806.png", trend: "down", isCurrentUser: false },
+    { id: 7, rank: 7, name: "User7", xp: 320, level: "Beginner", avatarImg: "boy_6247196.png", trend: "same", isCurrentUser: false },
 ];
 
 

@@ -40,9 +40,9 @@ export const domains = [
 
 export const skills = [
   { name: "Java Basics", status: "Proficient" as const, progress: 95 },
-  { name: "OOP", status: "Intermediate" as const, progress: 60 },
+  { name: "OOP", status: "Beginner" as const, progress: 60 },
   { name: "Collections", status: "Beginner" as const, progress: 25 },
-  { name: "Exception Handling", status: "Intermediate" as const, progress: 55 },
+  { name: "Exception Handling", status: "Beginner" as const, progress: 55 },
   { name: "Multithreading", status: "Beginner" as const, progress: 15 },
 ];
 
@@ -199,51 +199,51 @@ export const allQuizQuestions = [
 export const learningPathResponse = {
   learner_id: "user1",
   topic: "Java Development",
-  mastery: "Intermediate" as const,
+  mastery: "Beginner" as const,
   recommended_action: "advance",
   next_difficulty: "proficient",
   recommendations: [
     {
       course_id: "C02850",
-      course_title: "Intermediate Java Course - OOPs, collctions",
+      course_title: "Beginner Java Course - OOPs, collctions",
       course_url: "https://www.udemy.com/course/mastering-in-object-oriented-programming-oops-by-rashmi/?utm_campaign=Search_DSA_Gamma_NonP_la.EN_cc.India&utm_source=google&utm_medium=paid-search&portfolio=India&utm_audience=mx&utm_tactic=nb&utm_term=&utm_content=g&funnel=&test=&gad_source=1&gad_campaignid=21178559977&gbraid=0AAAAADROdO2qAOFTg7h71aMH7Ip9wKdCP&gclid=CjwKCAiAzZ_NBhAEEiwAMtqKy6yAPoHhed0nGoc1gBD4mRpWolcqPXpJxunaUl0fbUL1kKp0tRTytRoCZq0QAvD_BwE",
-      difficulty: "Intermediate" as const,
+      difficulty: "Beginner" as const,
       xp_reward: 400,
       estimated_duration_hours: 8.7,
       skills_covered: "4-Pillars, List, Set, Map",
     },
     {
       course_id: "C02415",
-      course_title: "Intermediate Java Course - Multithreading, FIle Handling",
+      course_title: "Beginner Java Course - Multithreading, FIle Handling",
       course_url: "https://www.udemy.com/course/java-concurrency-multithreading-beginner-to-intermediate/?utm_campaign=Search_DSA_Beta_Prof_la.EN_cc.India&utm_source=google&utm_medium=paid-search&portfolio=India&utm_audience=mx&utm_tactic=nb&utm_term=&utm_content=g&funnel=&test=&gad_source=1&gad_campaignid=21178559974&gbraid=0AAAAADROdO2VySCrT1S6fh_s1PwgY0bvG&gclid=CjwKCAiAzZ_NBhAEEiwAMtqKy9UTc0BB_CByoBIzSRxLxoHjsaAvAQDveaKjEK1w626DliQzmjFKbBoC6MAQAvD_BwE",
-      difficulty: "Intermediate" as const,
+      difficulty: "Beginner" as const,
       xp_reward: 400,
       estimated_duration_hours: 32.6,
       skills_covered: "Threads, IO Streams",
     },
     {
       course_id: "C02826",
-      course_title: "Intermediate Java Course - Exception Handling, JDBC",
+      course_title: "Beginner Java Course - Exception Handling, JDBC",
       course_url: "https://www.udemy.com/course/exceptions-handling-in-java-exercises/?utm_campaign=Search_DSA_Beta_Prof_la.EN_cc.India&utm_source=google&utm_medium=paid-search&portfolio=India&utm_audience=mx&utm_tactic=nb&utm_term=&utm_content=g&funnel=&test=&gad_source=1&gad_campaignid=21178559974&gbraid=0AAAAADROdO2VySCrT1S6fh_s1PwgY0bvG&gclid=CjwKCAiAzZ_NBhAEEiwAMtqKy4Sj6zu7sCOcfppZUlk9cklK9zPVfZ23C63xAovSeQkuBLZcdYHfJhoCL34QAvD_BwE",
-      difficulty: "Intermediate" as const,
+      difficulty: "Beginner" as const,
       xp_reward: 400,
       estimated_duration_hours: 20.3,
       skills_covered: "jdbc, Try-Catch, Finally, Throw",
     },
     {
       course_id: "C02631",
-      course_title: "Intermediate Java Course - SpringBoot",
+      course_title: "Beginner Java Course - SpringBoot",
       course_url: "https://www.udemy.com/course/spring-5-with-spring-boot-2/?utm_campaign=Search_DSA_Beta_Prof_la.EN_cc.India_Subs&utm_source=google&utm_medium=paid-search&portfolio=India&utm_audience=mx&utm_tactic=nb&utm_term=&utm_content=g&funnel=&test=&gad_source=1&gad_campaignid=22900574867&gbraid=0AAAAADROdO1jFOHBPiUK4D_r-c1IqnRVd&gclid=CjwKCAiAzZ_NBhAEEiwAMtqKy4vMqVLmnTn1jzZWbRPRhyxFUgsIIkIJioI2kobFNajY0g_U3PuOJhoCE3sQAvD_BwE",
-      difficulty: "Intermediate" as const,
+      difficulty: "Beginner" as const,
       xp_reward: 400,
       estimated_duration_hours: 38.1,
       skills_covered: "Microservices, Controller, Connection",
     },
     {
       course_id: "C02629",
-      course_title: "Intermediate Java Course - Servelets, Hibernate, Maven",
+      course_title: "Beginner Java Course - Servelets, Hibernate, Maven",
       course_url: "https://www.udemy.com/course/jsp-servlet-free-course/?srsltid=AfmBOop7erPpO_9PoNmHOKoj7jVTzZXI5k5jcmk1Vm-hrU61enawKym_",
-      difficulty: "Intermediate" as const,
+      difficulty: "Beginner" as const,
       xp_reward: 500,
       estimated_duration_hours: 47.6,
       skills_covered: "Servelet Life-Cycle, req-res handling, Session Management",
@@ -254,7 +254,7 @@ export const learningPathResponse = {
       {
         week: 1,
         course_id: "C02850",
-        course_title: "Intermediate Java Course - OOPs, collctions",
+        course_title: "Beginner Java Course - OOPs, collctions",
         course_url: "https://www.udemy.com/course/mastering-in-object-oriented-programming-oops-by-rashmi/?utm_campaign=Search_DSA_Gamma_NonP_la.EN_cc.India&utm_source=google&utm_medium=paid-search&portfolio=India&utm_audience=mx&utm_tactic=nb&utm_term=&utm_content=g&funnel=&test=&gad_source=1&gad_campaignid=21178559977&gbraid=0AAAAADROdO2qAOFTg7h71aMH7Ip9wKdCP&gclid=CjwKCAiAzZ_NBhAEEiwAMtqKy6yAPoHhed0nGoc1gBD4mRpWolcqPXpJxunaUl0fbUL1kKp0tRTytRoCZq0QAvD_BwE",
         objective: "Get Hands on practice on OOPs concept and Collection framework.",
         focus_topics: ["4-Pillars", "List", "Set", "Map", "springboot"],
@@ -269,7 +269,7 @@ export const learningPathResponse = {
       {
         week: 2,
         course_id: "C02415",
-        course_title: "Intermediate Java Course - Multithreading, File Handling",
+        course_title: "Beginner Java Course - Multithreading, File Handling",
         course_url: "https://www.udemy.com/course/java-concurrency-multithreading-beginner-to-intermediate/?utm_campaign=Search_DSA_Beta_Prof_la.EN_cc.India&utm_source=google&utm_medium=paid-search&portfolio=India&utm_audience=mx&utm_tactic=nb&utm_term=&utm_content=g&funnel=&test=&gad_source=1&gad_campaignid=21178559974&gbraid=0AAAAADROdO2VySCrT1S6fh_s1PwgY0bvG&gclid=CjwKCAiAzZ_NBhAEEiwAMtqKy9UTc0BB_CByoBIzSRxLxoHjsaAvAQDveaKjEK1w626DliQzmjFKbBoC6MAQAvD_BwE",
         objective: "Enhance Java Multithreading and File Handling Skills",
         focus_topics: ["Threads", "IO Streams"],
@@ -284,7 +284,7 @@ export const learningPathResponse = {
       {
         week: 3,
         course_id: "C02826",
-        course_title: "Intermediate Java Course - Exception Handling, JDBC",
+        course_title: "Beginner Java Course - Exception Handling, JDBC",
         course_url: "https://www.udemy.com/course/exceptions-handling-in-java-exercises/?utm_campaign=Search_DSA_Beta_Prof_la.EN_cc.India&utm_source=google&utm_medium=paid-search&portfolio=India&utm_audience=mx&utm_tactic=nb&utm_term=&utm_content=g&funnel=&test=&gad_source=1&gad_campaignid=21178559974&gbraid=0AAAAADROdO2VySCrT1S6fh_s1PwgY0bvG&gclid=CjwKCAiAzZ_NBhAEEiwAMtqKy4Sj6zu7sCOcfppZUlk9cklK9zPVfZ23C63xAovSeQkuBLZcdYHfJhoCL34QAvD_BwE",
         objective: "Implement JDBC connection and try SQL queries",
         focus_topics: ["jdbc", "Try-Catch", "Finally", "Throw"],
@@ -299,7 +299,7 @@ export const learningPathResponse = {
       {
         week: 4,
         course_id: "C02631",
-        course_title: "Intermediate Java Course - SpringBoot",
+        course_title: "Beginner Java Course - SpringBoot",
         course_url: "https://www.udemy.com/course/spring-5-with-spring-boot-2/?utm_campaign=Search_DSA_Beta_Prof_la.EN_cc.India_Subs&utm_source=google&utm_medium=paid-search&portfolio=India&utm_audience=mx&utm_tactic=nb&utm_term=&utm_content=g&funnel=&test=&gad_source=1&gad_campaignid=22900574867&gbraid=0AAAAADROdO1jFOHBPiUK4D_r-c1IqnRVd&gclid=CjwKCAiAzZ_NBhAEEiwAMtqKy4vMqVLmnTn1jzZWbRPRhyxFUgsIIkIJioI2kobFNajY0g_U3PuOJhoCE3sQAvD_BwE",
         objective: "Complete SpringBoot Course",
         focus_topics: ["jdbc", "springboot"],
@@ -314,7 +314,7 @@ export const learningPathResponse = {
       {
         week: 5,
         course_id: "C02629",
-        course_title: "Intermediate Java Course - Servelets, Hibernate, Maven",
+        course_title: "Beginner Java Course - Servelets, Hibernate, Maven",
         course_url: "https://www.udemy.com/course/jsp-servlet-free-course/?srsltid=AfmBOop7erPpO_9PoNmHOKoj7jVTzZXI5k5jcmk1Vm-hrU61enawKym_",
         objective: "Make ",
         focus_topics: ["java", "jdbc"],
@@ -347,7 +347,7 @@ export const learningPath = learningPathResponse.learning_path.weeks;
 export const resultData = {
   score: 70,
   xpEarned: 120,
-  masteryLevel: "Intermediate" as const,
+  masteryLevel: "Beginner" as const,
   weakSkillsFound: ["Inheritance", "Encapsulation"],
   aiFeedback: "You have a good understanding of core Java concepts! Focus more on inheritance and encapsulation patterns. Practice implementing abstract classes and interfaces to strengthen your OOP fundamentals.",
 };

@@ -11,7 +11,8 @@ import {
     LogOut,
     Star,
     Menu,
-    Award
+    Award,
+    Zap
 } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
 import { userData as fallbackUserData } from "@/data/dummyData";
@@ -117,6 +118,10 @@ const Layout = ({ children }: LayoutProps) => {
                 <header className="h-16 border-b border-border bg-card/30 backdrop-blur-md flex items-center justify-between px-6 z-30 shrink-0">
                     {/* Logo (Static in Top Bar) */}
                     <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 rounded-xl  bg-primary flex items-center justify-center shrink-0 shadow-lg shadow-primary/20">
+                            <Zap className="w-5 h-5 text-primary-foreground" />
+                        </div>
+
                         <span className="font-heading font-bold text-xl text-foreground whitespace-nowrap">
                             SkillSpark<span className="text-primary">AI</span>
                         </span>

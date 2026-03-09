@@ -11,7 +11,7 @@ const teamData = [
     {
         id: 2,
         name: "Aman Mansuri",
-        role: "Fontend and AI Developer",
+        role: "Backend and AI Developer",
         image: "src/assets/Team/Aman.jpg",
         socials: { ig: "https://www.linkedin.com/in/aman-mansuri140103/"}
     },
@@ -46,7 +46,7 @@ const teamData = [
     {
         id: 7,
         name: "Akash Singh",
-        role: "Backend Developer",
+        role: "Data Analyst",
         image: "src/assets/Team/Akash.jpg",
         socials: { ig: "https://www.linkedin.com/in/akashraj77312"}
     }

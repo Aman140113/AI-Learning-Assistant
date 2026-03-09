@@ -1,4 +1,4 @@
-import { MessageSquare, X, Loader2 } from "lucide-react";
+import { MessageSquare, SendHorizontal, X, Loader2 } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -88,7 +88,7 @@ const ChatbotButton = () => {
   return (
     <div className="fixed bottom-6 right-6 z-[100]">
       {isOpen && (
-        <div className="mb-4 w-[350px] h-[500px] bg-background border border-border shadow-2xl rounded-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-5">
+        <div className="mb-4 w-[350px] h-[500px] bg-background b1rder border-border shadow-2xl rounded-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-5">
           {/* Header */}
           <div className="flex justify-between items-center bg-primary text-primary-foreground p-4 shadow-sm z-10">
             <h3 className="font-semibold text-lg flex items-center gap-2">
@@ -154,7 +154,7 @@ const ChatbotButton = () => {
                 size="icon"
                 className="h-9 w-9 rounded-lg shrink-0 mb-0.5 mr-0.5"
               >
-                <MessageSquare className="h-4 w-4" />
+                <SendHorizontal className="h-4 w-4" />
                 <span className="sr-only">Send message</span>
               </Button>
             </div>
