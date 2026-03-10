@@ -25,14 +25,14 @@ const teamData = [
     {
         id: 4,
         name: "Bhagyashree Patil ",
-        role: "Data Analyst",
+        role: "Data Collection",
         image: "src/assets/Team/Bhagyashree.png",
         socials: { ig: "https://www.linkedin.com/in/bhagyashree-patil-393029287/" }
     },
     {
         id: 5,
         name: "Vivek Kumar",
-        role: "Data Analyst",
+        role: "Data Collection",
         image: "src/assets/Team/VivekNew.jpg",
         socials: { ig: "#" }
     },
@@ -46,7 +46,7 @@ const teamData = [
     {
         id: 7,
         name: "Akash Singh",
-        role: "Data Analyst",
+        role: "Backend Developer",
         image: "src/assets/Team/Akash.jpg",
         socials: { ig: "https://www.linkedin.com/in/akashraj77312"}
     }

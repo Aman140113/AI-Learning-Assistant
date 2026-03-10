@@ -1,4 +1,5 @@
-const API_BASE = "/api";
+// const API_BASE = "/api";
+const API_BASE = "https://ai-learning-assistant-backend-gyet.onrender.com"
 
 import { skills as fallbackSkills } from "../data/dummyData";
 

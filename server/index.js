@@ -7,7 +7,18 @@ const app = express();
 const PORT = process.env.PORT || 5001;
 
 // Middleware
-app.use(cors());
+// app.use(cors());
+
+app.use(cors({
+    origin: [
+        "http://localhost:5173", // For local development
+        "https://your-frontend-domain.vercel.app" // REPLACE with your actual Vercel/Netlify URL
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+}));
+
+
 app.use(express.json());
 
 // Connect to MongoDB
