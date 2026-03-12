@@ -4,7 +4,7 @@ import {
     Shield, Users, BookOpen, HelpCircle, BarChart3, LogOut,
     Trash2, Plus, Pencil, X, ChevronDown, Search, AlertTriangle,
     TrendingUp, UserCheck, Brain, Hash, Layers, Route, Filter,
-    FileText, Download, Award
+    FileText, Download, Award, CheckSquare, Square, FileSpreadsheet, Archive
 } from "lucide-react";
 import {
     getAdminStats, getAdminUsers, deleteAdminUser,
@@ -12,7 +12,7 @@ import {
     getAdminSkills, createAdminSkill, updateAdminSkill, deleteAdminSkill,
     getAdminQuestions, createAdminQuestion, updateAdminQuestion, deleteAdminQuestion,
     getAdminUserLearningPath,
-    searchDossierUsers, downloadDossierPdf,
+    searchDossierUsers, downloadDossierPdf, downloadDossierExcel, bulkDownloadDossierPdf,
 } from "@/services/api";
 import { ThemeToggle } from "@/components/theme-toggle";
 
@@ -1186,6 +1186,9 @@ function SkillPortalTab() {
     const [filterCert, setFilterCert] = useState("");
     const [domains, setDomains] = useState<DomainData[]>([]);
     const [downloading, setDownloading] = useState<string | null>(null);
+    const [selectedUserIds, setSelectedUserIds] = useState<Set<string>>(new Set());
+    const [downloadingExcel, setDownloadingExcel] = useState(false);
+    const [downloadingZip, setDownloadingZip] = useState(false);
 
     const search = () => {
         setLoading(true);
@@ -1226,6 +1229,63 @@ function SkillPortalTab() {
             console.error(e);
         } finally {
             setDownloading(null);
+        }
+    };
+
+    const toggleUserSelection = (userId: string) => {
+        setSelectedUserIds(prev => {
+            const next = new Set(prev);
+            if (next.has(userId)) next.delete(userId);
+            else next.add(userId);
+            return next;
+        });
+    };
+
+    const toggleSelectAll = () => {
+        if (selectedUserIds.size === users.length) {
+            setSelectedUserIds(new Set());
+        } else {
+            setSelectedUserIds(new Set(users.map(u => u._id)));
+        }
+    };
+
+    const handleDownloadExcel = async () => {
+        if (selectedUserIds.size === 0) return;
+        setDownloadingExcel(true);
+        try {
+            const blob = await downloadDossierExcel(Array.from(selectedUserIds));
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = `Trainee_Dossiers_${new Date().toISOString().split("T")[0]}.xlsx`;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            window.URL.revokeObjectURL(url);
+        } catch (e) {
+            console.error(e);
+        } finally {
+            setDownloadingExcel(false);
+        }
+    };
+
+    const handleBulkDownloadPdf = async () => {
+        if (selectedUserIds.size === 0) return;
+        setDownloadingZip(true);
+        try {
+            const blob = await bulkDownloadDossierPdf(Array.from(selectedUserIds));
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = `Dossiers_${new Date().toISOString().split("T")[0]}.zip`;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            window.URL.revokeObjectURL(url);
+        } catch (e) {
+            console.error(e);
+        } finally {
+            setDownloadingZip(false);
         }
     };
 
@@ -1295,11 +1355,43 @@ function SkillPortalTab() {
                 <div className="bg-card border border-border rounded-2xl overflow-hidden">
                     <div className="px-5 py-4 border-b border-border flex items-center justify-between">
                         <h3 className="font-bold text-sm text-foreground">{users.length} Trainee{users.length !== 1 ? "s" : ""} Found</h3>
+                        <div className="flex items-center gap-3">
+                            {selectedUserIds.size > 0 && (
+                                <span className="text-xs text-muted-foreground font-medium">
+                                    {selectedUserIds.size} selected
+                                </span>
+                            )}
+                            <button
+                                onClick={handleDownloadExcel}
+                                disabled={selectedUserIds.size === 0 || downloadingExcel}
+                                className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/25 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                            >
+                                <FileSpreadsheet className="w-4 h-4" />
+                                {downloadingExcel ? "Generating..." : `Download Excel${selectedUserIds.size > 0 ? ` (${selectedUserIds.size})` : ""}`}
+                            </button>
+                            <button
+                                onClick={handleBulkDownloadPdf}
+                                disabled={selectedUserIds.size === 0 || downloadingZip}
+                                className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold bg-purple-500/15 text-purple-600 dark:text-purple-400 border border-purple-500/30 hover:bg-purple-500/25 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                            >
+                                <Archive className="w-4 h-4" />
+                                {downloadingZip ? "Zipping..." : `Bulk Download PDFs${selectedUserIds.size > 0 ? ` (${selectedUserIds.size})` : ""}`}
+                            </button>
+                        </div>
                     </div>
                     <div className="overflow-x-auto">
                         <table className="w-full">
                             <thead>
                                 <tr className="border-b border-border">
+                                    <th className="px-3 py-3 w-10">
+                                        <button onClick={toggleSelectAll} className="text-muted-foreground hover:text-purple-500 transition-colors">
+                                            {users.length > 0 && selectedUserIds.size === users.length ? (
+                                                <CheckSquare className="w-4.5 h-4.5 text-purple-500" />
+                                            ) : (
+                                                <Square className="w-4.5 h-4.5" />
+                                            )}
+                                        </button>
+                                    </th>
                                     <th className="text-left px-5 py-3 text-xs text-muted-foreground font-semibold uppercase tracking-wider">Trainee</th>
                                     <th className="text-left px-5 py-3 text-xs text-muted-foreground font-semibold uppercase tracking-wider">Domain</th>
                                     <th className="text-left px-5 py-3 text-xs text-muted-foreground font-semibold uppercase tracking-wider">Skills</th>
@@ -1310,7 +1402,16 @@ function SkillPortalTab() {
                             </thead>
                             <tbody>
                                 {users.map(user => (
-                                    <tr key={user._id} className="border-b border-border hover:bg-muted/50 transition-colors">
+                                    <tr key={user._id} className={`border-b border-border hover:bg-muted/50 transition-colors ${selectedUserIds.has(user._id) ? "bg-purple-500/5" : ""}`}>
+                                        <td className="px-3 py-3.5 w-10">
+                                            <button onClick={() => toggleUserSelection(user._id)} className="text-muted-foreground hover:text-purple-500 transition-colors">
+                                                {selectedUserIds.has(user._id) ? (
+                                                    <CheckSquare className="w-4.5 h-4.5 text-purple-500" />
+                                                ) : (
+                                                    <Square className="w-4.5 h-4.5" />
+                                                )}
+                                            </button>
+                                        </td>
                                         <td className="px-5 py-3.5">
                                             <div className="flex items-center gap-3">
                                                 <div className="w-8 h-8 rounded-full bg-purple-500/20 flex items-center justify-center shrink-0 overflow-hidden">
@@ -1379,7 +1480,7 @@ function SkillPortalTab() {
                                 ))}
                                 {users.length === 0 && (
                                     <tr>
-                                        <td colSpan={6} className="text-center py-10 text-muted-foreground text-sm">No trainees found matching your filters</td>
+                                        <td colSpan={7} className="text-center py-10 text-muted-foreground text-sm">No trainees found matching your filters</td>
                                     </tr>
                                 )}
                             </tbody>

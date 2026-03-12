@@ -1,5 +1,5 @@
-// const API_BASE = "/api";
-const API_BASE = "https://ai-learning-assistant-backend-gyet.onrender.com"
+ const API_BASE = "/api";
+//const API_BASE = "https://ai-learning-assistant-backend-gyet.onrender.com"
 
 import { skills as fallbackSkills } from "../data/dummyData";
 
@@ -390,6 +390,26 @@ export async function searchDossierUsers(filters: { domain?: string; skill?: str
 export async function downloadDossierPdf(userId: string) {
     const res = await fetch(`${API_BASE}/dossier/download/${userId}`);
     if (!res.ok) throw new Error("Failed to download dossier PDF");
+    return res.blob();
+}
+
+export async function downloadDossierExcel(userIds: string[]) {
+    const res = await fetch(`${API_BASE}/dossier/download-excel`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userIds }),
+    });
+    if (!res.ok) throw new Error("Failed to download dossier Excel");
+    return res.blob();
+}
+
+export async function bulkDownloadDossierPdf(userIds: string[]) {
+    const res = await fetch(`${API_BASE}/dossier/bulk-download-pdf`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userIds }),
+    });
+    if (!res.ok) throw new Error("Failed to download bulk dossier PDFs");
     return res.blob();
 }
 
