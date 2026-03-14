@@ -55,9 +55,12 @@ const Dashboard = () => {
         setLoading(false);
       });
 
-      // Certification readiness check (once per session)
+      // Certification readiness check (once per session, only on login — not after signup)
       const certAlertShown = sessionStorage.getItem("certAlertShown");
-      if (!certAlertShown && userId !== "demo_user") {
+      const isNewSignup = localStorage.getItem("isNewSignup");
+      if (isNewSignup) {
+        localStorage.removeItem("isNewSignup");
+      } else if (!certAlertShown && userId !== "demo_user") {
         getCertificationStatus(userId).then((certStatus) => {
           if (!certStatus.pl1_passed) {
             setShowCertModal(true);

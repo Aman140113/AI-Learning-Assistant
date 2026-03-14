@@ -88,6 +88,7 @@ const Login = () => {
         localStorage.setItem("userName", data.user.name);
         localStorage.setItem("userEmail", data.user.email);
         if (data.user.avatar) localStorage.setItem("userAvatar", data.user.avatar);
+        localStorage.setItem("isNewSignup", "true");
         navigate("/domain-selection");
       }
     } catch (err: any) {
