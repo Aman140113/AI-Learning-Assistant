@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight, Lock, User, Mail, Eye, EyeOff, Plus, X, Shield } from "lucide-react";
 import { login, signup, adminLogin } from "@/services/api";
+import koshishLogo from "../assets/koshishLogo.png";
+import { getAvatarAsset } from "@/lib/avatarAssets";
 
 const avatars = [
   "boy_6247196.png", "boy_6453081.png", "boy_706836.png",
@@ -136,7 +138,7 @@ const Login = () => {
                     : 'border-white/5 bg-[#0A0A0A] hover:border-white/20 hover:bg-white/5'
                     }`}
                 >
-                  <img src={`/src/assets/avatars/${av}`} alt="avatar" className="w-full h-full object-contain" />
+                  <img src={getAvatarAsset(av) ?? ""} alt="avatar" className="w-full h-full object-contain" />
                 </div>
               ))}
             </div>
@@ -162,7 +164,7 @@ const Login = () => {
                 {isAdminMode ? (
                   <Shield className="w-6 h-6 text-purple-400" />
                 ) : (
-                  <img src="/src/assets/koshishLogo.png" alt="Logo" className="w-full h-full object-cover scale-150" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+                  <img src={koshishLogo} alt="Logo" className="w-full h-full object-cover scale-150" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
                 )}
               </div>
             </div>
@@ -202,7 +204,7 @@ const Login = () => {
                   {selectedAvatar ? (
                     <>
                       <img
-                        src={`/src/assets/avatars/${selectedAvatar}`}
+                        src={getAvatarAsset(selectedAvatar) ?? ""}
                         alt="Selected Avatar"
                         className="w-16 h-16 object-contain"
                       />

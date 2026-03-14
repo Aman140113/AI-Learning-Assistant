@@ -1,6 +1,7 @@
 import Layout from "@/components/Layout";
 import { Trophy, Star, ArrowUp, ArrowDown, Minus } from "lucide-react";
 import { BronzeBadge, SilverBadge, GoldBadge, PlatinumBadge, LegendaryBadge } from "@/components/RankBadges";
+import { getAvatarAsset } from "@/lib/avatarAssets";
 
 // Returns the SVG badge component based on XP
 const getRankBadge = (xp: number, className = "w-8 h-8") => {
@@ -52,7 +53,7 @@ const Leaderboard = () => {
                     {/* Rank 2 */}
                     <div className="glass-card p-4 flex flex-col items-center border-[1px] border-gray-300/30 bg-gradient-to-t from-gray-500/10 to-transparent pb-6 relative translate-y-4">
                         <div className="absolute -top-6 w-12 h-12 rounded-full border-4 border-background bg-muted overflow-hidden flex items-center justify-center shadow-lg">
-                            <img src={`/src/assets/avatars/${leaderboardData[1].avatarImg}`} alt="avatar" className="w-9 h-9 object-contain" />
+                            <img src={getAvatarAsset(leaderboardData[1].avatarImg) ?? ""} alt="avatar" className="w-9 h-9 object-contain" />
                         </div>
                         <div className="mt-6 mb-1">{getRankBadge(leaderboardData[1].xp, "w-10 h-10")}</div>
                         <p className="font-semibold text-foreground text-sm truncate w-full text-center">{leaderboardData[1].name}</p>
@@ -62,7 +63,7 @@ const Leaderboard = () => {
                     {/* Rank 1 */}
                     <div className="glass-card p-4 flex flex-col items-center border-[1px] border-yellow-400/40 bg-gradient-to-t from-yellow-500/20 to-transparent pb-10 relative shadow-[0_0_30px_rgba(250,204,21,0.1)]">
                         <div className="absolute -top-8 w-16 h-16 rounded-full border-4 border-yellow-400/50 bg-muted overflow-hidden flex items-center justify-center shadow-xl">
-                            <img src={`/src/assets/avatars/${leaderboardData[0].avatarImg}`} alt="avatar" className="w-12 h-12 object-contain" />
+                            <img src={getAvatarAsset(leaderboardData[0].avatarImg) ?? ""} alt="avatar" className="w-12 h-12 object-contain" />
                         </div>
                         <div className="mt-8 mb-1">{getRankBadge(leaderboardData[0].xp, "w-12 h-12")}</div>
                         <p className="font-semibold text-foreground text-base truncate w-full text-center mt-1">{leaderboardData[0].name}</p>
@@ -72,7 +73,7 @@ const Leaderboard = () => {
                     {/* Rank 3 */}
                     <div className="glass-card p-4 flex flex-col items-center border-[1px] border-amber-600/30 bg-gradient-to-t from-amber-700/10 to-transparent pb-4 relative translate-y-8">
                         <div className="absolute -top-5 w-10 h-10 rounded-full border-4 border-background bg-muted overflow-hidden flex items-center justify-center shadow-lg">
-                            <img src={`/src/assets/avatars/${leaderboardData[2].avatarImg}`} alt="avatar" className="w-7 h-7 object-contain" />
+                            <img src={getAvatarAsset(leaderboardData[2].avatarImg) ?? ""} alt="avatar" className="w-7 h-7 object-contain" />
                         </div>
                         <div className="mt-5 mb-1">{getRankBadge(leaderboardData[2].xp, "w-8 h-8")}</div>
                         <p className="font-semibold text-foreground text-xs truncate w-full text-center">{leaderboardData[2].name}</p>
@@ -113,7 +114,7 @@ const Leaderboard = () => {
                                                         'border border-border/30'
                                             }`}>
                                             <img
-                                                src={`/src/assets/avatars/${user.avatarImg}`}
+                                                src={getAvatarAsset(user.avatarImg) ?? ""}
                                                 alt={user.name}
                                                 className="w-7 h-7 object-contain"
                                             />

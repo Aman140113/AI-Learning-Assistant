@@ -1,53 +1,60 @@
 import { Linkedin, } from 'lucide-react';
+import akashImage from "../assets/Team/Akash.jpg";
+import amanImage from "../assets/Team/Aman.jpg";
+import bhagyashreeImage from "../assets/Team/Bhagyashree.png";
+import omImage from "../assets/Team/Om.jpg";
+import rohitImage from "../assets/Team/Rohit.jpg";
+import shreeShettyImage from "../assets/Team/ShreeShetty.jpg";
+import vivekImage from "../assets/Team/VivekNew.jpg";
 
 const teamData = [
     {
         id: 1,
         name: "OM Shankar Thakur",
         role: "AI Lead",
-        image: "src/assets/Team/Om.jpg",
+        image: omImage,
         socials: { ig: "https://www.linkedin.com/in/om-shankar-86981b224/" }
     },
     {
         id: 2,
         name: "Aman Mansuri",
         role: "Backend and AI Developer",
-        image: "src/assets/Team/Aman.jpg",
+        image: amanImage,
         socials: { ig: "https://www.linkedin.com/in/aman-mansuri140103/"}
     },
     {
         id: 3,
         name: "Shree Shetty",
         role: "UI/UX and Frontend Developer",
-        image: "src/assets/Team/ShreeShetty.jpg",
+        image: shreeShettyImage,
         socials: { ig: "https://www.linkedin.com/in/shree-shetty-359a5734/"}
     },
     {
         id: 4,
         name: "Bhagyashree Patil ",
         role: "Data Collection",
-        image: "src/assets/Team/Bhagyashree.png",
+        image: bhagyashreeImage,
         socials: { ig: "https://www.linkedin.com/in/bhagyashree-patil-393029287/" }
     },
     {
         id: 5,
         name: "Vivek Kumar",
         role: "Data Collection",
-        image: "src/assets/Team/VivekNew.jpg",
+        image: vivekImage,
         socials: { ig: "#" }
     },
     {
         id: 6,
         name: "Rohit Kumbhakar",
         role: "Backend Developer",
-        image: "src/assets/Team/Rohit.jpg",
+        image: rohitImage,
         socials: {fig: "https://www.linkedin.com/in/rohitkumbhakar181305" }
     },
     {
         id: 7,
         name: "Akash Singh",
         role: "Backend Developer",
-        image: "src/assets/Team/Akash.jpg",
+        image: akashImage,
         socials: { ig: "https://www.linkedin.com/in/akashraj77312"}
     }
 ];

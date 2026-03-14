@@ -7,6 +7,7 @@ import SkillCard from "@/components/SkillCard";
 import CalendarCard from "@/components/CalendarCard";
 import { getUserProgress, getDailyTasks as fetchDailyTasks, getCertificationStatus } from "@/services/api";
 import { userData as fallbackUserData, skills as fallbackSkills, weakSkills as fallbackWeakSkills } from "@/data/dummyData";
+import { getAvatarAsset } from "@/lib/avatarAssets";
 
 interface ProgressData {
   xp: number;
@@ -146,7 +147,7 @@ const Dashboard = () => {
                 <div className="flex items-center gap-4">
                   {userAvatar ? (
                     <div className="w-14 h-14 rounded-full overflow-hidden flex items-center justify-center shrink-0">
-                      <img src={`/src/assets/avatars/${userAvatar}`} alt="Avatar" className="w-14 h-14 object-contain" />
+                      <img src={getAvatarAsset(userAvatar) ?? ""} alt="Avatar" className="w-14 h-14 object-contain" />
                     </div>
                   ) : (
                     <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0">

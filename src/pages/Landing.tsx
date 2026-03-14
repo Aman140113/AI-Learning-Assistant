@@ -15,6 +15,14 @@ import {
     Shield
 } from "lucide-react";
 import TeamSection from "../components/TeamSection";
+import adminPreview from "../assets/admin.png";
+import certificationPreview from "../assets/certification.png";
+import dashboardPreview from "../assets/dashboard.png";
+import interviewPreview from "../assets/interview.png";
+import koshishLogo from "../assets/koshishLogo.png";
+import leaderboardPreview from "../assets/leaderboard.png";
+import learningPathPreview from "../assets/learningPath.png";
+import skillPortalPreview from "../assets/SkillPortal.png";
 
 export default function Landing() {
     const navigate = useNavigate();
@@ -27,49 +35,49 @@ export default function Landing() {
             tabTitle: "LEARNING DASHBOARD",
             title: "Track your progress with real-time statistics",
             description: "Get a comprehensive view of your active quizzes, skill levels, and learning streaks. Engage with daily targets designed to maintain your momentum effectively.",
-            image: "/src/assets/dashboard.png",
+            image: dashboardPreview,
             gradient: "from-blue-500/20 to-purple-500/20"
         },
         {
             tabTitle: "LEADERBOARD",
             title: "Rise through the ranks and claim your spot",
             description: "Benchmark your performance against top learners globally. Earn experience points, badges, and recognition for overcoming challenges consistently.",
-            image: "/src/assets/leaderboard.png",
+            image: leaderboardPreview,
             gradient: "from-[#00F5D4]/20 to-emerald-500/20"
         },
         {
             tabTitle: "AI LEARNING PATH",
             title: "Intelligent curation aligned with your goals",
             description: "Stop guessing what to learn next. SkillSpark’s AI generates personalized learning curves customized closely based on your past mock interviews and quiz attempts.",
-            image: "/src/assets/learningPath.png",
+            image: learningPathPreview,
             gradient: "from-orange-500/20 to-pink-500/20"
         },
         {
             tabTitle: "MOCK INTERVIEWS",
             title: "Practice perfectly with AI-driven interviews",
             description: "Hone your interview skills under pressure with our fully AI-powered realistic interview platform mimicking real-world technical and behavioral rounds.",
-            image: "/src/assets/interview.png",
+            image: interviewPreview,
             gradient: "from-indigo-500/20 to-cyan-500/20"
         },
         {
             tabTitle: "CERTIFICATIONS",
             title: "Validate your expertise with official assessments",
             description: "Take comprehensive, industry-aligned exams to earn recognized certifications that prove your mastery in specific domains.",
-            image: "/src/assets/certification.png",
+            image: certificationPreview,
             gradient: "from-yellow-500/20 to-orange-500/20"
         },
         {
             tabTitle: "BU DOSSIER",
             title: "Comprehensive skill profiles for Business Units",
             description: "Generate detailed, professional dossiers summarizing your capabilities, certifications, and project readiness specifically tailored for BU allocations.",
-            image: "/src/assets/SkillPortal.png",
+            image: skillPortalPreview,
             gradient: "from-blue-500/20 to-indigo-500/20"
         },
         {
             tabTitle: "ADMIN PANEL",
             title: "Comprehensive platform management ecosystem",
             description: "Gain full control over learning content, manage domains and skill parameters, filter resources by difficulty, and actively monitor individual user learning paths.",
-            image: "/src/assets/admin.png",
+            image: adminPreview,
             gradient: "from-red-500/20 to-purple-500/20"
         }
     ];
@@ -96,7 +104,7 @@ export default function Landing() {
                     <div className="flex items-center gap-3">
                         <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#00F5D4] to-blue-500 flex items-center justify-center p-[1px]">
                             <div className="w-full h-full bg-[#121212] rounded-full flex items-center justify-center overflow-hidden">
-                                <img src="/src/assets/koshishLogo.png" alt="Logo" className="w-full h-full object-cover scale-150" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+                                <img src={koshishLogo} alt="Logo" className="w-full h-full object-cover scale-150" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
                             </div>
                         </div>
                         <div>
@@ -176,7 +184,7 @@ export default function Landing() {
                                     </div>
                                     <div className="rounded-lg overflow-hidden border border-white/5">
                                         <img
-                                            src="/src/assets/dashboard.png"
+                                            src={dashboardPreview}
                                             alt="Dashboard Preview"
                                             className="w-full h-auto object-cover"
                                             onError={(e) => { e.currentTarget.style.display = 'none'; }}
@@ -373,7 +381,7 @@ export default function Landing() {
                     <div className="flex items-center gap-2">
                         <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#00F5D4] to-blue-500 flex items-center justify-center p-[1px]">
                             <div className="w-full h-full bg-[#121212] rounded-full overflow-hidden flex items-center justify-center">
-                                <img src="/src/assets/koshishLogo.png" alt="Logo" className="w-full h-full object-cover scale-150" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+                                <img src={koshishLogo} alt="Logo" className="w-full h-full object-cover scale-150" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
                             </div>
                         </div>
                         <span className="font-bold text-lg text-white">Team <span className="text-[#00F5D4]">Koshish</span> Innovate by trying</span>

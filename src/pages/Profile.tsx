@@ -4,6 +4,7 @@ import { Mail, Calendar, Trophy, Zap, Flame, X, Plus, AlertTriangle, Trash2, Arr
 import Layout from "@/components/Layout";
 import { getUserProgress, updateAvatar, deleteAccount } from "@/services/api";
 import { userData as fallbackUserData } from "@/data/dummyData";
+import { getAvatarAsset } from "@/lib/avatarAssets";
 
 const avatars = [
     "boy_6247196.png", "boy_6453081.png", "boy_706836.png",
@@ -73,7 +74,7 @@ const Profile = () => {
                             {avatars.map((av) => (
                                 <div key={av} onClick={() => handleAvatarChange(av)}
                                     className={`aspect-square rounded-2xl flex items-center justify-center cursor-pointer transition-all duration-300 border-2 p-2 ${userAvatar === av ? 'border-[#00F5D4] bg-[#00F5D4]/10 scale-105 shadow-[0_0_15px_rgba(0,245,212,0.3)]' : 'border-border bg-muted hover:border-primary/30 hover:bg-muted/80'}`}>
-                                    <img src={`/src/assets/avatars/${av}`} alt="avatar" className="w-full h-full object-contain" />
+                                    <img src={getAvatarAsset(av) ?? ""} alt="avatar" className="w-full h-full object-contain" />
                                 </div>
                             ))}
                         </div>
@@ -122,7 +123,7 @@ const Profile = () => {
                     <div className="relative mx-auto w-24 h-24 mb-4 cursor-pointer group" onClick={() => setShowAvatarModal(true)}>
                         <div className="w-24 h-24 rounded-full overflow-hidden flex items-center justify-center">
                             {userAvatar ? (
-                                <img src={`/src/assets/avatars/${userAvatar}`} alt="Avatar" className="w-20 h-20 object-contain" />
+                                <img src={getAvatarAsset(userAvatar) ?? ""} alt="Avatar" className="w-20 h-20 object-contain" />
                             ) : (
                                 <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center">
                                     <span className="text-3xl font-bold text-primary">{userName.charAt(0)}</span>

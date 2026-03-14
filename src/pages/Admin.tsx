@@ -15,6 +15,7 @@ import {
     searchDossierUsers, downloadDossierPdf, downloadDossierExcel, bulkDownloadDossierPdf,
 } from "@/services/api";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { getAvatarAsset } from "@/lib/avatarAssets";
 
 // ═══════════════════════════════════════
 //  TYPES
@@ -441,7 +442,7 @@ function UsersTab() {
                                             <div className="flex items-center gap-3">
                                                 <div className="w-8 h-8 rounded-full bg-purple-500/20 flex items-center justify-center shrink-0 overflow-hidden">
                                                     {user.avatar ? (
-                                                        <img src={`/src/assets/avatars/${user.avatar}`} alt="" className="w-7 h-7 object-contain" />
+                                                        <img src={getAvatarAsset(user.avatar) ?? ""} alt="" className="w-7 h-7 object-contain" />
                                                     ) : (
                                                         <span className="text-xs font-bold text-purple-600 dark:text-purple-400">{user.name.charAt(0)}</span>
                                                     )}
@@ -1416,7 +1417,7 @@ function SkillPortalTab() {
                                             <div className="flex items-center gap-3">
                                                 <div className="w-8 h-8 rounded-full bg-purple-500/20 flex items-center justify-center shrink-0 overflow-hidden">
                                                     {user.avatar ? (
-                                                        <img src={`/src/assets/avatars/${user.avatar}`} alt="" className="w-7 h-7 object-contain" />
+                                                        <img src={getAvatarAsset(user.avatar) ?? ""} alt="" className="w-7 h-7 object-contain" />
                                                     ) : (
                                                         <span className="text-xs font-bold text-purple-600 dark:text-purple-400">{user.name.charAt(0)}</span>
                                                     )}

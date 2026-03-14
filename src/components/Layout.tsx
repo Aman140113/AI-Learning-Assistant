@@ -17,6 +17,7 @@ import {
 import { ThemeToggle } from "./theme-toggle";
 import { userData as fallbackUserData } from "@/data/dummyData";
 import { getUserProgress } from "@/services/api";
+import { getAvatarAsset } from "@/lib/avatarAssets";
 
 interface LayoutProps {
     children: ReactNode;
@@ -154,7 +155,7 @@ const Layout = ({ children }: LayoutProps) => {
                                 className="w-10 h-10 rounded-full bg-muted flex items-center justify-center hover:bg-muted/80 transition-colors border border-border overflow-hidden"
                             >
                                 {userAvatar ? (
-                                    <img src={`/src/assets/avatars/${userAvatar}`} alt="Avatar" className="w-8 h-8 object-contain" />
+                                    <img src={getAvatarAsset(userAvatar) ?? ""} alt="Avatar" className="w-8 h-8 object-contain" />
                                 ) : (
                                     <User className="w-5 h-5 text-foreground" />
                                 )}
